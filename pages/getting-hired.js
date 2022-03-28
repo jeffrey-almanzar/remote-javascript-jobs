@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 
 export default function GettingHired() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       Getting hired
     </div>
   )

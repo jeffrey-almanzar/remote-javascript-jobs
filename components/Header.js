@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
-    <nav>
+    <nav className="container">
       <ul>
         <li>
           <Link href="/">Home</Link>

@@ -8,14 +8,14 @@ import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
-    <div className={styles.container}>
+    <>
       <Meta title="Some Title" description="Some text" />
 
-      <main className={styles.main}>
+      <main className="container-fluid">
         <Header />
         {children}
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 
 export default function Resources() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       Resources
     </div>
   )
