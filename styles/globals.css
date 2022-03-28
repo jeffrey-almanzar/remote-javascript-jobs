@@ -9,6 +9,12 @@
   --color-button-text: rgb(255, 255, 255);
   --color-background: #fff;
   --color-anchor: #000aff;
+
+  /* COLORS */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-yellow: #f7e018;
+
 }
 
 [data-theme='dark'] {
@@ -17,7 +23,7 @@
   --color-button: #f7e018;
   --color-paragraph: #8a8a8a;
   --color-button-text: rgb(0, 0, 0);
-  --color-background: #22212b;
+  --color-background: #181818;
   --color-anchor: #f7e018;
 }
 
@@ -113,7 +119,126 @@ a {
 }
 
 
-/* COLORS */
+
 
 
 /* FONT STYLES */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Icons */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/fonts/icomoon/icomoon.eot?ug60a8');
+  src:  url('/fonts/icomoon/icomoon.eot?ug60a8#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon/icomoon.ttf?ug60a8') format('truetype'),
+    url('/fonts/icomoon/icomoon.woff?ug60a8') format('woff'),
+    url('/fonts/icomoon/icomoon.svg?ug60a8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu:before {
+  content: "\e900";
+}
+.icon-filters:before {
+  content: "\e901";
+}
+.icon-clock:before {
+  content: "\e902";
+}
+.icon-arrow_right:before {
+  content: "\e903";
+}
+.icon-arrow_left:before {
+  content: "\e904";
+}
+.icon-eye:before {
+  content: "\e905";
+}
+.icon-share:before {
+  content: "\e906";
+}
+.icon-chevron_down:before {
+  content: "\e907";
+  color: #4a5568;
+}
+.icon-dark_mode:before {
+  content: "\e908";
+}
+.icon-light_mode:before {
+  content: "\e909";
+}
+.icon-checkmark:before {
+  content: "\e90a";
+}
+.icon-image_icon:before {
+  content: "\e90b";
+}
+.icon-company_location:before {
+  content: "\e90c";
+}
+.icon-minus:before {
+  content: "\e90d";
+}
+.icon-plus:before {
+  content: "\e90e";
+}
+.icon-facebook:before {
+  content: "\e90f";
+}
+.icon-instagram:before {
+  content: "\e910";
+}
+.icon-linkedin:before {
+  content: "\e911";
+}
+.icon-youtube:before {
+  content: "\e912";
+}
+.icon-twitter:before {
+  content: "\e913";
+}
+.icon-angular:before {
+  content: "\e914";
+}
+.icon-jquery:before {
+  content: "\e915";
+}
+.icon-node:before {
+  content: "\e916";
+}
+.icon-vue:before {
+  content: "\e917";
+}
+.icon-native:before {
+  content: "\e918";
+}
