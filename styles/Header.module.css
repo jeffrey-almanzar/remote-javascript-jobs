@@ -1,7 +1,19 @@
 .wrapper {
-    background-color: #000;
+    background-color: var(--color-black);
     height: 70px;
     /* position: relative; */
+}
+
+.wrapper a {
+    color: var(--color-white);
+}
+
+.logo {
+    color: var(--color-white);
+}
+
+.wrapper a:hover {
+    color: var(--color-yellow);
 }
 
 .testCheck {
