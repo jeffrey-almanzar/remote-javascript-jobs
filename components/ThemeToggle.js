@@ -42,6 +42,8 @@ export default function ThemeToggle() {
               onChange={handleToggle}
             />
             <span className="slider"></span>
+            <span className="theme-mode-icon icon-light_mode position-relative"></span>
+            <span className="theme-mode-icon icon-dark_mode position-relative"></span>
           </label>
         </form>
       )}
