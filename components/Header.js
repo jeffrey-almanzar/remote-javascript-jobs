@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import ThemeToggle from "./ThemeToggle";
 
@@ -15,10 +14,10 @@ export default function Header() {
       )}
     >
       <div className="container-lg d-flex justify-content-between align-items-center h-100">
-        <label htmlFor="test" className={styles.label}>
+        <label htmlFor="menu" className={styles.label}>
           <span className="icon-menu d-lg-none"></span>
         </label>
-        <input id="test" className={styles.testCheck} type="checkbox" />
+        <input id="menu" className={styles.menuController} type="checkbox" />
         <p className={styles.logo}>
           <Link href="/">
             RemoteJSJobs
