@@ -16,10 +16,12 @@ h4,
 p,
 figure,
 ul,
+ol
 blockquote,
 dl,
 dd {
   margin: 0;
+  padding: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -107,7 +109,29 @@ select {
   --color-anchor: #f7e018;
 }
 
+.color-yellow {
+    color: var(--color-yellow);
+}
 
+.color-white {
+  color: var(--color-white);
+}
+
+.color-black {
+  color: var(--color-black);
+}
+
+.bg-black {
+  background-color: var(--color-black);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
 
 /* swtich taken from W3 schools */
 

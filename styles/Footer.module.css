@@ -1,0 +1,12 @@
+.socialMediaIcon {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.socialMediaIcon:hover {
+    color: var(--color-yellow);
+}
+
+.logo {
+    font-size: 30px;
+}
