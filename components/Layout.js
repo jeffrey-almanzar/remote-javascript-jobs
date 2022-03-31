@@ -11,7 +11,7 @@ export default function Layout({ children }) {
     <>
       <Meta title="Some Title" description="Some text" />
 
-      <main className="container-fluid">
+      <main className="container-fluid px-0">
         <Header />
         {children}
       </main>
