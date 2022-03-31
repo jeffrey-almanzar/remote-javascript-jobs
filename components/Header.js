@@ -14,7 +14,7 @@ export default function Header() {
         "container-fluid position-relative"
       )}
     >
-      <div className="container d-flex justify-content-between align-items-center h-100">
+      <div className="container-lg d-flex justify-content-between align-items-center h-100">
         <label htmlFor="test" className={styles.label}>
           <span className="icon-menu d-lg-none"></span>
         </label>

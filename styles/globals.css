@@ -173,11 +173,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-
-/* input:checked ~ .icon-light_mode {
-  display: inline-block;
-} */
-
 input:not(:checked) ~ .icon-light_mode {
    display: none !important;
 }

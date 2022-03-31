@@ -20,13 +20,14 @@
     opacity: 0;
     width: 0;
     height: 0;
+    position: absolute;
 }
 
-.testCheck:checked ~ ul {
+.testCheck:checked ~ div ul {
     display: flex;
  }
  
-.testCheck ~ ul {
+.testCheck ~ div ul {
    display: none;
 }
 
@@ -57,7 +58,7 @@
         display: none;
     }
 
-    .testCheck ~ ul {
+    .testCheck ~ div ul {
         display: flex;
     }
 
