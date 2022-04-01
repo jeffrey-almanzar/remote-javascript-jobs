@@ -41,9 +41,9 @@ const featuredJobLinks = [
   },
 ];
 
-function LinkListing({ title, links }) {
+function LinkListing({ title, links, className }) {
   return (
-    <div>
+    <div className={classNames(className)}>
       <h4 className="mb-3">{title}</h4>
       <ul>
         {links.map((link) => (
@@ -70,58 +70,79 @@ function SocialMediaIcons() {
   );
 }
 
+const accordions = [
+  {
+    title: "Test",
+    Content: () => <div>Test Content</div>,
+  },
+  {
+    title: "Test 2",
+    Content: () => <div>Test Content 2</div>,
+  },
+  {
+    title: "Test 3",
+    Content: () => <div>Test Content 3</div>,
+  },
+  {
+    title: "Test 4",
+    Content: () => <div>Test Content 4</div>,
+  },
+];
+
+function Accordion({ accordions }) {
+  return (
+    <div className="accordion" id="accordionExample">
+      {accordions.map((accordion, index) => {
+        const { title, Content } = accordion;
+        const accordionKey = title.replace(' ', '') + index;
+        return (
+          <div key={title + "-" + index} className="accordion-item">
+            <h2 className="accordion-header" id={accordionKey}>
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={"#collapseOne" + accordionKey}
+                aria-expanded="false"
+                aria-controls={"collapseOne" + accordionKey}
+              >
+                {title}
+              </button>
+            </h2>
+            <div
+              id={"collapseOne" + accordionKey}
+              className="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div className="accordion-body color-black">
+                <Content />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="container-fluid bg-black pt-3 pb-5">
-      <div className="container-lg d-flex justify-content-between">
+    <footer className="footer container-fluid bg-black pt-3 pb-5">
+      <div className="container-lg d-md-flex justify-content-between">
         <div>
           <p className={classNames(styles.logo)}>
             <Link href="/">RemoteJSJobs</Link>
           </p>
           <p className="mb-4">Some text here</p>
           <SocialMediaIcons />
+          <div className="d-md-none mt-4">
+          <Accordion accordions={accordions} />
+          </div>
         </div>
-        <LinkListing title="Popular jobs" links={featuredJobLinks} />
-        <LinkListing title="Getting Hired" links={gettingHiredLinks} />
+        <LinkListing className="d-none d-md-block" title="Popular jobs" links={featuredJobLinks} />
+        <LinkListing className="d-none d-md-block" title="Getting Hired" links={gettingHiredLinks} />
       </div>
-      <div className="accordion" id="accordionExample">
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingOne">
-      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div className="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingTwo">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div className="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="headingThree">
-      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div className="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-</div>
     </footer>
   );
 }
