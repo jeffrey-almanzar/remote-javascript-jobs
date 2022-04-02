@@ -362,10 +362,7 @@ a {
   content: "\e918";
 }
 
-.mainContent {
-  min-height: 100%;
-}
-
+/* BootStrap accordions */
 .footer .accordion-item {
   border-radius: 1px;
 }
