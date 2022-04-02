@@ -366,3 +366,48 @@ a {
   min-height: 100%;
 }
 
+.footer .accordion-item {
+  border-radius: 1px;
+}
+
+.footer .accordion-button {
+  background-color: #000;
+  color: #fff;
+  border-radius: 1px;
+}
+
+.footer .accordion-item:first-of-type .accordion-button {
+  border-radius: 1px;
+}
+
+.accordion-button:not(.collapsed)::after,
+.accordion-button::after {
+  content: "\e90e";
+  background-image: none;
+
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.accordion-button:not(.collapsed)::after {
+  content: "\e90d";
+}
+
+.accordion-button:focus  {
+  border-color: var(--color-yellow);
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--color-yellow);
+}

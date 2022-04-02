@@ -115,7 +115,7 @@ function Accordion({ accordions }) {
               aria-labelledby="headingOne"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body color-black">
+              <div className="accordion-body color-white bg-black">
                 <Content />
               </div>
             </div>
