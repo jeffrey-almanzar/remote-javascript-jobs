@@ -128,7 +128,7 @@ function Accordion({ accordions }) {
 
 export default function Footer() {
   return (
-    <footer className="footer container-fluid bg-black pt-3 pb-5">
+    <footer className="footer container-fluid bg-black pt-3 mt-auto pb-5">
       <div className="container-lg d-md-flex justify-content-between">
         <div>
           <p className={classNames(styles.logo)}>

@@ -9,11 +9,10 @@ import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
-    <>
+    <div className="d-flex flex-column h-100">
       <Meta title="Some Title" description="Some text" />
-
-      <main className="container-fluid px-0">
-        <Header />
+      <Header />
+      <main className="container-fluid px-0 flex-shrink-0">
         {children}
       </main>
       <Footer />
@@ -22,6 +21,6 @@ export default function Layout({ children }) {
           integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
           crossOrigin="anonymous"
         />
-    </>
+    </div>
   );
 }

@@ -1,4 +1,9 @@
+#__next {
+  height: 100vh;
+}
+
 /* Reset */
+
 
 /* Box sizing rules */
 *,
@@ -357,4 +362,7 @@ a {
   content: "\e918";
 }
 
+.mainContent {
+  min-height: 100%;
+}
 
