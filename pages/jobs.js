@@ -149,7 +149,7 @@ function JobListing({ jobs }) {
           description,
         } = accordion;
 
-        const accordionKey = title.replace(" ", "") + index;
+        const accordionKey = 'job-title-' + index;
 
         return (
           <div key={title + "-" + index} className="accordion-item">
