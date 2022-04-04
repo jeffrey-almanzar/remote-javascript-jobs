@@ -1,6 +1,9 @@
 import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
+
+import HTMLParser from "../components/HTMLParser";
+
 import styles from "../styles/JobBoard.module.css";
 
 function DropDown({ title }) {
@@ -149,7 +152,7 @@ function JobListing({ jobs }) {
           description,
         } = accordion;
 
-        const accordionKey = 'job-title-' + index;
+        const accordionKey = "job-title-" + index;
 
         return (
           <div key={title + "-" + index} className="accordion-item">
@@ -183,8 +186,7 @@ function JobListing({ jobs }) {
               data-bs-parent="#accordionExample-2"
             >
               <div className="accordion-body color-white bg-black">
-                {/* {description} */}
-                test
+                <HTMLParser>{description}</HTMLParser>
               </div>
             </div>
           </div>
