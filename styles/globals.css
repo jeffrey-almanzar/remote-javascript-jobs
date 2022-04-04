@@ -101,6 +101,7 @@ select {
   --color-black: #000000;
   --color-white: #ffffff;
   --color-yellow: #f7e018;
+  --color-light-gray: #eee;
 
 }
 
@@ -324,6 +325,7 @@ a {
 }
 .icon-company_location:before {
   content: "\e90c";
+  font-size: 30px;
 }
 .icon-minus:before {
   content: "\e90d";
@@ -420,4 +422,8 @@ a {
 .job-card-container .accordion-button::after {
   content: '';
   background-image: none;
+}
+
+.job-card-container .accordion-button:focus {
+  box-shadow: none;
 }

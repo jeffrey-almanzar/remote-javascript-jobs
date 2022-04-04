@@ -1,3 +1,7 @@
 .filters {
-    border: 1px solid #000;
+    border: 1px solid var(--color-light-gray);
+}
+
+.companyLogo {
+    border-radius: 50%;
 }

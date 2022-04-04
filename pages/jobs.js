@@ -10,7 +10,7 @@ function DropDown({ title }) {
   return (
     <div className="dropdown">
       <button
-        className="btn btn-secondary dropdown-toggle"
+        className="btn  w-100 text-start btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton1"
         data-bs-toggle="dropdown"
@@ -165,16 +165,26 @@ function JobListing({ jobs }) {
                 aria-expanded="false"
                 aria-controls={"collapseOne2" + accordionKey}
               >
-                <div>
-                  <p>{date}</p>
-                  <Image width="150px" height="150px" src={logo_url} />
-                  <p>{company_name}</p>
-                  <h4>{title}</h4>
-                  <div>
-                    <p>{employment_type}</p>
-                    <p>{salary}</p>
-                    <p>{technologies[0]}</p>
-                    <p>{development_type}</p>
+                <div className="d-flex w-100">
+                  <div className="me-4">
+                    <Image className={styles.companyLogo} width="100px" height="100px" src={logo_url} />
+                  </div>
+                  <div className="flex-grow-1">
+                    <div className="w-100 d-flex justify-content-between mb-3">
+                      <p className="d-flex align-items-center">
+                        <span className="icon-company_location"></span>
+                        <span>{company_name}</span>
+                      </p>
+                      <p>{date}</p>
+                    </div>
+
+                    <h4 className="mb-3">{title}</h4>
+                    <div className="d-flex">
+                      <p className="me-3 btn btn-light">{employment_type}</p>
+                      <p className="me-3 btn btn-light">{salary}</p>
+                      <p className="me-3 btn btn-light">{technologies[0]}</p>
+                      <p className="btn btn-light">{development_type}</p>
+                    </div>
                   </div>
                 </div>
               </button>
@@ -201,10 +211,10 @@ export default function Jobs() {
     <div className="container mb-5">
       <h1 className="my-5">US Based Remote JavaScript Jobs</h1>
       <div className="row">
-        <div className="col-lg-4 mb-3 mb-lg-0">
+        <div className="col-lg-3 mb-3 mb-lg-0">
           <Filters />
         </div>
-        <div className="col-lg-8 job-card-container">
+        <div className="col-lg-9 job-card-container">
           <JobListing jobs={jobs} />
         </div>
       </div>
