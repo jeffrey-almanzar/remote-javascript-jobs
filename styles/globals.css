@@ -1,6 +1,6 @@
-#__next {
+/* #__next {
   height: 100vh;
-}
+} */
 
 /* Reset */
 
@@ -101,6 +101,7 @@ select {
   --color-black: #000000;
   --color-white: #ffffff;
   --color-yellow: #f7e018;
+  --color-light-gray: #eee;
 
 }
 
@@ -324,6 +325,7 @@ a {
 }
 .icon-company_location:before {
   content: "\e90c";
+  font-size: 30px;
 }
 .icon-minus:before {
   content: "\e90d";
@@ -377,8 +379,8 @@ a {
   border-radius: 1px;
 }
 
-.accordion-button:not(.collapsed)::after,
-.accordion-button::after {
+.footer .accordion-button:not(.collapsed)::after,
+.footer .accordion-button::after {
   content: "\e90e";
   background-image: none;
 
@@ -396,15 +398,32 @@ a {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.accordion-button:not(.collapsed)::after {
+.footer .accordion-button:not(.collapsed)::after {
   content: "\e90d";
 }
 
-.accordion-button:focus  {
+.footer .accordion-button:focus  {
   border-color: var(--color-yellow);
   box-shadow: none;
 }
 
-.accordion-button:not(.collapsed) {
+.footer .accordion-button:not(.collapsed) {
   color: var(--color-yellow);
+}
+
+.job-card-container .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+
+.job-card-container .accordion-button:not(.collapsed)::after,
+.job-card-container .accordion-button::after {
+  content: '';
+  background-image: none;
+}
+
+.job-card-container .accordion-button:focus {
+  box-shadow: none;
 }
