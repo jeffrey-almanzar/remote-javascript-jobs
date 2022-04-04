@@ -185,7 +185,7 @@ function JobListing({ jobs }) {
               aria-labelledby="headingOne2"
               data-bs-parent="#accordionExample-2"
             >
-              <div className="accordion-body color-white bg-black">
+              <div className="accordion-body">
                 <HTMLParser>{description}</HTMLParser>
               </div>
             </div>
@@ -201,10 +201,10 @@ export default function Jobs() {
     <div className="container mb-5">
       <h1 className="my-5">US Based Remote JavaScript Jobs</h1>
       <div className="row">
-        <div className="col-4">
+        <div className="col-lg-4 mb-3 mb-lg-0">
           <Filters />
         </div>
-        <div className="col-8">
+        <div className="col-lg-8 job-card-container">
           <JobListing jobs={jobs} />
         </div>
       </div>
