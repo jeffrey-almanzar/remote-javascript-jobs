@@ -1,3 +1,9 @@
 .nav-tabs .nav-link.active {
     background-color: var(--color-yellow) !important;
 }
+
+.image {
+    height: 200px;
+    width: 350px;
+    background-color: var(--color-black);
+}

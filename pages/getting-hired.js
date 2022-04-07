@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/GettingHired.module.css"
+import styles from "../styles/GettingHired.module.css";
+import classNames from "classnames";
 
 function Tab() {
   return (
@@ -30,7 +31,25 @@ export default function GettingHired() {
   return (
     <div className={styles.container}>
       <Tab />
+      <div className="container m-5">
+        <p className="mb-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
+          amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque
+          laoreet suspendisse interdum consectetur libero id. Lorem mollis
+          aliquam ut porttitor.{" "}
+        </p>
+
+        <div className="d-flex">
+          <div className={classNames(styles.image, 'me-3')}>
+            Image
+          </div>
+          <div>
+            <h3>How to create a solid software developer portfolio</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero …….</p>
+          </div>
+        </div>
+      </div>
     </div>
-    
   );
 }
