@@ -31,7 +31,7 @@ export default function GettingHired() {
   return (
     <div className={styles.container}>
       <Tab />
-      <div className="container m-5">
+      <div className="container mb-5">
         <p className="mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
@@ -40,12 +40,12 @@ export default function GettingHired() {
           aliquam ut porttitor.{" "}
         </p>
 
-        <div className="d-flex">
-          <div className={classNames(styles.image, 'me-3')}>
+        <div className="w-100 d-lg-flex">
+          <div className={classNames(styles.image, 'col col-lg-2 me-3 mb-3 mb-lg-0')}>
             Image
           </div>
           <div>
-            <h3>How to create a solid software developer portfolio</h3>
+            <h3 className="mb-3">How to create a solid software developer portfolio</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero …….</p>
           </div>
         </div>
