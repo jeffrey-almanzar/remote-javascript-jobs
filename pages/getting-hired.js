@@ -9,17 +9,17 @@ function Tab() {
       <ul className="nav nav-tabs">
         <li className="nav-item col-4 text-center">
           <a className="nav-link active" aria-current="page" href="#">
-            Active
+            Standing out
           </a>
         </li>
         <li className="nav-item col-4 text-center">
           <a className="nav-link" href="#">
-            Link
+            Demonstrating competence
           </a>
         </li>
         <li className="nav-item col-4 text-center">
           <a className="nav-link" href="#">
-            Link
+            Handling offers
           </a>
         </li>
       </ul>
