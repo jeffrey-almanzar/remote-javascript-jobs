@@ -27,6 +27,62 @@ function Tab() {
   );
 }
 
+const posts = [
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+        suspendisse interdum consectetur libero …….`,
+  },
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+        suspendisse interdum consectetur libero …….`,
+  },
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+        suspendisse interdum consectetur libero …….`,
+  },
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+        suspendisse interdum consectetur libero …….`,
+  },
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+        suspendisse interdum consectetur libero …….`,
+  },
+];
+
+function Card(props) {
+  const { title, content } = props;
+
+  return (
+    <div className="w-100 d-lg-flex">
+      <div
+        className={classNames(styles.image, "col col-lg-2 me-3 mb-3 mb-lg-0")}
+      >
+        Image
+      </div>
+      <div>
+        <h3 className="mb-3">{title}</h3>
+        <p>{content}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function GettingHired() {
   return (
     <div className={styles.container}>
@@ -40,14 +96,12 @@ export default function GettingHired() {
           aliquam ut porttitor.{" "}
         </p>
 
-        <div className=" d-lg-flex">
-          <div className={classNames(styles.image, 'col col-lg-2 me-3 mb-3 mb-lg-0')}>
-            Image
-          </div>
-          <div>
-            <h3 className="mb-3">How to create a solid software developer portfolio</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero …….</p>
-          </div>
+        <div>
+          {posts.map((post, index) => (
+            <div key={post.title + index} className="mb-5">
+              <Card {...post} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
