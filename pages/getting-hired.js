@@ -40,7 +40,7 @@ export default function GettingHired() {
           aliquam ut porttitor.{" "}
         </p>
 
-        <div className="w-100 d-lg-flex">
+        <div className=" d-lg-flex">
           <div className={classNames(styles.image, 'col col-lg-2 me-3 mb-3 mb-lg-0')}>
             Image
           </div>
