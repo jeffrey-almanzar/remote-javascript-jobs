@@ -55,7 +55,7 @@ function Card(props) {
 
 function BreadCrumbs({ breadCrumbs }) {
   return (
-    <ul className="my-4 d-flex">
+    <ul className="my-4 d-none d-md-flex ">
       {breadCrumbs.map(({ title, url }) => (
         <li className={classNames(styles.breadCrumb)} key={title}>
           <a href={url}>{title}</a>
@@ -81,7 +81,7 @@ export default function Post(props) {
         <p className="mb-5">{date}</p>
       </div>
       <div className="container">
-        <ul className={classNames(styles.tableOfContent, "mb-5 mt-4 col-3")}>
+        <ul className={classNames(styles.tableOfContent, "mb-5 mt-4 col col-md-3")}>
           <h3>Table of Content</h3>
           <p>
             <a>Test 1</a>
