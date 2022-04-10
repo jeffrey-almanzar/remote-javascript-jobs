@@ -15,3 +15,18 @@
   font-weight: bold;
   font-size: 20px;
 }
+
+.jobCategoryItem .jobCategoryIcon {
+  font-size: 70px;
+}
+
+.jobCategoryItem {
+  border: 1px solid var(--color-black);
+  min-height: 250px;
+  transition: color .7s;
+}
+
+.jobCategoryItem:hover {
+  color: var(--color-yellow);
+  cursor: pointer;
+}
