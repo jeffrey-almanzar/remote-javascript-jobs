@@ -1,0 +1,31 @@
+.container {
+    font-size: 20px;
+}
+
+
+.nav-tabs .nav-link.active {
+    background-color: var(--color-yellow) !important;
+}
+
+.image {
+    height: 200px;
+    background-color: var(--color-black);
+}
+
+.breadCrumb:not(:last-child)::after {
+   content: ">";
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.tableOfContent {
+    border: 1px solid #000;
+    padding: 20px;
+}
+
+.hero {
+    height: 270px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
