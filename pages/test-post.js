@@ -3,8 +3,6 @@ import Image from "next/image";
 import styles from "../styles/GettingHired.module.css";
 import classNames from "classnames";
 
-
-
 const breadCrumbs = [
   {
     title: "Parent",
@@ -15,6 +13,45 @@ const breadCrumbs = [
     url: "/test-post",
   },
 ];
+
+const posts = [
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+          consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+          suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
+  },
+  {
+    title: "How to create a solid software developer portfolio",
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+          consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+          suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
+  },
+];
+
+function Card(props) {
+  const { title, content, url } = props;
+
+  return (
+    <a href={url}>
+      <div className="w-100 d-lg-flex">
+        <div
+          className={classNames(styles.image, "col col-lg-2 me-3 mb-3 mb-lg-0")}
+        >
+          Image
+        </div>
+        <div>
+          <h3 className="mb-3">{title}</h3>
+          <p>{content}</p>
+        </div>
+      </div>
+    </a>
+  );
+}
 
 function BreadCrumbs({ breadCrumbs }) {
   return (
@@ -127,6 +164,14 @@ export default function Post(props) {
             neque laoreet suspendisse interdum consectetur libero id. Lorem
             mollis aliquam ut porttitor.
           </p>
+        </div>
+        <div>
+          <h3 className="mb-4">Related Articles</h3>
+          {posts.map((post, index) => (
+            <div key={post.title + index} className="mb-5">
+              <Card {...post} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
