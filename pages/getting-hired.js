@@ -34,6 +34,7 @@ const posts = [
         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
         suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
   },
   {
     title: "How to create a solid software developer portfolio",
@@ -41,6 +42,7 @@ const posts = [
         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
         suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
   },
   {
     title: "How to create a solid software developer portfolio",
@@ -48,6 +50,7 @@ const posts = [
         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
         suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
   },
   {
     title: "How to create a solid software developer portfolio",
@@ -55,6 +58,7 @@ const posts = [
         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
         suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
   },
   {
     title: "How to create a solid software developer portfolio",
@@ -62,24 +66,27 @@ const posts = [
         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
         suspendisse interdum consectetur libero …….`,
+    url: "/test-post",
   },
 ];
 
 function Card(props) {
-  const { title, content } = props;
+  const { title, content, url } = props;
 
   return (
-    <div className="w-100 d-lg-flex">
-      <div
-        className={classNames(styles.image, "col col-lg-2 me-3 mb-3 mb-lg-0")}
-      >
-        Image
+    <a href={url}>
+      <div className="w-100 d-lg-flex">
+        <div
+          className={classNames(styles.image, "col col-lg-2 me-3 mb-3 mb-lg-0")}
+        >
+          Image
+        </div>
+        <div>
+          <h3 className="mb-3">{title}</h3>
+          <p>{content}</p>
+        </div>
       </div>
-      <div>
-        <h3 className="mb-3">{title}</h3>
-        <p>{content}</p>
-      </div>
-    </div>
+    </a>
   );
 }
 
