@@ -8,3 +8,10 @@
   color: var(--color-black);
   border-bottom: 2px solid var(--color-yellow);
 }
+
+.sectionCallToAction a {
+  border-bottom: 2px solid var(--color-yellow);
+  color: var(--color-black);
+  font-weight: bold;
+  font-size: 20px;
+}
