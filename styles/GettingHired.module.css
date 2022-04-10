@@ -23,3 +23,9 @@
     padding: 20px;
 }
 
+.hero {
+    height: 270px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+

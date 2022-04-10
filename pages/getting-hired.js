@@ -90,9 +90,21 @@ function Card(props) {
   );
 }
 
+function Hero(props) {
+  return (
+    <div className={styles.hero}>
+      <div className="container h-50 d-flex flex-column justify-content-center">
+        <h1 className="">Some Text Here</h1>
+        <p>Some text here a bit more just a bit more</p>
+      </div>
+    </div>
+  );
+}
+
 export default function GettingHired() {
   return (
     <div className={styles.container}>
+      <Hero />
       <Tab />
       <div className="container mb-5">
         <p className="mb-4">
