@@ -74,7 +74,7 @@ function JobForm() {
     <form className="mb-5">
       <h3 className="pb-3">Some Text Here</h3>
       <div className="mb-3">
-        <label htmlFor="formGroupExampleInput" className="form-label">
+        <label htmlhtmlFor="formGroupExampleInput" className="form-label">
           Job Title
         </label>
         <input
@@ -86,7 +86,7 @@ function JobForm() {
 
       <div className="row">
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Employment Type
           </label>
           <input
@@ -96,7 +96,7 @@ function JobForm() {
           />
         </div>
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Development Type
           </label>
           <input
@@ -108,7 +108,7 @@ function JobForm() {
       </div>
       <div className="row">
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Experience
           </label>
           <input
@@ -118,7 +118,7 @@ function JobForm() {
           />
         </div>
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Salary
           </label>
           <input
@@ -130,7 +130,7 @@ function JobForm() {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="formGroupExampleInput2" className="form-label">
+        <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Technologies (multi select or checkbooks)
         </label>
         <input
@@ -140,7 +140,7 @@ function JobForm() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="formGroupExampleInput2" className="form-label">
+        <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Apply Link or Email
         </label>
         <input
@@ -150,7 +150,7 @@ function JobForm() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="formGroupExampleInput2" className="form-label">
+        <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Job Description
         </label>
         <input
@@ -162,7 +162,7 @@ function JobForm() {
       <h3 className="pt-5 pb-3">Some Text Here</h3>
       <div className="row">
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Company Name
           </label>
           <input
@@ -172,7 +172,7 @@ function JobForm() {
           />
         </div>
         <div className="col mb-3">
-          <label htmlFor="formGroupExampleInput" className="form-label">
+          <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Company Email
           </label>
           <input
@@ -183,7 +183,7 @@ function JobForm() {
         </div>
       </div>
       <div className="mb-3">
-        <label htmlFor="formGroupExampleInput2" className="form-label">
+        <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Company Website URL
         </label>
         <input
@@ -193,7 +193,7 @@ function JobForm() {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="formFile" className="form-label">
+        <label htmlhtmlFor="formFile" className="form-label">
           Company Logo
         </label>
         <input className="form-control" type="file" id="formFile" />
@@ -202,14 +202,139 @@ function JobForm() {
       <div className="mb-3">
         <JobListing jobs={[jobs[0]]} />
       </div>
-      <div className="d-flex justify-content-end">
+      {/* <div className="d-flex justify-content-end">
         <button type="submit" className="btn btn-primary">
           Continue
         </button>
-      </div>
+      </div> */}
+      <Checkout />
     </form>
   );
 }
+
+function Checkout() {
+  return (
+    <div className="">
+      <h4 className="mb-3">Payment</h4>
+
+      <div className="my-3">
+        {/* <div className="form-check">
+          <input
+            id="credit"
+            name="paymentMethod"
+            type="radio"
+            className="form-check-input"
+            checked=""
+            required=""
+          />
+          <label className="form-check-label" htmlFor="credit">
+            Credit card
+          </label>
+        </div>
+        <div className="form-check">
+          <input
+            id="debit"
+            name="paymentMethod"
+            type="radio"
+            className="form-check-input"
+            required=""
+          />
+          <label className="form-check-label" htmlFor="debit">
+            Debit card
+          </label>
+        </div> */}
+        {/* <div className="form-check">
+          <input
+            id="paypal"
+            name="paymentMethod"
+            type="radio"
+            className="form-check-input"
+            required=""
+          />
+          <label className="form-check-label" htmlFor="paypal">
+            PayPal
+          </label>
+        </div> */}
+      </div>
+      <div className="row gy-3">
+        <div className="col-md-6">
+          <label htmlFor="cc-name" className="form-label">
+            Name on card
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="cc-name"
+            placeholder=""
+            required=""
+          />
+          <small className="text-muted">Full name as displayed on card</small>
+          <div className="invalid-feedback">Name on card is required</div>
+        </div>
+
+        <div className="col-md-6">
+          <label htmlFor="cc-number" className="form-label">
+            Credit card number
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="cc-number"
+            placeholder=""
+            required=""
+          />
+          <div className="invalid-feedback">Credit card number is required</div>
+        </div>
+
+        <div className="col-md-3">
+          <label htmlFor="cc-expiration" className="form-label">
+            Expiration
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="cc-expiration"
+            placeholder=""
+            required=""
+          />
+          <div className="invalid-feedback">Expiration date required</div>
+        </div>
+
+        <div className="col-md-3">
+          <label htmlFor="cc-cvv" className="form-label">
+            CVV
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="cc-cvv"
+            placeholder=""
+            required=""
+          />
+          <div className="invalid-feedback">Security code required</div>
+        </div>
+        <div className="col">
+          <label htmlFor="cc-expiration" className="form-label">
+            Promo code
+          </label>
+          <div className="input-group">
+            <input type="text" className="form-control" />
+            <button type="submit" className="btn btn-secondary">
+              Redeem
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="d-flex justify-content-end my-5">
+        <button type="submit" className="btn btn-primary">
+          Confirm
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Maybe render the sections using Tabs
 
 export default function JobPosting(props) {
   return (
