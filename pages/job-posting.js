@@ -334,7 +334,8 @@ function Checkout() {
   );
 }
 
-// Maybe render the sections using Tabs
+// Maybe render the sections using Tabs or Scroll Spy
+// Let's try to only use one page for create, preview, and pay.
 
 export default function JobPosting(props) {
   return (
