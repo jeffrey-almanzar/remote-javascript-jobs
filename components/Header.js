@@ -19,9 +19,7 @@ export default function Header() {
         </label>
         <input id="menu" className={styles.menuController} type="checkbox" />
         <p className={styles.logo}>
-          <Link href="/">
-            RemoteJSJobs
-          </Link>
+          <Link href="/">RemoteJSJobs</Link>
         </p>
         <div className="d-flex align-self-end align-items-center h-100">
           <ul className={styles.links}>
@@ -34,7 +32,13 @@ export default function Header() {
             <li className="me-5 mb-4 mb-lg-0">
               <Link href="/resources">Resources</Link>
             </li>
+            <li className="me-5 mb-4 mb-lg-0">
+              <p className="btn btn-warning">
+                <Link href="/job-posting">Post a job</Link>
+              </p>
+            </li>
           </ul>
+
           <ThemeToggle />
         </div>
       </div>

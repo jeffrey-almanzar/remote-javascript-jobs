@@ -66,6 +66,7 @@
         position: static;
         display: flex;
         flex-direction: row;
+        align-items: center;
         padding: 0px;
         border: none;
         width: auto;
