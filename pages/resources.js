@@ -8,7 +8,7 @@ import TableOfContent from '../components/Blog/TableOfContent';
 export default function Resources() {
   return (
     <div className="container">
-      <h1>Resources</h1>
+      <h1 className='mt-4'>Resources</h1>
       <TableOfContent />
 
       <div className='mb-5'>
