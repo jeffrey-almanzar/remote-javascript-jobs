@@ -96,7 +96,7 @@ function CallToAction(props) {
 
 function LatestJobsSection(props) {
   return (
-    <div className="container">
+    <div className="container job-card-container">
       <h2 className="mb-5">Latest jobs</h2>
       <JobListing jobs={jobs} />
       <CallToAction />
