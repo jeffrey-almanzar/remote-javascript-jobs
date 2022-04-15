@@ -1,62 +1,84 @@
+import fs from "fs";
+import path from "path";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/GettingHired.module.css";
 import classNames from "classnames";
+import matter from "gray-matter";
 
 import PostCard from "../components/Blog/PostCard";
 import Tab from "../components/Blog/Tab";
 import Hero from "../components/Blog/Hero";
 
-const posts = [
-  {
-    title: "How to create a solid software developer portfolio",
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-        suspendisse interdum consectetur libero …….`,
-    url: "/test-post",
-  },
-  {
-    title: "How to create a solid software developer portfolio",
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-        suspendisse interdum consectetur libero …….`,
-    url: "/test-post",
-  },
-  {
-    title: "How to create a solid software developer portfolio",
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-        suspendisse interdum consectetur libero …….`,
-    url: "/test-post",
-  },
-  {
-    title: "How to create a solid software developer portfolio",
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-        suspendisse interdum consectetur libero …….`,
-    url: "/test-post",
-  },
-  {
-    title: "How to create a solid software developer portfolio",
-    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-        consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-        suspendisse interdum consectetur libero …….`,
-    url: "/test-post",
-  },
-];
+import Link from 'next/link'
 
+export function Post({ post }) {
+  return (
+    <div className='card'>
+      <img src={post.frontmatter.cover_image} alt='' />
 
-export default function GettingHired() {
+      <div className='post-date'>Posted on {post.frontmatter.date}</div>
+
+      <h3>{post.frontmatter.title}</h3>
+
+      <p>{post.frontmatter.excerpt}</p>
+
+      <Link href={`/getting_hired/${post.slug}`}>
+        <a className='btn'>Read More</a>
+      </Link>
+    </div>
+  )
+}
+
+// const posts = [
+//   {
+//     title: "How to create a solid software developer portfolio",
+//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+//         suspendisse interdum consectetur libero …….`,
+//     url: "/test-post",
+//   },
+//   {
+//     title: "How to create a solid software developer portfolio",
+//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+//         suspendisse interdum consectetur libero …….`,
+//     url: "/test-post",
+//   },
+//   {
+//     title: "How to create a solid software developer portfolio",
+//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+//         suspendisse interdum consectetur libero …….`,
+//     url: "/test-post",
+//   },
+//   {
+//     title: "How to create a solid software developer portfolio",
+//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+//         suspendisse interdum consectetur libero …….`,
+//     url: "/test-post",
+//   },
+//   {
+//     title: "How to create a solid software developer portfolio",
+//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
+//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
+//         suspendisse interdum consectetur libero …….`,
+//     url: "/test-post",
+//   },
+// ];
+
+export default function GettingHired({ posts }) {
   return (
     <div className={styles.container}>
       <Hero />
       <Tab />
-      <div className="container mb-5">
+      {/* <div className="container mb-5">
         <p className="mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
@@ -72,7 +94,41 @@ export default function GettingHired() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
+
+      {posts.map((post, index) => (
+        <Post key={index} post={post} />
+      ))}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  // Get files from the posts dir
+  const files = fs.readdirSync(path.join("posts/getting_hired"));
+
+  // Get slug and frontmatter from posts
+  const posts = files.map((filename) => {
+    // Create slug
+    const slug = filename.replace(".md", "");
+
+    // Get frontmatter
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts/getting_hired", filename),
+      "utf-8"
+    );
+
+    const { data: frontmatter } = matter(markdownWithMeta);
+
+    return {
+      slug,
+      frontmatter,
+    };
+  });
+
+  return {
+    props: {
+      posts: posts,
+    },
+  };
 }
