@@ -10,7 +10,7 @@ import PostCard from "../../components/Blog/PostCard";
 import Tab from "../../components/Blog/Tab";
 import Hero from "../../components/Blog/Hero";
 
-import { DEMONSTRATING_COMPETENCE_PAGE_PATH } from "../../config/constants";
+import { DEMONSTRATING_COMPETENCE_PAGE_PATH, DEMONSTRATING_COMPETENCE_POSTS_PATH } from "../../config/constants";
 
 import Link from 'next/link'
 
@@ -25,7 +25,7 @@ export function Post({ post }) {
 
       <p>{post.frontmatter.excerpt}</p>
 
-      <Link href={`/getting_hired/${post.slug}`}>
+      <Link href={`${DEMONSTRATING_COMPETENCE_PAGE_PATH}/${post.slug}`}>
         <a className='btn'>Read More</a>
       </Link>
     </div>
@@ -64,7 +64,7 @@ export default function GettingHired({ posts }) {
 
 export async function getStaticProps() {
   // Get files from the posts dir
-  const files = fs.readdirSync(path.join("posts/getting_hired"));
+  const files = fs.readdirSync(path.join(DEMONSTRATING_COMPETENCE_POSTS_PATH));
 
   // Get slug and frontmatter from posts
   const posts = files.map((filename) => {
@@ -73,7 +73,7 @@ export async function getStaticProps() {
 
     // Get frontmatter
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts/getting_hired", filename),
+      path.join(DEMONSTRATING_COMPETENCE_POSTS_PATH, filename),
       "utf-8"
     );
 
