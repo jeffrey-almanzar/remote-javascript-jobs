@@ -3,26 +3,62 @@ import Image from "next/image";
 import styles from "../../styles/GettingHired.module.css";
 import classNames from "classnames";
 
-export default function Tab() {
-    return (
-      <div className="container my-5">
-        <ul className="nav nav-tabs">
-          <li className="nav-item col-4 text-center">
-            <a className="nav-link active" aria-current="page" href="#">
+import Link from "next/link";
+
+import {
+  STANDING_OUT_PAGE_PATH,
+  DEMONSTRATING_COMPETENCE_PAGE_PATH,
+  HANDLING_OFFERS_PAGE_PATH,
+} from "../../config/constants";
+
+export default function Tab({ active }) {
+  return (
+    <div className="container my-5">
+      <ul className="nav nav-tabs">
+        <li className="nav-item col-4 text-center">
+          <span
+            className={classNames(
+              "nav-link",
+              active === STANDING_OUT_PAGE_PATH && 'active'
+            )}
+          >
+            <Link aria-current="page" href={STANDING_OUT_PAGE_PATH}>
               Standing out
-            </a>
-          </li>
-          <li className="nav-item col-4 text-center">
-            <a className="nav-link" href="#">
+            </Link>
+          </span>
+        </li>
+        <li className="nav-item col-4 text-center">
+          <span
+            className={classNames(
+              "nav-link",
+              active === DEMONSTRATING_COMPETENCE_PAGE_PATH && 'active'
+            )}
+          >
+            <Link
+              className="nav-link"
+              href={DEMONSTRATING_COMPETENCE_PAGE_PATH}
+            >
               Demonstrating competence
-            </a>
-          </li>
-          <li className="nav-item col-4 text-center">
-            <a className="nav-link" href="#">
+            </Link>
+          </span>
+        </li>
+        <li className="nav-item col-4 text-center">
+          <span
+            className={classNames(
+              "nav-link",
+              active === HANDLING_OFFERS_PAGE_PATH && 'active'
+            )}
+          >
+            <Link className="nav-link" href={HANDLING_OFFERS_PAGE_PATH}>
               Handling offers
-            </a>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+            </Link>
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+Tab.defaultProps = {
+  active: STANDING_OUT_PAGE_PATH,
+};
