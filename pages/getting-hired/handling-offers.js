@@ -10,7 +10,7 @@ import PostCard from "../../components/Blog/PostCard";
 import Tab from "../../components/Blog/Tab";
 import Hero from "../../components/Blog/Hero";
 
-import { HANDLING_OFFERS_PAGE_PATH } from "../../config/constants";
+import { HANDLING_OFFERS_PAGE_PATH, HANDLING_OFFERS_POSTS_PATH } from "../../config/constants";
 
 import Link from 'next/link'
 
@@ -25,55 +25,13 @@ export function Post({ post }) {
 
       <p>{post.frontmatter.excerpt}</p>
 
-      <Link href={`/getting_hired/${post.slug}`}>
+      <Link href={`${HANDLING_OFFERS_PAGE_PATH}/${post.slug}`}>
         <a className='btn'>Read More</a>
       </Link>
     </div>
   )
 }
 
-// const posts = [
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-//         suspendisse interdum consectetur libero …….`,
-//     url: "/test-post",
-//   },
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-//         suspendisse interdum consectetur libero …….`,
-//     url: "/test-post",
-//   },
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-//         suspendisse interdum consectetur libero …….`,
-//     url: "/test-post",
-//   },
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-//         suspendisse interdum consectetur libero …….`,
-//     url: "/test-post",
-//   },
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-//         tempor incididunt ut labore et dolore magna aliqua. Dolor sit amet
-//         consectetur adipiscing elit ut aliquam. Porta non pulvinar neque laoreet
-//         suspendisse interdum consectetur libero …….`,
-//     url: "/test-post",
-//   },
-// ];
 
 export default function GettingHired({ posts }) {
   return (
@@ -107,7 +65,7 @@ export default function GettingHired({ posts }) {
 
 export async function getStaticProps() {
   // Get files from the posts dir
-  const files = fs.readdirSync(path.join("posts/getting_hired"));
+  const files = fs.readdirSync(path.join(HANDLING_OFFERS_POSTS_PATH));
 
   // Get slug and frontmatter from posts
   const posts = files.map((filename) => {
@@ -116,7 +74,7 @@ export async function getStaticProps() {
 
     // Get frontmatter
     const markdownWithMeta = fs.readFileSync(
-      path.join("posts/getting_hired", filename),
+      path.join(HANDLING_OFFERS_POSTS_PATH, filename),
       "utf-8"
     );
 
