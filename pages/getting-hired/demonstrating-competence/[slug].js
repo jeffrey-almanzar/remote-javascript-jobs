@@ -4,8 +4,6 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import Link from "next/link";
 
-import { STANDING_OUT_POSTS_PATH } from "../../config/constants";
-
 export default function PostPage({
   frontmatter: { title, date, cover_image },
   slug,
@@ -29,7 +27,7 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join(STANDING_OUT_POSTS_PATH));
+  const files = fs.readdirSync(path.join("posts/getting_hired"));
 
   const paths = files.map((filename) => ({
     params: {
@@ -45,7 +43,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const markdownWithMeta = fs.readFileSync(
-    path.join(STANDING_OUT_POSTS_PATH, slug + ".md"),
+    path.join("posts/getting_hired", slug + ".md"),
     "utf-8"
   );
 

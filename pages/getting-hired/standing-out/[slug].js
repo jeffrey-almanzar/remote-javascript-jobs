@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import Link from "next/link";
 
-import { STANDING_OUT_POSTS_PATH } from "../../config/constants";
+import { STANDING_OUT_POSTS_PATH } from "../../../config/constants";
 
 export default function PostPage({
   frontmatter: { title, date, cover_image },
