@@ -6,13 +6,15 @@ import styles from "../../styles/GettingHired.module.css";
 import classNames from "classnames";
 import matter from "gray-matter";
 
-import PostCard from "../../components/Blog/PostCard";
 import Tab from "../../components/Blog/Tab";
 import Hero from "../../components/Blog/Hero";
+import CardLister from "../../components/Blog/CardLister";
 
-import { DEMONSTRATING_COMPETENCE_PAGE_PATH, DEMONSTRATING_COMPETENCE_POSTS_PATH } from "../../config/constants";
+import {
+  DEMONSTRATING_COMPETENCE_PAGE_PATH,
+  DEMONSTRATING_COMPETENCE_POSTS_PATH,
+} from "../../config/constants";
 
-import Link from 'next/link'
 
 export default function GettingHired({ posts }) {
   return (
@@ -29,15 +31,10 @@ export default function GettingHired({ posts }) {
         </p>
 
         <div>
-          {posts.map(({ frontmatter, slug }, index) => (
-            <div key={frontmatter.title + index} className="mb-5">
-              <PostCard 
-              title={frontmatter.title}
-              content={frontmatter.excerpt}
-              url={`${DEMONSTRATING_COMPETENCE_PAGE_PATH}/${slug}`}
-              />
-            </div>
-          ))}
+          <CardLister
+            posts={posts}
+            options={{ urlPrefix: DEMONSTRATING_COMPETENCE_PAGE_PATH }}
+          />
         </div>
       </div>
     </div>

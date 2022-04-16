@@ -15,6 +15,8 @@ import {
   HANDLING_OFFERS_POSTS_PATH,
 } from "../../config/constants";
 
+import CardLister from "../../components/Blog/CardLister";
+
 import Link from "next/link";
 
 export default function GettingHired({ posts }) {
@@ -32,15 +34,10 @@ export default function GettingHired({ posts }) {
         </p>
 
         <div>
-          {posts.map(({ frontmatter, slug }, index) => (
-            <div key={frontmatter.title + index} className="mb-5">
-              <PostCard
-                title={frontmatter.title}
-                content={frontmatter.excerpt}
-                url={`${HANDLING_OFFERS_PAGE_PATH}/${slug}`}
-              />
-            </div>
-          ))}
+          <CardLister
+            posts={posts}
+            options={{ urlPrefix: HANDLING_OFFERS_PAGE_PATH }}
+          />
         </div>
       </div>
     </div>
