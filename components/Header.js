@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import ThemeToggle from "./ThemeToggle";
 
+import { STANDING_OUT_PAGE_PATH } from "../config/constants";
+
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
@@ -27,7 +29,7 @@ export default function Header() {
               <Link href="/jobs">Jobs</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
-              <Link href="/getting-hired">Getting hired</Link>
+              <Link href={STANDING_OUT_PAGE_PATH}>Getting hired</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
               <Link href="/resources">Resources</Link>

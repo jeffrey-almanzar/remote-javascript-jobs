@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import Link from "next/link";
 
-import { DEMONSTRATING_COMPETENCE_POSTS_PATH } from "../../../config/constants";
+import { DEMONSTRATING_COMPETENCE_POSTS_PATH, DEMONSTRATING_COMPETENCE_PAGE_PATH, STANDING_OUT_PAGE_PATH } from "../../../config/constants";
 import { generateBlogsStaticPaths } from "../../../config/utils";
 
 import BlogPost from "../../../components/Blog/BlogPost";
@@ -35,11 +35,11 @@ export async function getStaticProps({ params: { slug } }) {
         },
         {
           title: "Getting Hired",
-          url: "/getting-hired",
+          url: STANDING_OUT_PAGE_PATH,
         },
         {
           title: "Demonstrating Competence",
-          url: "/getting-hired",
+          url: DEMONSTRATING_COMPETENCE_PAGE_PATH,
         },
         {
           title: frontmatter.title,
