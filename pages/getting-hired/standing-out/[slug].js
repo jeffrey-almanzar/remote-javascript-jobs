@@ -5,24 +5,14 @@ import { marked } from "marked";
 import Link from "next/link";
 
 import { STANDING_OUT_POSTS_PATH } from "../../../config/constants";
+import { generateBlogsStaticPaths } from "../../../config/utils";
 
 import BlogPost from "../../../components/Blog/BlogPost";
 
 export default BlogPost;
 
 export async function getStaticPaths() {
-  const files = fs.readdirSync(path.join(STANDING_OUT_POSTS_PATH));
-
-  const paths = files.map((filename) => ({
-    params: {
-      slug: filename.replace(".md", ""),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
+  return generateBlogsStaticPaths(STANDING_OUT_POSTS_PATH);
 }
 
 export async function getStaticProps({ params: { slug } }) {
