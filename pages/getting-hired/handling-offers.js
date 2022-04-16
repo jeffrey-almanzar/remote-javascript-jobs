@@ -10,35 +10,19 @@ import PostCard from "../../components/Blog/PostCard";
 import Tab from "../../components/Blog/Tab";
 import Hero from "../../components/Blog/Hero";
 
-import { HANDLING_OFFERS_PAGE_PATH, HANDLING_OFFERS_POSTS_PATH } from "../../config/constants";
+import {
+  HANDLING_OFFERS_PAGE_PATH,
+  HANDLING_OFFERS_POSTS_PATH,
+} from "../../config/constants";
 
-import Link from 'next/link'
-
-export function Post({ post }) {
-  return (
-    <div className='card'>
-      <img src={post.frontmatter.cover_image} alt='' />
-
-      <div className='post-date'>Posted on {post.frontmatter.date}</div>
-
-      <h3>{post.frontmatter.title}</h3>
-
-      <p>{post.frontmatter.excerpt}</p>
-
-      <Link href={`${HANDLING_OFFERS_PAGE_PATH}/${post.slug}`}>
-        <a className='btn'>Read More</a>
-      </Link>
-    </div>
-  )
-}
-
+import Link from "next/link";
 
 export default function GettingHired({ posts }) {
   return (
     <div className={styles.container}>
       <Hero />
       <Tab active={HANDLING_OFFERS_PAGE_PATH} />
-      {/* <div className="container mb-5">
+      <div className="container mb-5">
         <p className="mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
@@ -48,17 +32,17 @@ export default function GettingHired({ posts }) {
         </p>
 
         <div>
-          {posts.map((post, index) => (
-            <div key={post.title + index} className="mb-5">
-              <PostCard {...post} />
+          {posts.map(({ frontmatter, slug }, index) => (
+            <div key={frontmatter.title + index} className="mb-5">
+              <PostCard
+                title={frontmatter.title}
+                content={frontmatter.excerpt}
+                url={`${HANDLING_OFFERS_PAGE_PATH}/${slug}`}
+              />
             </div>
           ))}
         </div>
-      </div> */}
-
-      {posts.map((post, index) => (
-        <Post key={index} post={post} />
-      ))}
+      </div>
     </div>
   );
 }

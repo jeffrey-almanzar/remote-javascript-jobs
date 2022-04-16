@@ -5,33 +5,16 @@ import Image from "next/image";
 import styles from "../../styles/GettingHired.module.css";
 import classNames from "classnames";
 import matter from "gray-matter";
-import Link from 'next/link';
+import Link from "next/link";
 
 import PostCard from "../../components/Blog/PostCard";
 import Tab from "../../components/Blog/Tab";
 import Hero from "../../components/Blog/Hero";
 
-import { STANDING_OUT_POSTS_PATH, STANDING_OUT_PAGE_PATH } from "../../config/constants";
-
-
-
-export function Post({ post }) {
-  return (
-    <div className='card'>
-      <img src={post.frontmatter.cover_image} alt='' />
-
-      <div className='post-date'>Posted on {post.frontmatter.date}</div>
-
-      <h3>{post.frontmatter.title}</h3>
-
-      <p>{post.frontmatter.excerpt}</p>
-
-      <Link href={`${STANDING_OUT_PAGE_PATH}/${post.slug}`}>
-        <a className='btn'>Read More</a>
-      </Link>
-    </div>
-  )
-}
+import {
+  STANDING_OUT_POSTS_PATH,
+  STANDING_OUT_PAGE_PATH,
+} from "../../config/constants";
 
 
 export default function GettingHired({ posts }) {
@@ -39,7 +22,7 @@ export default function GettingHired({ posts }) {
     <div className={styles.container}>
       <Hero />
       <Tab />
-      {/* <div className="container mb-5">
+      <div className="container mb-5">
         <p className="mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
@@ -49,17 +32,17 @@ export default function GettingHired({ posts }) {
         </p>
 
         <div>
-          {posts.map((post, index) => (
-            <div key={post.title + index} className="mb-5">
-              <PostCard {...post} />
+          {posts.map(({ frontmatter, slug }, index) => (
+            <div key={frontmatter.title + index} className="mb-5">
+              <PostCard
+                 title={frontmatter.title}
+                 content={frontmatter.excerpt}
+                 url={`${STANDING_OUT_PAGE_PATH}/${slug}`}
+              />
             </div>
           ))}
         </div>
-      </div> */}
-
-      {posts.map((post, index) => (
-        <Post key={index} post={post} />
-      ))}
+      </div>
     </div>
   );
 }
