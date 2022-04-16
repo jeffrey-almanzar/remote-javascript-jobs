@@ -6,27 +6,9 @@ import Link from "next/link";
 
 import { HANDLING_OFFERS_POSTS_PATH } from "../../../config/constants";
 
-export default function PostPage({
-  frontmatter: { title, date, cover_image },
-  slug,
-  content,
-}) {
-  return (
-    <>
-      <Link href="/">
-        <a className="btn btn-back">Go Back</a>
-      </Link>
-      <div className="card card-page">
-        <h1 className="post-title">{title}</h1>
-        <div className="post-date">Posted on {date}</div>
-        <img src={cover_image} alt="" />
-        <div className="post-body">
-          <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
-        </div>
-      </div>
-    </>
-  );
-}
+import BlogPost from "../../../components/Blog/BlogPost";
+
+export default BlogPost;
 
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join(HANDLING_OFFERS_POSTS_PATH));
@@ -56,6 +38,24 @@ export async function getStaticProps({ params: { slug } }) {
       frontmatter,
       slug,
       content,
+      breadCrumbs: [
+        {
+          title: "Home",
+          url: "/",
+        },
+        {
+          title: "Getting Hired",
+          url: "/getting-hired",
+        },
+        {
+          title: "Handling Offers",
+          url: "/getting-hired",
+        },
+        {
+          title: frontmatter.title,
+          url: "",
+        },
+      ],
     },
   };
 }
