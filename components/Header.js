@@ -3,7 +3,12 @@ import Link from "next/link";
 
 import ThemeToggle from "./ThemeToggle";
 
-import { STANDING_OUT_PAGE_PATH } from "../config/constants";
+import {
+  STANDING_OUT_PAGE_PATH,
+  JOBS_PAGE_PATH,
+  RESOURCES_PAGE_PATH,
+  JOB_POSTING_PAGE_PATH,
+} from "../config/constants";
 
 import styles from "../styles/Header.module.css";
 
@@ -26,17 +31,17 @@ export default function Header() {
         <div className="d-flex align-self-end align-items-center h-100">
           <ul className={styles.links}>
             <li className="me-5 mb-4 mb-lg-0">
-              <Link href="/jobs">Jobs</Link>
+              <Link href={JOBS_PAGE_PATH}>Jobs</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
               <Link href={STANDING_OUT_PAGE_PATH}>Getting hired</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
-              <Link href="/resources">Resources</Link>
+              <Link href={RESOURCES_PAGE_PATH}>Resources</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
               <p className="btn btn-warning">
-                <Link href="/job-posting">Post a job</Link>
+                <Link href={JOB_POSTING_PAGE_PATH}>Post a job</Link>
               </p>
             </li>
           </ul>

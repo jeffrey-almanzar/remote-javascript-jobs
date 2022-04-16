@@ -9,6 +9,8 @@ import standout from "../public/images/standout.png";
 import competence from "../public/images/competence.png";
 import negotiation from "../public/images/negotiation.png";
 
+import { JOBS_PAGE_PATH } from "../config/constants";
+
 import { jobs } from "../components/JobBoard/data";
 import JobListing from "../components/JobBoard/JobListing";
 
@@ -24,7 +26,7 @@ function Hero(props) {
               The most reliable remote JavaScript jobs on the internet.
             </p>
             <p className="btn btn-warning">
-              <Link href="/jobs">Show me the jobs</Link>
+              <Link href={JOBS_PAGE_PATH}>Show me the jobs</Link>
             </p>
           </div>
           <div>
@@ -104,33 +106,75 @@ function LatestJobsSection(props) {
   );
 }
 
-function JobCategoriesSection (props) {
+function JobCategoriesSection(props) {
   return (
     <div className="container">
       <h2 className="mb-5">Popular jobs</h2>
       <ul className="d-md-flex justify-content-between flex-wrap">
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-native mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-native mb-3")}
+          ></span>
           <span>React Jobs</span>
         </li>
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-vue mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-vue mb-3")}
+          ></span>
           <span>Category name</span>
         </li>
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-angular mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-angular mb-3")}
+          ></span>
           <span>Category name</span>
         </li>
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-jquery mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-jquery mb-3")}
+          ></span>
           <span>Category name</span>
         </li>
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-node mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-node mb-3")}
+          ></span>
           <span>Category name</span>
         </li>
-        <li className={classNames("col-md-4 d-flex flex-column justify-content-center text-center", styles.jobCategoryItem)}>
-          <span className={classNames(styles.jobCategoryIcon, "icon-native mb-3")}></span>
+        <li
+          className={classNames(
+            "col-md-4 d-flex flex-column justify-content-center text-center",
+            styles.jobCategoryItem
+          )}
+        >
+          <span
+            className={classNames(styles.jobCategoryIcon, "icon-native mb-3")}
+          ></span>
           <span>Category name</span>
         </li>
       </ul>
