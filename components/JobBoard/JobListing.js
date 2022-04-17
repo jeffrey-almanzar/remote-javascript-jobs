@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Card from "./Card";
 import CardBody from "./CardBody";
@@ -8,7 +8,6 @@ import slugify from "slugify";
 import { JOBS_PAGE_PATH } from "../../config/constants";
 
 export default function JobListing({ jobs }) {
-  const [active, setActive] = useState(JOBS_PAGE_PATH);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,10 +31,9 @@ export default function JobListing({ jobs }) {
             <h2 className="accordion-header" id={accordionKey}>
               <button
                 onClick={() => {
-                  //const path = `${JOBS_PAGE_PATH}/${id}-${slugify(title)}`;
-                  const path = `?job=${id}-${slugify(title)}`;
-                  path === active ? setActive(JOBS_PAGE_PATH) : setActive(path);
-                  router.replace(path, undefined, { shallow: true });
+                  const path = `${id}-${slugify(title)}`;
+                  const current = router.query.job; 
+                  path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
                 }}
                 className="accordion-button collapsed"
                 type="button"
