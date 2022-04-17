@@ -10,7 +10,7 @@ import { marked } from "marked";
 import BreadCrumbs from "../../components/Blog/BreadCrumbs";
 import TableOfContent from "../../components/Blog/TableOfContent";
 import RelatedArticles from "../../components/Blog/RelatedArticles";
-
+import Meta from "../Meta";
 const posts = [
   {
     title: "How to create a solid software developer portfolio",
@@ -50,23 +50,27 @@ export default function BlogPost(props) {
   } = props;
 
   return (
-    <div className={classNames(styles.container, "blog-post")}>
-      <div className="container">
-        <BreadCrumbs breadCrumbs={breadCrumbs} />
-      </div>
-      <div className="container">
-        <h1 className="mb-2">{title}</h1>
-        <p className="mb-5">{date}</p>
-      </div>
-      <div className="container">
-        <img src={cover_image} alt="" />
-        <TableOfContent sections={tableOfContentSelector(sections)} />
+    <>
+      <Meta title={title} />
 
-        <div className="post-body">
-          <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+      <div className={classNames(styles.container, "blog-post")}>
+        <div className="container">
+          <BreadCrumbs breadCrumbs={breadCrumbs} />
         </div>
-        <RelatedArticles posts={posts} />
+        <div className="container">
+          <h1 className="mb-2">{title}</h1>
+          <p className="mb-5">{date}</p>
+        </div>
+        <div className="container">
+          <img src={cover_image} alt="" />
+          <TableOfContent sections={tableOfContentSelector(sections)} />
+
+          <div className="post-body">
+            <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+          </div>
+          <RelatedArticles posts={posts} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

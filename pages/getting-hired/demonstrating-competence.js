@@ -15,9 +15,14 @@ import {
   DEMONSTRATING_COMPETENCE_POSTS_PATH,
 } from "../../config/constants";
 
+import Meta from "../../components/Meta";
+
 
 export default function GettingHired({ posts }) {
   return (
+    <>
+    <Meta title="Demonstrating Competence" />
+   
     <div className={styles.container}>
       <Hero />
       <Tab active={DEMONSTRATING_COMPETENCE_PAGE_PATH} />
@@ -38,6 +43,7 @@ export default function GettingHired({ posts }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
