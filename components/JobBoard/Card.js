@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Image from "next/image";
 
 import styles from "../../styles/JobBoard.module.css";
@@ -15,7 +16,7 @@ export default function Card(props) {
   } = props;
 
   return (
-    <div className="d-flex w-100">
+    <div className={classNames("d-flex w-100 position-relative")}>
       <div className="me-4">
         {logo_url && (
           <Image
@@ -44,6 +45,11 @@ export default function Card(props) {
           <p className="btn btn-light">{development_type}</p>
         </div>
       </div>
+      <span className={classNames(styles.applyLink, 'apply-link')}>
+        <a href="#">
+          Apply
+        </a>
+      </span>
     </div>
   );
 }

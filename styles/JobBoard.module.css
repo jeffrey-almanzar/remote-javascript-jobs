@@ -5,3 +5,20 @@
 .companyLogo {
     border-radius: 50%;
 }
+
+.applyLink {
+    background-color: var(--color-yellow);
+    display: none;
+    padding: 10px;
+    color: var(--color-black);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+.jobCardWrapper:hover .applyLink {
+    display: inline-block;
+}
