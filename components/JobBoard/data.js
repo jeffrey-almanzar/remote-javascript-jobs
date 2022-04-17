@@ -77,9 +77,45 @@ export const jobs = [
 ];
 
 export const options = [
-  "Employment type",
-  "Development type",
-  "Experience level",
-  "Main technology",
-  "Salary",
+  {
+    label: 'Employment type',
+    options: [
+      'Full-time',
+      'Contract',
+      'Part-time',
+      'Internships',
+    ]
+  },
+  {
+    label: 'Development type',
+    options: [
+      'Front-end',
+      'Back-end',
+      'Full-stack',
+    ]
+  },
+  {
+    label: 'Experience level',
+    options: [
+      'Junior',
+      'Mid',
+      'Senior',
+    ]
+  },
+  {
+    label: 'Main technology',
+    options: [
+      'React',
+      'Angular',
+      'Vue',
+      'jQuery',
+    ]
+  },
+  {
+    label: 'Salary',
+    options: [
+      '50k-100k',
+      '100k+',
+    ]
+  },
 ];

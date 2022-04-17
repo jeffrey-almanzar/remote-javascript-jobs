@@ -1,32 +1,39 @@
-export default function DropDown({ title }) {
-    return (
-      <div className="dropdown">
-        <button
-          className="btn  w-100 text-start btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {title}
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <a className="dropdown-item" href="#">
-              Action
-            </a>
+import _ from "lodash";
+import { useRouter } from "next/router";
+import slugify from "slugify";
+
+export default function DropDown({ label, options }) {
+  const router = useRouter();
+  return (
+    <div className="dropdown">
+      <button
+        className="btn  w-100 text-start btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {label}
+      </button>
+      <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        {_.map(options, (option) => (
+          <li key={option}>
+            <span
+              className="dropdown-item"
+              onClick={() => {
+                router.push({
+                  pathname: "/jobs",
+                  query: _.assign({}, router.query, {
+                    [slugify(label)]: slugify(option),
+                  }),
+                });
+              }}
+            >
+              {option}
+            </span>
           </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              Another action
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              Something else here
-            </a>
-          </li>
-        </ul>
-      </div>
-    );
-  }
+        ))}
+      </ul>
+    </div>
+  );
+}
