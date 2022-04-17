@@ -1,10 +1,8 @@
+import _ from "lodash";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../../styles/GettingHired.module.css";
 import classNames from "classnames";
-
-// import fs from "fs";
-// import path from "path";
 
 import matter from "gray-matter";
 import { marked } from "marked";
@@ -12,17 +10,6 @@ import { marked } from "marked";
 import BreadCrumbs from "../../components/Blog/BreadCrumbs";
 import TableOfContent from "../../components/Blog/TableOfContent";
 import RelatedArticles from "../../components/Blog/RelatedArticles";
-
-// const breadCrumbs = [
-//   {
-//     title: "Parent",
-//     url: "/getting-hired",
-//   },
-//   {
-//     title: "How to create a solid software developer portfolio",
-//     url: "/test-post",
-//   },
-// ];
 
 const posts = [
   {
@@ -43,16 +30,27 @@ const posts = [
   },
 ];
 
+function tableOfContentSelector(sectionsStr) {
+  if (!sectionsStr) {
+    return [];
+  }
+  const sections = sectionsStr.split("--");
+  return _.map(sections, (section) => ({
+    title: section,
+    url: `#${section}`,
+  }));
+}
+
 export default function BlogPost(props) {
   const {
-    frontmatter: { title, date, cover_image },
+    frontmatter: { title, date, cover_image, sections },
     slug,
     content,
     breadCrumbs = [],
   } = props;
 
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, "blog-post")}>
       <div className="container">
         <BreadCrumbs breadCrumbs={breadCrumbs} />
       </div>
@@ -62,7 +60,7 @@ export default function BlogPost(props) {
       </div>
       <div className="container">
         <img src={cover_image} alt="" />
-        <TableOfContent />
+        <TableOfContent sections={tableOfContentSelector(sections)} />
 
         <div className="post-body">
           <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
