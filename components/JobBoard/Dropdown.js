@@ -1,13 +1,25 @@
 import _ from "lodash";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 
 export default function DropDown({ label, filterKey, options }) {
+  const [isActive, setIsActive] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setIsActive(router.query[filterKey] && true);
+  }, [router.query]);
+
+  
   return (
     <div className="dropdown">
       <button
-        className="btn  w-100 text-start btn-secondary dropdown-toggle"
+        className={classNames(
+          "btn w-100 text-start dropdown-toggle",
+          isActive ? "btn-primary" : "btn-secondary"
+        )}
         type="button"
         id="dropdownMenuButton1"
         data-bs-toggle="dropdown"

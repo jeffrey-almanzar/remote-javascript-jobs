@@ -17,10 +17,6 @@ import Meta from "../components/Meta";
 export default function Jobs({ jobsProps }) {
   const router = useRouter();
 
-  console.log(VALID_JOB_FILTERS)
-
-  // console.log({jobsProps})
-
   // useEffect(() => {
   //   console.log(router.query)
   // });
