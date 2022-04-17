@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import styles from '../../styles/JobBoard.module.css';
+import styles from "../../styles/JobBoard.module.css";
 
 export default function Card(props) {
   const {
@@ -17,13 +17,15 @@ export default function Card(props) {
   return (
     <div className="d-flex w-100">
       <div className="me-4">
-        <Image
-          className={styles.companyLogo}
-          width="100px"
-          height="100px"
-          alt={ company_name + "'s logo"}
-          src={logo_url}
-        />
+        {logo_url && (
+          <Image
+            className={styles.companyLogo}
+            width="100px"
+            height="100px"
+            alt={company_name + "'s logo"}
+            src={logo_url}
+          />
+        )}
       </div>
       <div className="flex-grow-1">
         <div className="w-100 d-flex justify-content-between mb-3">

@@ -1,5 +1,10 @@
 import _ from "lodash";
+// import fs from 'fs';
 import slugify from "slugify";
+
+// const remoteOk = fs.readFileSync('../../jobs.json', 'utf8');
+
+// console.log(remoteOk);
 
 export const jobs = [
   {

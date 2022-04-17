@@ -10,21 +10,12 @@ import styles from "../styles/JobBoard.module.css";
 import Filters from "../components/JobBoard/Filters";
 import JobListing from "../components/JobBoard/JobListing";
 
-import { jobs } from "../components/JobBoard/data";
 import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
 import Meta from "../components/Meta";
+import { transformedJobs } from '../getSampleJobs';
 
 export default function Jobs({ jobsProps }) {
   const router = useRouter();
-
-  // useEffect(() => {
-  //   console.log(router.query)
-  // });
-
-  // useEffect(() => {
-  //   console.log(router.query)
-  // });
-
   return (
     <>
       <Meta title="Remote JavaScript Jobs (US Based)" />
@@ -52,7 +43,7 @@ export async function getServerSideProps(context) {
   if (hasFilters) {
     _.keys(query).forEach(filter => {
       if(VALID_JOB_FILTERS[filter]) {
-        jobs.forEach(job => {
+        transformedJobs.forEach(job => {
           job[filter] === query[filter] && filteredJobs.push(job);
         })
       }
@@ -62,7 +53,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      jobsProps: hasFilters ? filteredJobs : jobs,
+      jobsProps: hasFilters ? filteredJobs : transformedJobs,
     }, // will be passed to the page component as props
   };
 }
