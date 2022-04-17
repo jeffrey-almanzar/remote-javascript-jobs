@@ -19,7 +19,7 @@ export default function Tab({ active }) {
           <span
             className={classNames(
               "nav-link",
-              active === STANDING_OUT_PAGE_PATH && 'active'
+              active === STANDING_OUT_PAGE_PATH && "active"
             )}
           >
             <Link aria-current="page" href={STANDING_OUT_PAGE_PATH}>
@@ -31,7 +31,7 @@ export default function Tab({ active }) {
           <span
             className={classNames(
               "nav-link",
-              active === DEMONSTRATING_COMPETENCE_PAGE_PATH && 'active'
+              active === DEMONSTRATING_COMPETENCE_PAGE_PATH && "active"
             )}
           >
             <Link
@@ -46,7 +46,7 @@ export default function Tab({ active }) {
           <span
             className={classNames(
               "nav-link",
-              active === HANDLING_OFFERS_PAGE_PATH && 'active'
+              active === HANDLING_OFFERS_PAGE_PATH && "active"
             )}
           >
             <Link className="nav-link" href={HANDLING_OFFERS_PAGE_PATH}>

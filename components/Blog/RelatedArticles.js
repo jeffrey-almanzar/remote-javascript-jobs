@@ -6,7 +6,7 @@ import PostCard from "./PostCard";
 
 export default function RelatedArticles({ posts }) {
     return (
-        <div>
+        <div className="my-5">
           <h3 className="mb-4">Related Articles</h3>
           {posts.map((post, index) => (
             <div key={post.title + index} className="mb-5">
