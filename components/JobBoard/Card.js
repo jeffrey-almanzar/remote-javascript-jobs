@@ -1,3 +1,4 @@
+import _ from "lodash";
 import classNames from "classnames";
 import Image from "next/image";
 
@@ -14,6 +15,8 @@ export default function Card(props) {
     employment_type,
     logo_url,
   } = props;
+
+  const mainTechnology = _.get(technologies, "0") || "";
 
   return (
     <div className={classNames("d-flex w-100 position-relative")}>
@@ -41,14 +44,14 @@ export default function Card(props) {
         <div className="d-flex">
           <p className="me-3 btn btn-light">{employment_type}</p>
           <p className="me-3 btn btn-light">{salary}</p>
-          <p className="me-3 btn btn-light">{technologies[0]}</p>
+          {mainTechnology && (
+            <p className="me-3 btn btn-light">{mainTechnology}</p>
+          )}
           <p className="btn btn-light">{development_type}</p>
         </div>
       </div>
-      <span className={classNames(styles.applyLink, 'apply-link')}>
-        <a href="#">
-          Apply
-        </a>
+      <span className={classNames(styles.applyLink, "apply-link")}>
+        <a href="#">Apply</a>
       </span>
     </div>
   );

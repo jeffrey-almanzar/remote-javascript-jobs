@@ -5,14 +5,18 @@ import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
 
-import styles from "../styles/JobBoard.module.css";
+import firebaseApp from '../firebase/clientApp';
+import { useCollection } from "react-firebase-hooks/firestore";
+import { getFirestore, collection, getDocs, setDoc, addDoc } from 'firebase/firestore/lite';
 
 import Filters from "../components/JobBoard/Filters";
 import JobListing from "../components/JobBoard/JobListing";
+import Meta from "../components/Meta";
 
 import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
-import Meta from "../components/Meta";
 import { transformedJobs } from '../getSampleJobs';
+
+import styles from "../styles/JobBoard.module.css";
 
 export default function Jobs({ jobsProps }) {
   const router = useRouter();
@@ -51,9 +55,30 @@ export async function getServerSideProps(context) {
 
   }
 
+  // Firebase 
+  const db = getFirestore(firebaseApp);
+
+  // async function getJobs(db) {
+    const jobsCol = collection(db, 'jobs');
+    const jobSnapshot = await getDocs(jobsCol);
+    const jobList = jobSnapshot.docs.map(doc => doc.data());
+    console.log(jobList)
+    // return jobList;
+  // }
+
+  // getJobs(db);
+  // -------------
+
+  // if(false) {
+  //   transformedJobs.forEach( async job => {
+  //     const jobsCol = collection(db, 'jobs');
+  //     await addDoc(jobsCol, transformedJobs[0]);
+  //   })
+  // }
+
   return {
     props: {
-      jobsProps: hasFilters ? filteredJobs : transformedJobs,
+      jobsProps: transformedJobs,
     }, // will be passed to the page component as props
   };
 }
