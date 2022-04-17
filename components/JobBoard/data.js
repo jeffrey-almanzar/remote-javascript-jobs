@@ -1,5 +1,6 @@
 export const jobs = [
   {
+    id: 11234,
     title: "Front end developer",
     company_name: "Motion Recruitment",
     date: "2d",
@@ -14,6 +15,7 @@ export const jobs = [
     company_site: "https://example.com",
   },
   {
+    id: 11235,
     title: "Front end developer",
     company_name: "Motion Recruitment",
     date: "2d",
@@ -28,6 +30,7 @@ export const jobs = [
     company_site: "https://example.com",
   },
   {
+    id: 11236,
     title: "Front end developer",
     company_name: "Motion Recruitment",
     date: "2d",
@@ -42,6 +45,7 @@ export const jobs = [
     company_site: "https://example.com",
   },
   {
+    id: 11237,
     title: "Front end developer",
     company_name: "Motion Recruitment",
     date: "2d",
@@ -56,6 +60,7 @@ export const jobs = [
     company_site: "https://example.com",
   },
   {
+    id: 11238,
     title: "Front end developer",
     company_name: "Motion Recruitment",
     date: "2d",
