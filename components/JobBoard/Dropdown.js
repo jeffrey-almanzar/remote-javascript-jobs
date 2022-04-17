@@ -2,7 +2,7 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 
-export default function DropDown({ label, options }) {
+export default function DropDown({ label, filterKey, options }) {
   const router = useRouter();
   return (
     <div className="dropdown">
@@ -24,7 +24,7 @@ export default function DropDown({ label, options }) {
                 router.push({
                   pathname: "/jobs",
                   query: _.assign({}, router.query, {
-                    [slugify(label)]: slugify(option),
+                    [filterKey]: slugify(option),
                   }),
                 });
               }}
