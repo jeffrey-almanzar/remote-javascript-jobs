@@ -11,11 +11,13 @@ import Filters from "../components/JobBoard/Filters";
 import JobListing from "../components/JobBoard/JobListing";
 
 import { jobs } from "../components/JobBoard/data";
-import { options } from "../components/JobBoard/data";
+import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
 import Meta from "../components/Meta";
 
 export default function Jobs({ jobsProps }) {
   const router = useRouter();
+
+  console.log(VALID_JOB_FILTERS)
 
   // console.log({jobsProps})
 
@@ -52,13 +54,14 @@ export async function getServerSideProps(context) {
   const filteredJobs = [];
 
   if (hasFilters) {
-    if (query["Employment-type"]) {
-      jobs.forEach((job) => {
-        if (job.employment_type === query["Employment-type"]) {
-          filteredJobs.push(job);
-        }
-      });
-    }
+    _.keys(query).forEach(filter => {
+      if(VALID_JOB_FILTERS[filter]) {
+        jobs.forEach(job => {
+          job[filter] === query[filter] && filteredJobs.push(job);
+        })
+      }
+    })
+
   }
 
   return {
