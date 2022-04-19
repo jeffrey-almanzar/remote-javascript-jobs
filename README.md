@@ -47,3 +47,7 @@ const jobSnapshot = await getDocs(jobsCol);
 const jobList = jobSnapshot.docs.map(doc => doc.data());
 console.log(jobList)
 ```
+
+## Queries
+
+https://cloud.google.com/firestore/docs/query-data/queries
