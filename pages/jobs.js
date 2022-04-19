@@ -5,16 +5,24 @@ import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
 
-import firebaseApp from '../firebase/clientApp';
+import firebaseApp from "../firebase/clientApp";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { getFirestore, collection, getDocs, setDoc, addDoc } from 'firebase/firestore/lite';
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  addDoc,
+  writeBatch,
+} from "firebase/firestore/lite";
 
 import Filters from "../components/JobBoard/Filters";
 import JobListing from "../components/JobBoard/JobListing";
 import Meta from "../components/Meta";
 
 import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
-import { transformedJobs } from '../getSampleJobs';
+import { transformedJobs } from "../getSampleJobs";
 
 import styles from "../styles/JobBoard.module.css";
 
@@ -45,36 +53,22 @@ export async function getServerSideProps(context) {
   const filteredJobs = [];
 
   if (hasFilters) {
-    _.keys(query).forEach(filter => {
-      if(VALID_JOB_FILTERS[filter]) {
-        transformedJobs.forEach(job => {
+    _.keys(query).forEach((filter) => {
+      if (VALID_JOB_FILTERS[filter]) {
+        transformedJobs.forEach((job) => {
           job[filter] === query[filter] && filteredJobs.push(job);
-        })
+        });
       }
-    })
-
+    });
   }
 
-  // Firebase 
-  const db = getFirestore(firebaseApp);
-
-  // async function getJobs(db) {
-    const jobsCol = collection(db, 'jobs');
-    const jobSnapshot = await getDocs(jobsCol);
-    const jobList = jobSnapshot.docs.map(doc => doc.data());
-    console.log(jobList)
-    // return jobList;
-  // }
-
-  // getJobs(db);
-  // -------------
-
-  // if(false) {
-  //   transformedJobs.forEach( async job => {
-  //     const jobsCol = collection(db, 'jobs');
-  //     await addDoc(jobsCol, transformedJobs[0]);
-  //   })
-  // }
+  // Firebase
+  // const db = getFirestore(firebaseApp);
+  // const jobsCol = collection(db, "jobs");
+  // const jobSnapshot = await getDocs(jobsCol);
+  // const jobList = jobSnapshot.docs.map(doc => doc.data());
+  // console.log(jobList)
+  
 
   return {
     props: {
