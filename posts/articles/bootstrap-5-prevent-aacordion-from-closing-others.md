@@ -1,0 +1,1 @@
+Omit the data-bs-parent attribute on each .accordion-collapse to make accordion items stay open when another item is opened.

@@ -49,7 +49,6 @@ export default function JobListing({ jobs }) {
               id={"collapseOne2" + accordionKey}
               className="accordion-collapse collapse"
               aria-labelledby="headingOne2"
-              data-bs-parent="#accordionExample-2"
             >
               <div className="accordion-body">
                 <CardBody content={description} />

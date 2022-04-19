@@ -14,6 +14,7 @@ export default function Card(props) {
     development_type,
     employment_type,
     logo_url,
+    apply_link,
   } = props;
 
   const mainTechnology = _.get(technologies, "0") || "";
@@ -51,7 +52,9 @@ export default function Card(props) {
         </div>
       </div>
       <span className={classNames(styles.applyLink, "apply-link")}>
-        <a href="#">Apply</a>
+        <a target="_blank" href={apply_link}>
+          Apply
+        </a>
       </span>
     </div>
   );
