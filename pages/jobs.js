@@ -15,6 +15,8 @@ import {
   doc,
   addDoc,
   writeBatch,
+  where,
+  query,
 } from "firebase/firestore/lite";
 
 import Filters from "../components/JobBoard/Filters";
@@ -47,7 +49,7 @@ export default function Jobs({ jobsProps }) {
 }
 
 export async function getServerSideProps(context) {
-  const { query } = context;
+  const { query: params } = context;
 
   // Firebase
   const db = getFirestore(firebaseApp);
@@ -55,10 +57,10 @@ export async function getServerSideProps(context) {
 
   const filters = [];
 
-  if (!_.isEmpty(query)) {
-    _.keys(query).forEach((filter) => {
+  if (!_.isEmpty(params)) {
+    _.keys(params).forEach((filter) => {
       if (VALID_JOB_FILTERS[filter]) {
-        filters.push({ key: filter, value: query[filter] })
+        params[filter] && filters.push({ key: filter, value: params[filter] })
       }
     });
   }
@@ -66,14 +68,17 @@ export async function getServerSideProps(context) {
   const hasFilters = !_.isEmpty(filters);
 
   if (hasFilters) {
-    // _.keys(query).forEach((filter) => {
-    //   if (VALID_JOB_FILTERS[filter]) {
-    //     transformedJobs.forEach((job) => {
-    //       job[filter] === query[filter] && filteredJobs.push(job);
-    //     });
-    //   }
-    // });
+    const queries = filters.map(filter => where(filter.key, "==", filter.value ));
+    const q = query(jobsCol, ...queries);
 
+    const jobSnapshot = await getDocs(q);
+    const jobList = jobSnapshot.docs.map(doc => doc.data());
+
+    return {
+      props: {
+        jobsProps: jobList,
+      },
+    };
   } 
 
   
