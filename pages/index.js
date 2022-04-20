@@ -5,7 +5,6 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import classNames from "classnames";
 
-
 import { JOBS_PAGE_PATH } from "../config/constants";
 
 import { jobs } from "../components/JobBoard/data";
@@ -26,9 +25,15 @@ export default function Home({ jobs }) {
 
       <div className="mb-5">
         <Hero />
-        <GettingHiredSection />
-        <LatestJobsSection jobs={firstJobs} />
-        <JobCategoriesSection />
+        <div className="section">
+          <GettingHiredSection />
+        </div>
+        <div className="section">
+          <LatestJobsSection jobs={firstJobs} />
+        </div>
+        <div className="section">
+          <JobCategoriesSection />
+        </div>
       </div>
     </>
   );
