@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Remote JavaScript Jobs
 
-## Getting Started
+US Based Remote Javascript Job Board:
+- Developers can find reliable jobs
 
-First, run the development server:
+- Developers can learn about javascript interview questions and job hunting topics
 
-```bash
-npm run dev
-# or
-yarn dev
+- Companies can post job ads for a priceUS 
+
+
+
+## Firebase
+
+### Delete many records
+
+```
+const db = getFirestore(firebaseApp);
+const batch = writeBatch(db);
+
+const jobsCol = collection(db, "jobs");
+const jobSnapshot = await getDocs(jobsCol);
+jobSnapshot.forEach((doc) => {
+  batch.delete(doc.ref);
+});
+
+await batch.commit();
+```
+### Create many records
+
+```
+const db = getFirestore(firebaseApp);
+const batch = writeBatch(db);
+
+transformedJobs.forEach((job) => {
+  batch.set(doc(db, 'jobs', job.id), job);
+});
+
+await batch.commit();
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Get all jobs
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+const db = getFirestore(firebaseApp);
+const jobsCol = collection(db, "jobs");
+const jobSnapshot = await getDocs(jobsCol);
+const jobList = jobSnapshot.docs.map(doc => doc.data());
+console.log(jobList)
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Queries
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://cloud.google.com/firestore/docs/query-data/queries

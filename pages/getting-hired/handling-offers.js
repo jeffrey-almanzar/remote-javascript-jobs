@@ -18,29 +18,34 @@ import {
 import CardLister from "../../components/Blog/CardLister";
 
 import Link from "next/link";
+import Meta from "../../components/Meta";
 
 export default function GettingHired({ posts }) {
   return (
-    <div className={styles.container}>
-      <Hero />
-      <Tab active={HANDLING_OFFERS_PAGE_PATH} />
-      <div className="container mb-5">
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
-          amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque
-          laoreet suspendisse interdum consectetur libero id. Lorem mollis
-          aliquam ut porttitor.{" "}
-        </p>
+    <>
+      <Meta title="Handling Offers" />
 
-        <div>
-          <CardLister
-            posts={posts}
-            options={{ urlPrefix: HANDLING_OFFERS_PAGE_PATH }}
-          />
+      <div className={styles.container}>
+        <Hero />
+        <Tab active={HANDLING_OFFERS_PAGE_PATH} />
+        <div className="container mb-5">
+          <p className="mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor
+            sit amet consectetur adipiscing elit ut aliquam. Porta non pulvinar
+            neque laoreet suspendisse interdum consectetur libero id. Lorem
+            mollis aliquam ut porttitor.{" "}
+          </p>
+
+          <div>
+            <CardLister
+              posts={posts}
+              options={{ urlPrefix: HANDLING_OFFERS_PAGE_PATH }}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

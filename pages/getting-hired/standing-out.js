@@ -7,6 +7,8 @@ import classNames from "classnames";
 import matter from "gray-matter";
 import Link from "next/link";
 
+import Meta from "../../components/Meta";
+
 import CardLister from "../../components/Blog/CardLister";
 import Hero from "../../components/Blog/Hero";
 import Tab from "../../components/Blog/Tab";
@@ -17,28 +19,33 @@ import {
 } from "../../config/constants";
 
 
+
 export default function GettingHired({ posts }) {
   return (
-    <div className={styles.container}>
-      <Hero />
-      <Tab />
-      <div className="container mb-5">
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sit
-          amet consectetur adipiscing elit ut aliquam. Porta non pulvinar neque
-          laoreet suspendisse interdum consectetur libero id. Lorem mollis
-          aliquam ut porttitor.{" "}
-        </p>
+    <>
+      <Meta title="Standing out" />
 
-        <div>
-          <CardLister
-            posts={posts}
-            options={{ urlPrefix: STANDING_OUT_PAGE_PATH }}
-          />
+      <div className={styles.container}>
+        <Hero />
+        <Tab />
+        <div className="container mb-5">
+          <p className="mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor
+            sit amet consectetur adipiscing elit ut aliquam. Porta non pulvinar
+            neque laoreet suspendisse interdum consectetur libero id. Lorem
+            mollis aliquam ut porttitor.{" "}
+          </p>
+
+          <div>
+            <CardLister
+              posts={posts}
+              options={{ urlPrefix: STANDING_OUT_PAGE_PATH }}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
