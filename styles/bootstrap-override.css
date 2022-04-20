@@ -94,7 +94,14 @@
 }
 
 
+[data-theme='dark'] .accordion-button {
+    color: var(--color-white);
+    background-color: #212121;
+}
 
+[data-theme='dark'] .accordion-item {
+    border-color: #000;
+}
 
 .job-card-container .accordion-button:not(.collapsed) {
     box-shadow: none;
@@ -119,4 +126,13 @@
 
 .job-card-container .accordion-button:focus {
     box-shadow: none;
+}
+
+[data-theme='dark'] .btn-light {
+    background-color: var(--background-color);
+    color: #fff;
+}
+
+[data-theme='dark'] .btn {
+    border-color: #000;
 }
