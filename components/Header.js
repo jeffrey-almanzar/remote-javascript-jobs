@@ -40,7 +40,7 @@ export default function Header() {
               <Link href={RESOURCES_PAGE_PATH}>Resources</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
-              <p className="btn btn-warning">
+              <p className="btn btn-primary">
                 <Link href={JOB_POSTING_PAGE_PATH}>Post a job</Link>
               </p>
             </li>

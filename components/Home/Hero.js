@@ -22,7 +22,7 @@ export default function Hero(props) {
                 <p className="mb-4 lead">
                   The most reliable remote JavaScript jobs on the internet.
                 </p>
-                <p className="btn btn-warning">
+                <p className="btn btn-primary">
                   <Link href={JOBS_PAGE_PATH}>Show me the jobs</Link>
                 </p>
               </div>

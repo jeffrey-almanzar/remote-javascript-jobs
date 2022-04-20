@@ -51,7 +51,7 @@ export default function Card(props) {
           <p className="btn btn-light">{development_type}</p>
         </div>
       </div>
-      <span className={classNames(styles.applyLink, "apply-link")}>
+      <span className={classNames(styles.applyLink, "btn-primary apply-link")}>
         <a target="_blank" href={apply_link}>
           Apply
         </a>

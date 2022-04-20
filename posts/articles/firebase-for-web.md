@@ -1,0 +1,1 @@
+explain how to use normal queries in the latest version of firebase.

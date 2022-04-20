@@ -1,167 +1,25 @@
-/* #__next {
-  height: 100vh;
-} */
+@import './variables.css';
+@import './colors.css';
+@import './reset.css';
+@import './bootstrap-override.css';
+@import './icomoon.css';
 
-/* Reset */
 
-.nav-tabs .nav-item {
-  border: 1px solid #707070;
-}
-
-.nav-tabs .nav-item:first-of-type {
-  border-right: 0px;
-}
-.nav-tabs .nav-item:last-of-type {
-  border-left: 0px;
-}
-
-.nav-tabs .nav-link,
-.nav-tabs .nav-link:focus {
-  font-weight: bold;
-  font-size: 20px;
-  color: var(--color-black);
-  border: 0px;
-}
-
-.nav-tabs .nav-link.active {
-  background-color: var(--color-yellow) !important;
-  color: var(--color-black);
-  border-radius: 0px;
-  max-height: 100%;
-}
-
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-ul,
-ol
-blockquote,
-dl,
-dd {
-  margin: 0;
-  padding: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul,
-ol {
-  list-style: none;
-}
-
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
+html,
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  font-size: 16px;
+
+  font-family: 'Roboto', sans-serif;
 }
 
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-   scroll-behavior: auto;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-
-/* TOGGLE */
-
-/* declaring the css variables colors */
-:root {
-  --color-primary-accent: #2614c7;
-  --color-primary: #000;
-  --color-button: #3d486c;
-  --color-paragraph: #797979;
-  --color-button-text: rgb(255, 255, 255);
-  --color-background: #fff;
-  --color-anchor: #000aff;
-
-  /* COLORS */
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --color-yellow: #f7e018;
-  --color-light-gray: #eee;
-
-}
-
-[data-theme='dark'] {
-  --color-primary-accent: #f7e018;
-  --color-primary: #fff;
-  --color-button: #f7e018;
-  --color-paragraph: #8a8a8a;
-  --color-button-text: rgb(0, 0, 0);
-  --color-background: #181818;
-  --color-anchor: #f7e018;
-}
-
-.color-yellow {
-    color: var(--color-yellow);
-}
-
-.color-white {
-  color: var(--color-white);
-}
-
-.color-black {
-  color: var(--color-black);
-}
-
-.bg-black {
-  background-color: var(--color-black);
-}
-
-.bg-yellow {
-  background-color: var(--color-yellow);
-}
-
-.bg-white {
-  background-color: var(--color-white);
+a {
+  text-decoration: none;
+  color: var(--color-anchor);
 }
 
 /* swtich taken from W3 schools */
@@ -175,14 +33,6 @@ select {
   align-items: center;
   cursor: pointer;
 }
-
-/* .switch .icon-light_mode {
-  margin-left: 4px;
-}
-
-.switch .icon-dark_mode {
-  margin-left: 4px;
-} */
 
 .switch input {
   opacity: 0;
@@ -255,216 +105,6 @@ input:checked ~ .icon-light_mode {
 }
 
 
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-
-  background-color: var(--color-background);
-  color: var(--color-primary);
-  font-size: 16px;
-
-  font-family: 'Roboto', sans-serif;
-}
-
-a {
-  /* color: inherit; */
-  text-decoration: none;
-}
-
-
-a {
-  color: var(--color-anchor);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* Icons */
-
-@font-face {
-  font-family: 'icomoon';
-  src:  url('/fonts/icomoon/icomoon.eot?ug60a8');
-  src:  url('/fonts/icomoon/icomoon.eot?ug60a8#iefix') format('embedded-opentype'),
-    url('/fonts/icomoon/icomoon.ttf?ug60a8') format('truetype'),
-    url('/fonts/icomoon/icomoon.woff?ug60a8') format('woff'),
-    url('/fonts/icomoon/icomoon.svg?ug60a8#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-menu:before {
-  content: "\e900";
-}
-.icon-filters:before {
-  content: "\e901";
-}
-.icon-clock:before {
-  content: "\e902";
-}
-.icon-arrow_right:before {
-  content: "\e903";
-}
-.icon-arrow_left:before {
-  content: "\e904";
-}
-.icon-eye:before {
-  content: "\e905";
-}
-.icon-share:before {
-  content: "\e906";
-}
-.icon-chevron_down:before {
-  content: "\e907";
-  color: #4a5568;
-}
-.icon-dark_mode:before {
-  content: "\e908";
-}
-.icon-light_mode:before {
-  content: "\e909";
-}
-.icon-checkmark:before {
-  content: "\e90a";
-}
-.icon-image_icon:before {
-  content: "\e90b";
-}
-.icon-company_location:before {
-  content: "\e90c";
-  font-size: 30px;
-}
-.icon-minus:before {
-  content: "\e90d";
-}
-.icon-plus:before {
-  content: "\e90e";
-}
-.icon-facebook:before {
-  content: "\e90f";
-}
-.icon-instagram:before {
-  content: "\e910";
-}
-.icon-linkedin:before {
-  content: "\e911";
-}
-.icon-youtube:before {
-  content: "\e912";
-}
-.icon-twitter:before {
-  content: "\e913";
-}
-.icon-angular:before {
-  content: "\e914";
-}
-.icon-jquery:before {
-  content: "\e915";
-}
-.icon-node:before {
-  content: "\e916";
-}
-.icon-vue:before {
-  content: "\e917";
-}
-.icon-native:before {
-  content: "\e918";
-}
-
-/* BootStrap accordions */
-.footer .accordion-item {
-  border-radius: 1px;
-}
-
-.footer .accordion-button {
-  background-color: #000;
-  color: #fff;
-  border-radius: 1px;
-}
-
-.footer .accordion-item:first-of-type .accordion-button {
-  border-radius: 1px;
-}
-
-.footer .accordion-button:not(.collapsed)::after,
-.footer .accordion-button::after {
-  content: "\e90e";
-  background-image: none;
-
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.footer .accordion-button:not(.collapsed)::after {
-  content: "\e90d";
-}
-
-.footer .accordion-button:focus  {
-  border-color: var(--color-yellow);
-  box-shadow: none;
-}
-
-.footer .accordion-button:not(.collapsed) {
-  color: var(--color-yellow);
-}
-
-.job-card-container .accordion-button:not(.collapsed) {
-  box-shadow: none;
-  background-color: var(--color-yellow);
-  color: var(--color-black);
-}
-
-.job-card-container .accordion-button:not(.collapsed) .apply-link {
- display: inline-block;
- background-color: var(--color-black);
- color: var(--color-white);
-}
-
-.job-card-container .accordion-button:hover .apply-link {
- display: inline-block;
-}
-
-
-.job-card-container .accordion-button:not(.collapsed)::after,
-.job-card-container .accordion-button::after {
-  content: '';
-  background-image: none;
-}
-
-.job-card-container .accordion-button:focus {
-  box-shadow: none;
-}
-
-
-
 .blog-post h2 {
     margin-bottom: 30px;
     margin-top: 30px;
@@ -473,13 +113,6 @@ a {
 .nav-link a {
   width: 100%;
   display: inline-block;
-}
-
-.dropdown-toggle::after {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .dropdown {
