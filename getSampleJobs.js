@@ -5,7 +5,7 @@ const moment = require('moment');
 const sampleJobs = fs.readFileSync("./public/jobs.json", "utf8");
 const jobs = JSON.parse(sampleJobs);
 
-export const transformedJobs = _.compact(
+const transformedJobs = _.compact(
   _.map(jobs, (job) => {
     if (!job.id) {
       return null;
@@ -18,20 +18,33 @@ export const transformedJobs = _.compact(
 
     const displayDate = timeDiffInWeeks > 0 ? `${timeDiffInWeeks}w` : `${timeDiffInDays}d`;
 
+    const mainTechnology = _.first(job.tags);
+    const otherTechnologies = _.slice(job.tags, 1);
+
     return {
       id: job.id,
       title: job.position,
-      company_name: job.company,
-      date: displayDate,
+      date: job.date,
       employment_type: "Full-time",
       development_type: "Front-end",
       experience_level: "Mid level",
-      salary: "$80k-$100k",
-      technologies: job.tags,
+      min_salary: '80',
+      max_salary: '100',
+      main_technology: mainTechnology,
+      other_technologies: otherTechnologies,
       description: job.description,
       apply_link: job.apply_url,
+      is_open_worldwide: true, // Selecting 'Yes' means your future hire can work anywhere in the world without any location or time zone restrictions!
+      // company info
+      company_name: job.company,
       logo_url: job.logo,
       company_site: "https://example.com",
+      company_email: 'test@gamil.com', // stays private - for inbox 
+
+      // highlight info
+      is_featured: true,
     };
   })
 );
+
+module.exports = transformedJobs;

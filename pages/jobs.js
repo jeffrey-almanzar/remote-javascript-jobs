@@ -22,7 +22,7 @@ import JobListing from "../components/JobBoard/JobListing";
 import Meta from "../components/Meta";
 
 import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
-import { transformedJobs } from "../getSampleJobs";
+// import { transformedJobs } from "../getSampleJobs";
 
 import styles from "../styles/JobBoard.module.css";
 
@@ -48,31 +48,43 @@ export default function Jobs({ jobsProps }) {
 
 export async function getServerSideProps(context) {
   const { query } = context;
-  const hasFilters = !_.isEmpty(query);
 
-  const filteredJobs = [];
+  // Firebase
+  const db = getFirestore(firebaseApp);
+  const jobsCol = collection(db, "jobs");
 
-  if (hasFilters) {
+  const filters = [];
+
+  if (!_.isEmpty(query)) {
     _.keys(query).forEach((filter) => {
       if (VALID_JOB_FILTERS[filter]) {
-        transformedJobs.forEach((job) => {
-          job[filter] === query[filter] && filteredJobs.push(job);
-        });
+        filters.push({ key: filter, value: query[filter] })
       }
     });
   }
 
-  // Firebase
-  // const db = getFirestore(firebaseApp);
-  // const jobsCol = collection(db, "jobs");
-  // const jobSnapshot = await getDocs(jobsCol);
-  // const jobList = jobSnapshot.docs.map(doc => doc.data());
-  // console.log(jobList)
+  const hasFilters = !_.isEmpty(filters);
+
+  if (hasFilters) {
+    // _.keys(query).forEach((filter) => {
+    //   if (VALID_JOB_FILTERS[filter]) {
+    //     transformedJobs.forEach((job) => {
+    //       job[filter] === query[filter] && filteredJobs.push(job);
+    //     });
+    //   }
+    // });
+
+  } 
+
   
+  const jobSnapshot = await getDocs(jobsCol);
+  const jobList = jobSnapshot.docs.map(doc => doc.data());
 
   return {
     props: {
-      jobsProps: transformedJobs,
+      jobsProps: jobList,
     }, // will be passed to the page component as props
   };
 }
+
+

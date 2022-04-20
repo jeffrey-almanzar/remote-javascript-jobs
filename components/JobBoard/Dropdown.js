@@ -17,8 +17,8 @@ export default function DropDown({ label, filterKey, options }) {
     <div className="dropdown">
       <button
         className={classNames(
-          "btn w-100 text-start dropdown-toggle",
-          isActive ? "btn-primary" : "btn-secondary"
+          "btn w-100 text-start dropdown-toggle position-relative",
+          isActive ? "btn-warning" : "dropdown"
         )}
         type="button"
         id="dropdownMenuButton1"

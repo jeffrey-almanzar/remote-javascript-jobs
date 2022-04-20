@@ -26,9 +26,9 @@ export default function Hero(props) {
                   <Link href={JOBS_PAGE_PATH}>Show me the jobs</Link>
                 </p>
               </div>
-              <div>
+              {/* <div>
                 <Image src={image} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

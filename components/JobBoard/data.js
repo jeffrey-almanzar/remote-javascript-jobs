@@ -175,7 +175,7 @@ export const options = [
   {
     label: "Experience level",
     filterKey: slugify(FILTER_EXPERIENCE_LEVEL.toLowerCase(), "_"),
-    options: ["Junior", "Mid", "Senior"],
+    options: ["Entry level", "Mid level", "Senior level"],
   },
   {
     label: "Main technology",
@@ -183,9 +183,9 @@ export const options = [
     options: ["React", "Angular", "Vue", "jQuery"],
   },
   {
-    label: "Salary",
+    label: "Salary estimate",
     filterKey: slugify(FILTER_SALARY.toLowerCase(), "_"),
-    options: ["50k-100k", "100k+"],
+    options: ["Less than 50k, annually", "50k-100k, annually", "100k-150k, annually", "150k-200k, annually", "More than 200k, annually"],
   },
 ];
 
