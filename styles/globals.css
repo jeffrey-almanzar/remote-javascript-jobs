@@ -113,3 +113,8 @@ input:checked ~ .icon-light_mode {
 .dropdown {
   background-color: #eee;
 }
+
+.footer a:hover {
+  color: var(--color-yellow);
+  text-decoration: underline;
+}
