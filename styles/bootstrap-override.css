@@ -103,6 +103,14 @@
     border-color: #000;
 }
 
+[data-theme='dark'] .accordion-body,
+[data-theme='dark'] .accordion-body * {
+    background-color: #212121 !important;
+    color: #eee !important;
+}
+
+
+
 .job-card-container .accordion-button:not(.collapsed) {
     box-shadow: none;
     background-color: var(--color-yellow);
@@ -129,10 +137,20 @@
 }
 
 [data-theme='dark'] .btn-light {
-    background-color: var(--background-color);
+    background-color: var(--color-background);
     color: #fff;
 }
 
 [data-theme='dark'] .btn {
     border-color: #000;
+}
+
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .apply-link,
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .btn-light  {
+    background-color: var(--color-background);
+    color: #fff;
+}
+
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .apply-link a {
+    color: #fff !important;
 }
