@@ -118,11 +118,15 @@
 }
 
 .job-card-container .accordion-button:not(.collapsed) .apply-link {
-    display: inline-block;
+    display: none;
 }
 
-.job-card-container .accordion-button:hover .apply-link {
-    display: inline-block;
+
+
+@media (min-width: 768px) {
+    .job-card-container .accordion-button:hover .apply-link {
+        display: inline-block;
+    }
 }
 
 

@@ -21,7 +21,7 @@ export default function Card(props) {
 
   return (
     <div className={classNames("d-flex w-100 position-relative")}>
-      <div className="me-4">
+      <div className="me-4 d-none d-md-block">
         {logo_url && (
           <Image
             className={styles.companyLogo}
@@ -42,7 +42,7 @@ export default function Card(props) {
         </div>
 
         <h4 className="mb-3">{title}</h4>
-        <div className="d-flex">
+        <div className="d-none d-lg-flex">
           <p className="me-3 btn btn-light">{employment_type}</p>
           <p className="me-3 btn btn-light">{salary}</p>
           {mainTechnology && (
