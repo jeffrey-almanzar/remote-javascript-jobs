@@ -28,11 +28,12 @@ a {
 .switch {
   position: relative;
   width: 60px;
-  height: 34px;
-  font-size: 24px;
+  height: 24px;
+  font-size: 32px;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  color: #fff;
 }
 
 .switch input {
@@ -48,7 +49,6 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -56,8 +56,6 @@ a {
 .slider:before {
   position: absolute;
   content: '';
-  height: 26px;
-  width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -66,17 +64,11 @@ a {
 }
 
 input:checked + .slider {
-  background-color: #33f321;
+  background-color: #000;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #33f321;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  box-shadow: 0 0 1px #000;
 }
 
 input:not(:checked) ~ .icon-light_mode {
@@ -85,12 +77,14 @@ input:not(:checked) ~ .icon-light_mode {
 
 input:not(:checked) ~ .icon-dark_mode {
   display: inline-block;
-  margin-left: 30px;
+}
+
+input:checked ~ .icon-dark_mode {
+  display: none !important;
 }
 
 input:checked ~ .icon-light_mode {
   display: inline-block;
-  margin-left: 4px;
 }
 
 .slider {
