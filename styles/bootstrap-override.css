@@ -158,3 +158,7 @@
 [data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .apply-link a {
     color: #fff !important;
 }
+
+[data-theme='dark'] .btn-link {
+    color: #eee;
+}

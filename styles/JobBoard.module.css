@@ -2,9 +2,16 @@
     border: 1px solid var(--color-light-gray);
 }
 
+[data-theme='dark'] .filters {
+    border: 1px solid var(--color-black);
+}
+
+
 .companyLogo {
     border-radius: 50%;
 }
+
+
 
 .applyLink {
     background-color: var(--color-yellow);

@@ -110,8 +110,13 @@ input:checked ~ .icon-light_mode {
   display: inline-block;
 }
 
-.dropdown {
+.dropdown-filter {
   background-color: #eee;
+}
+
+[data-theme='dark'] .dropdown-filter {
+  background-color: #212121;
+  color: #fff;
 }
 
 .footer a:hover {
