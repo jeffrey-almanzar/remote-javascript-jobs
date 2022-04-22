@@ -162,3 +162,16 @@
 [data-theme='dark'] .btn-link {
     color: #eee;
 }
+
+.dropdown-menu {
+    width: 100%;
+    padding: 0px;
+    background-color: #212121;
+    color: #fff;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    color: #fff;
+}
+
