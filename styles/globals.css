@@ -5,6 +5,13 @@
 @import './icomoon.css';
 @import './util.css';
 
+#side .nav-link.active,
+#side .nav-link:hover,
+#side .nav-link:focus{
+    color: #111;
+    border-bottom: 1px #000 dashed;
+}
+
 
 html,
 body {
