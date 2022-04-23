@@ -1,6 +1,6 @@
-import _ from 'lodash'
-// import { Editor } from "react-draft-wysiwyg";
-// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import React from "react";
+import _ from "lodash";
+import dynamic from "next/dynamic";
 
 import Pricing from "./Pricing";
 // import JobListing from "../JobBoard/JobListing";
@@ -14,7 +14,21 @@ import {
   MAIN_TECHNOLOGY,
 } from "../JobBoard/data";
 
-export default function JobForm({ onSubmit, onInputChange, onDropdownChange, onJobPostingTypeChange }) {
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+export default function JobForm(props) {
+  const {
+    jobDescription,
+    onSubmit,
+    onInputChange,
+    onDropdownChange,
+    onJobPostingTypeChange,
+    onEditorStateChange,
+  } = props;
   return (
     <form className="mb-5" onSubmit={onSubmit}>
       <div id="sec1" className="anchor"></div>
@@ -37,7 +51,7 @@ export default function JobForm({ onSubmit, onInputChange, onDropdownChange, onJ
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Employment Type
           </label>
-          <DropDown onClick={onDropdownChange} {...EMPLOYMENT_TYPE}/>
+          <DropDown onClick={onDropdownChange} {...EMPLOYMENT_TYPE} />
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
@@ -71,13 +85,13 @@ export default function JobForm({ onSubmit, onInputChange, onDropdownChange, onJ
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Job Description
         </label>
-        {/* <Editor */}
-        {/* // editorState={editorState}
+        <Editor
+        editorState={jobDescription}
         // toolbarClassName="toolbarClassName"
         // wrapperClassName="wrapperClassName"
         // editorClassName="editorClassName"
-        // onEditorStateChange={this.onEditorStateChange} */}
-        {/* /> */}
+        onEditorStateChange={onEditorStateChange} 
+        />
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="apply_link" className="form-label">
@@ -138,7 +152,7 @@ export default function JobForm({ onSubmit, onInputChange, onDropdownChange, onJ
       </div>
       <Pricing onJobPostingTypeChange={onJobPostingTypeChange} />
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
-      <Checkout  onInputChange={onInputChange} />
+      <Checkout onInputChange={onInputChange} />
     </form>
   );
 }

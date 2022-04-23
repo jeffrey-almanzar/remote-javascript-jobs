@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames";
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 import styles from "../styles/JobPosting.module.css";
 
@@ -51,7 +53,7 @@ export default class JobPosting extends React.Component {
       // min_salary: '80',
       // max_salary: '100',
       main_technology: "",
-      description: "",
+      description: EditorState.createEmpty(),
       apply_link: "",
       is_open_worldwide: true, // Selecting 'Yes' means your future hire can work anywhere in the world without any location or time zone restrictions!
       // company info
@@ -69,6 +71,12 @@ export default class JobPosting extends React.Component {
     this.setState({ [ev.target.name]: ev.target.value });
   };
 
+  onEditorStateChange = (editorState) => {
+    this.setState({
+      description: editorState,
+    });
+  };
+
   onDropdownChange = (option) => {
     this.setState(option);
   };
@@ -80,10 +88,11 @@ export default class JobPosting extends React.Component {
   onSubmit = (ev) => {
     ev.preventDefault();
 
-    console.log(this.state);
+    console.log(draftToHtml(convertToRaw(this.state.description.getCurrentContent())));
   };
 
   render() {
+    const { description } = this.state;
     return (
       <div className="container-fluid">
         <div className="container">
@@ -95,10 +104,12 @@ export default class JobPosting extends React.Component {
             </div>
             <div className="col-8">
               <JobForm
+                jobDescription={description}
                 onSubmit={this.onSubmit}
                 onInputChange={this.onInputChange}
                 onDropdownChange={this.onDropdownChange}
                 onJobPostingTypeChange={this.onJobPostingTypeChange}
+                onEditorStateChange={this.onEditorStateChange}
               />
             </div>
           </div>
