@@ -3,6 +3,14 @@ import { jobs } from "../../components/JobBoard/data";
 import HTMLParser from "../../components/HTMLParser";
 
 export default function Test({ jobPost }) {
+  if (_.isEmpty(jobPost)) {
+    return (
+      <div className="container">
+        <h1>Sorry, page not found</h1>
+      </div>
+    );
+  }
+
   const {
     title,
     company_name,
@@ -17,14 +25,6 @@ export default function Test({ jobPost }) {
     logo_url,
     company_site,
   } = jobPost;
-
-  if (_.isEmpty(jobPost)) {
-    return (
-      <div className="container">
-        <h1>Sorry, page not found</h1>
-      </div>
-    );
-  }
 
   return (
     <div className="container py-5">
