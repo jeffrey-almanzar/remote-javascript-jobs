@@ -1,6 +1,19 @@
 import _ from "lodash";
-import { jobs } from "../../components/JobBoard/data";
 import HTMLParser from "../../components/HTMLParser";
+
+import firebaseApp from '../../firebase/clientApp';
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  addDoc,
+  writeBatch,
+  where,
+  query,
+} from "firebase/firestore/lite";
 
 export default function Test({ jobPost }) {
   if (_.isEmpty(jobPost)) {
@@ -38,12 +51,16 @@ export default function Test({ jobPost }) {
 
 export async function getServerSideProps(context) {
   const jobId = _.get(context, "query.slug").split("-")[0];
-  // const { query } = context;
-  // const hasFilters = !_.isEmpty(query);
 
-  // const filteredJobs = [];
-  console.log(jobId);
-  const job = jobs.find((job) => job.id == jobId);
+
+   // Firebase
+  const db = getFirestore(firebaseApp);
+  const jobsCol = collection(db, "jobs");
+  const q = query(jobsCol, where('id', '==', jobId));
+  const jobSnapshot = await getDocs(q);
+  const jobList = jobSnapshot.docs.map(doc => doc.data());
+
+  const job = _.first(jobList);
 
   return {
     props: {
