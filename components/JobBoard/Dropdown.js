@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 
-export default function DropDown({ label, filterKey, options }) {
+export default function DropDown({ label, filterKey, options, onClick }) {
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
 
@@ -33,14 +33,18 @@ export default function DropDown({ label, filterKey, options }) {
           <li key={option}>
             <span
               className="dropdown-item"
-              onClick={() => {
-                router.push({
-                  pathname: "/jobs",
-                  query: _.assign({}, router.query, {
-                    [filterKey]: slugify(option),
-                  }),
-                });
-              }}
+              onClick={
+                onClick
+                  ? () => onClick({ [filterKey]: option})
+                  : () => {
+                      router.push({
+                        pathname: "/jobs",
+                        query: _.assign({}, router.query, {
+                          [filterKey]: slugify(option),
+                        }),
+                      });
+                    }
+              }
             >
               {option}
             </span>

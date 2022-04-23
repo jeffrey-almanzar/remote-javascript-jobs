@@ -1,4 +1,4 @@
-export default function Checkout({ onSubmit }) {
+export default function Checkout({ onSubmit, onInputChange }) {
   return (
     <div className="">
       <div id="sec3" className="anchor"></div>
@@ -9,9 +9,11 @@ export default function Checkout({ onSubmit }) {
             Name on card
           </label>
           <input
+            onChange={onInputChange}
             type="text"
             className="form-control"
             id="cc-name"
+            name="cc-name"
             placeholder=""
             required=""
           />
@@ -27,8 +29,10 @@ export default function Checkout({ onSubmit }) {
             type="text"
             className="form-control"
             id="cc-number"
+            name="cc-number"
             placeholder=""
             required=""
+            onChange={onInputChange}
           />
           <div className="invalid-feedback">Credit card number is required</div>
         </div>
@@ -43,6 +47,8 @@ export default function Checkout({ onSubmit }) {
             id="cc-expiration"
             placeholder=""
             required=""
+            name="cc-expiration" 
+            onChange={onInputChange}
           />
           <div className="invalid-feedback">Expiration date required</div>
         </div>
@@ -57,6 +63,8 @@ export default function Checkout({ onSubmit }) {
             id="cc-cvv"
             placeholder=""
             required=""
+            name="cc-cvv" 
+            onChange={onInputChange}
           />
           <div className="invalid-feedback">Security code required</div>
         </div>
@@ -65,7 +73,7 @@ export default function Checkout({ onSubmit }) {
             Promo code
           </label>
           <div className="input-group">
-            <input type="text" className="form-control" />
+            <input onChange={onInputChange} name="promo_code" type="text" className="form-control" />
             <button type="submit" className="btn btn-secondary">
               Redeem
             </button>

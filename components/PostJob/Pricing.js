@@ -1,11 +1,11 @@
-export default function Pricing() {
+export default function Pricing({ onJobPostingTypeChange }) {
   return (
     <div className="my-5">
       <div id="sec2" className="anchor"></div>
-      <h3 className="pb-3 mb-4">Some Text Here</h3>
+      <h3 className="pb-3 mb-4">Posting Type</h3>
       <div className="row">
         <div className="col">
-          <div className="card mb-4 rounded-3 shadow-sm">
+          <div className="card mb-4 rounded-3 shadow-sm" onClick={() => onJobPostingTypeChange({ is_featured: false})}>
             <div className="card-header py-3">
               <h4 className="my-0 fw-normal">Basic</h4>
             </div>
@@ -27,7 +27,7 @@ export default function Pricing() {
           </div>
         </div>
         <div className="col">
-          <div className="card mb-4 rounded-3 shadow-sm">
+          <div className="card mb-4 rounded-3 shadow-sm" onClick={() => onJobPostingTypeChange({ is_featured: true})}>
             <div className="card-header py-3">
               <h4 className="my-0 fw-normal">Featured</h4>
             </div>

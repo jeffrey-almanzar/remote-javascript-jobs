@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames";
@@ -6,10 +6,6 @@ import classNames from "classnames";
 import styles from "../styles/JobPosting.module.css";
 
 import { jobs } from "../components/JobBoard/data";
-import JobCard from "../components/JobBoard/Card";
-import JobListing from "../components/JobBoard/JobListing";
-import Checkout from "../components/PostJob/Checkout";
-import Pricing from "../components/PostJob/Pricing";
 import JobForm from "../components/PostJob/JobForm";
 
 function Steps(props) {
@@ -43,12 +39,49 @@ function Steps(props) {
 // Let's try to only use one page for create, preview, and pay.
 
 export default class JobPosting extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: "",
+      // date: job.date,
+      employment_type: "",
+      development_type: "",
+      experience_level: "",
+      // min_salary: '80',
+      // max_salary: '100',
+      main_technology: "",
+      description: "",
+      apply_link: "",
+      is_open_worldwide: true, // Selecting 'Yes' means your future hire can work anywhere in the world without any location or time zone restrictions!
+      // company info
+      company_name: "",
+      logo_url: "",
+      company_site: "https://example.com",
+      company_email: "test@gamil.com", // stays private - for inbox
+
+      // highlight info
+      is_featured: false,
+    };
+  }
+
+  onInputChange = (ev) => {
+    this.setState({ [ev.target.name]: ev.target.value });
+  };
+
+  onDropdownChange = (option) => {
+    this.setState(option);
+  };
+
+  onJobPostingTypeChange = (type) => {
+    this.setState(type)
+  }
+
   onSubmit = (ev) => {
     ev.preventDefault();
 
-    console.log(ev)
-
-  }
+    console.log(this.state);
+  };
 
   render() {
     return (
@@ -61,7 +94,12 @@ export default class JobPosting extends React.Component {
               <Steps />
             </div>
             <div className="col-8">
-              <JobForm  onSubmit={this.onSubmit} />
+              <JobForm
+                onSubmit={this.onSubmit}
+                onInputChange={this.onInputChange}
+                onDropdownChange={this.onDropdownChange}
+                onJobPostingTypeChange={this.onJobPostingTypeChange}
+              />
             </div>
           </div>
         </div>
