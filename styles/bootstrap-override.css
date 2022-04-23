@@ -1,3 +1,11 @@
+.nav-tabs {
+    border: none;
+}
+
+.nav-tabs .nav-item a:hover {
+    color: var(--color-yellow);
+}
+
 .nav-tabs .nav-item {
     border: 1px solid #707070;
 }
@@ -23,6 +31,10 @@
     color: var(--color-black);
     border-radius: 0px;
     max-height: 100%;
+}
+
+.nav-tabs .nav-link.active a {
+    color: var(--color-black);
 }
 
 .btn-primary {
