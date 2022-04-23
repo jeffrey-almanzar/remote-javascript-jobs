@@ -1,10 +1,21 @@
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 import Pricing from "./Pricing";
 import JobListing from "../JobBoard/JobListing";
 import Checkout from "./Checkout";
+import DropDown from "../JobBoard/Dropdown";
+import {
+  EMPLOYMENT_TYPE,
+  DEVELOPMENT_TYPE,
+  EXPERIENCE_LEVEL,
+  SALARY_ESTIMATE,
+  MAIN_TECHNOLOGY,
+} from "../JobBoard/data";
 
-export default function JobForm() {
+export default function JobForm({ onSubmit }) {
   return (
-    <form className="mb-5">
+    <form className="mb-5" onSubmit={onSubmit}>
       <div id="sec1" className="anchor"></div>
       <h3 className="pb-3">Some Text Here</h3>
       <div className="mb-3">
@@ -23,21 +34,13 @@ export default function JobForm() {
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Employment Type
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-          />
+          <DropDown {...EMPLOYMENT_TYPE} />
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Development Type
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-          />
+          <DropDown {...DEVELOPMENT_TYPE} />
         </div>
       </div>
       <div className="row">
@@ -45,33 +48,21 @@ export default function JobForm() {
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Experience
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-          />
+          <DropDown {...EXPERIENCE_LEVEL} />
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Salary
           </label>
-          <input
-            type="text"
-            className="form-control"
-            id="formGroupExampleInput"
-          />
+          <DropDown {...SALARY_ESTIMATE} />
         </div>
       </div>
 
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
-          Technologies (multi select or checkbooks)
+          Main Technology
         </label>
-        <input
-          type="text"
-          className="form-control"
-          id="formGroupExampleInput2"
-        />
+        <DropDown {...MAIN_TECHNOLOGY} />
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
@@ -87,10 +78,12 @@ export default function JobForm() {
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Job Description
         </label>
-        <input
-          type="text"
-          className="form-control"
-          id="formGroupExampleInput2"
+        <Editor
+        // editorState={editorState}
+        // toolbarClassName="toolbarClassName"
+        // wrapperClassName="wrapperClassName"
+        // editorClassName="editorClassName"
+        // onEditorStateChange={this.onEditorStateChange}
         />
       </div>
       <h3 className="pt-5 pb-3">Some Text Here</h3>

@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from "next/head";
 import Image from "next/image";
 import classNames from "classnames";
@@ -41,24 +42,30 @@ function Steps(props) {
 // Maybe render the sections using Tabs or Scroll Spy
 // Let's try to only use one page for create, preview, and pay.
 
-export default function JobPosting(props) {
-  return (
-    <div className="container-fluid">
-      <div className="container">
-        <h1 className="pt-4">Some text here</h1>
-        <p>Some information here</p>
-        <div className="d-flex justify-content-between">
-          <div className="col-3 my-5">
-            <Steps />
-          </div>
-          <div
-            className="col-8"
-            // data-bs-offset="0"
-          >
-            <JobForm />
+export default class JobPosting extends React.Component {
+  onSubmit = (ev) => {
+    ev.preventDefault();
+
+    console.log(ev)
+
+  }
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <div className="container">
+          <h1 className="pt-4">Some text here</h1>
+          <p>Some information here</p>
+          <div className="d-flex justify-content-between">
+            <div className="col-3 my-5">
+              <Steps />
+            </div>
+            <div className="col-8">
+              <JobForm  onSubmit={this.onSubmit} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

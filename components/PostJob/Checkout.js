@@ -1,48 +1,8 @@
-export default function Checkout() {
+export default function Checkout({ onSubmit }) {
   return (
     <div className="">
       <div id="sec3" className="anchor"></div>
       <h4 className="mb-3">Payment</h4>
-
-      <div className="my-3">
-        {/* <div className="form-check">
-            <input
-              id="credit"
-              name="paymentMethod"
-              type="radio"
-              className="form-check-input"
-              checked=""
-              required=""
-            />
-            <label className="form-check-label" htmlFor="credit">
-              Credit card
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              id="debit"
-              name="paymentMethod"
-              type="radio"
-              className="form-check-input"
-              required=""
-            />
-            <label className="form-check-label" htmlFor="debit">
-              Debit card
-            </label>
-          </div> */}
-        {/* <div className="form-check">
-            <input
-              id="paypal"
-              name="paymentMethod"
-              type="radio"
-              className="form-check-input"
-              required=""
-            />
-            <label className="form-check-label" htmlFor="paypal">
-              PayPal
-            </label>
-          </div> */}
-      </div>
       <div className="row gy-3">
         <div className="col-md-6">
           <label htmlFor="cc-name" className="form-label">
