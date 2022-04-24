@@ -1,0 +1,189 @@
+.nav-tabs {
+    border: none;
+}
+
+.nav-tabs .nav-item a:hover {
+    color: var(--color-yellow);
+}
+
+.nav-tabs .nav-item {
+    border: 1px solid #707070;
+}
+
+.nav-tabs .nav-item:first-of-type {
+    border-right: 0px;
+}
+
+.nav-tabs .nav-item:last-of-type {
+    border-left: 0px;
+}
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-link:focus {
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--color-black);
+    border: 0px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--color-yellow) !important;
+    color: var(--color-black);
+    border-radius: 0px;
+    max-height: 100%;
+}
+
+.nav-tabs .nav-link.active a {
+    color: var(--color-black);
+}
+
+.btn-primary {
+    background-color: var(--color-yellow);
+    color: #000 !important;
+    border-color: var(--color-yellow);
+}
+
+.btn-primary a {
+    color: #000 !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-yellow);
+    border-color: var(--color-yellow);
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer .accordion-item {
+    border-radius: 1px;
+}
+
+.footer .accordion-button:not(.collapsed)::after {
+    content: "\e90d";
+}
+
+.footer .accordion-button:focus {
+    border-color: var(--color-yellow);
+    box-shadow: none;
+}
+
+.footer .accordion-button:not(.collapsed) {
+    color: var(--color-yellow);
+}
+
+.footer .accordion-button {
+    background-color: #000;
+    color: #fff;
+    border-radius: 1px;
+}
+
+.footer .accordion-item:first-of-type .accordion-button {
+    border-radius: 1px;
+}
+
+.footer .accordion-button:not(.collapsed)::after,
+.footer .accordion-button::after {
+    content: "\e90e";
+    background-image: none;
+
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+[data-theme='dark'] .accordion-button {
+    color: var(--color-white);
+    background-color: #212121;
+}
+
+[data-theme='dark'] .accordion-item {
+    border-color: #000;
+}
+
+[data-theme='dark'] .accordion-body,
+[data-theme='dark'] .accordion-body * {
+    background-color: #212121 !important;
+    color: #eee !important;
+}
+
+
+
+.job-card-container .accordion-button:not(.collapsed) {
+    box-shadow: none;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+}
+
+.job-card-container .accordion-button:not(.collapsed) .apply-link {
+    display: none;
+}
+
+
+
+@media (min-width: 768px) {
+    .job-card-container .accordion-button:hover .apply-link {
+        display: inline-block;
+    }
+}
+
+
+.job-card-container .accordion-button:not(.collapsed)::after,
+.job-card-container .accordion-button::after {
+    content: '';
+    background-image: none;
+}
+
+.job-card-container .accordion-button:focus {
+    box-shadow: none;
+}
+
+[data-theme='dark'] .btn-light {
+    background-color: var(--color-background);
+    color: #fff;
+}
+
+[data-theme='dark'] .btn {
+    border-color: #000;
+}
+
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .apply-link,
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .btn-light  {
+    background-color: var(--color-background);
+    color: #fff;
+}
+
+[data-theme='dark'] .job-card-container .accordion-button:not(.collapsed) .apply-link a {
+    color: #fff !important;
+}
+
+[data-theme='dark'] .btn-link {
+    color: #eee;
+}
+
+.dropdown-menu {
+    width: 100%;
+    padding: 0px;
+    background-color: #212121;
+    color: #fff;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    color: #fff;
+}
+

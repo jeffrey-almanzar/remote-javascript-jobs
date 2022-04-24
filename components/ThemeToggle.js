@@ -34,7 +34,7 @@ export default function ThemeToggle() {
   return (
     <div>
       {darkTheme !== undefined && (
-        <form action="#">
+        <form action="#" className="d-flex align-items-center">
           <label className="switch">
             <input
               type="checkbox"

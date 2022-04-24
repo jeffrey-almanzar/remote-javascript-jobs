@@ -20,7 +20,7 @@ export default function Header() {
         "container-fluid position-relative"
       )}
     >
-      <div className="container-lg d-flex justify-content-between align-items-center h-100">
+      <div className="container d-flex justify-content-between align-items-center h-100">
         <label htmlFor="menu" className={styles.label}>
           <span className="icon-menu d-lg-none"></span>
         </label>
@@ -29,7 +29,8 @@ export default function Header() {
           <Link href="/">RemoteJSJobs</Link>
         </p>
         <div className="d-flex align-self-end align-items-center h-100">
-          <ul className={styles.links}>
+          <ul className={classNames(styles.links)}>
+            {/* <div className="container"> */}
             <li className="me-5 mb-4 mb-lg-0">
               <Link href={JOBS_PAGE_PATH}>Jobs</Link>
             </li>
@@ -40,10 +41,11 @@ export default function Header() {
               <Link href={RESOURCES_PAGE_PATH}>Resources</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
-              <p className="btn btn-warning">
+              <p className="btn btn-primary">
                 <Link href={JOB_POSTING_PAGE_PATH}>Post a job</Link>
               </p>
             </li>
+            {/* </div> */}
           </ul>
 
           <ThemeToggle />

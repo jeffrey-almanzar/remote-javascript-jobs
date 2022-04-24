@@ -1,6 +1,17 @@
 .hero {
-  background-color: var(--color-black);
+  /* background-color: var(--color-black); */
   color: var(--color-white);
+  position: relative;
+  z-index: 1;
+}
+
+.test {
+  background-color: #000;
+  opacity: 0.5;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+
 }
 
 .cta {
@@ -16,6 +27,11 @@
   font-size: 20px;
 }
 
+[data-theme='dark'] .sectionCallToAction a,
+[data-theme='dark'] .cta {
+  color: var(--color-white);
+}
+
 .jobCategoryItem .jobCategoryIcon {
   font-size: 70px;
 }
@@ -23,10 +39,11 @@
 .jobCategoryItem {
   border: 1px solid var(--color-black);
   min-height: 250px;
-  transition: color .7s;
+  transition: all .7s;
 }
 
 .jobCategoryItem:hover {
   color: var(--color-yellow);
   cursor: pointer;
+  background-color: #000;
 }

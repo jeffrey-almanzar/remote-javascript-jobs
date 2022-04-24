@@ -7,7 +7,7 @@ export default function PostCard(props) {
   const { title, content, url, image } = props;
 
   return (
-    <a href={url}>
+    <a className={styles.postCardLink} href={url}>
       <div className="w-100 d-lg-flex">
         {image && (
           <div

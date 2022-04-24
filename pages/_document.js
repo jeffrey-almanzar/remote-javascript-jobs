@@ -25,7 +25,7 @@ export default function Document() {
           crossOrigin="anonymous"
         ></link>
       </Head>
-      <body>
+      <body data-bs-spy="scroll" data-bs-target="#side" data-bs-offset="20">
         <script
           dangerouslySetInnerHTML={{
             __html: themeInitializerScript,

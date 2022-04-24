@@ -1,0 +1,26 @@
+/* TOGGLE */
+:root {
+    --color-primary-accent: #2614c7;
+    --color-primary: #000;
+    --color-button: #3d486c;
+    --color-paragraph: #797979;
+    --color-button-text: rgb(255, 255, 255);
+    --color-background: #fff;
+    --color-anchor: #000aff;
+
+    /* COLORS */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-yellow: #f7e018;
+    --color-light-gray: #eee;
+}
+
+[data-theme='dark'] {
+    --color-primary-accent: #f7e018;
+    --color-primary: #fff;
+    --color-button: #f7e018;
+    --color-paragraph: #8a8a8a;
+    --color-button-text: rgb(0, 0, 0);
+    --color-background: #181818;
+    --color-anchor: #f7e018;
+}

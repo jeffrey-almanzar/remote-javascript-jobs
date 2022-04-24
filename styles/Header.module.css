@@ -2,6 +2,7 @@
     background-color: var(--color-black);
     height: 70px;
     /* position: relative; */
+    color: var(--color-white);
 }
 
 .wrapper a {

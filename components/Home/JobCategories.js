@@ -33,7 +33,7 @@ export default function JobCategoriesSection(props) {
           <span
             className={classNames(styles.jobCategoryIcon, "icon-vue mb-3")}
           ></span>
-          <span>Category name</span>
+          <span>Vue Jobs</span>
         </li>
         <li
           className={classNames(
@@ -44,7 +44,7 @@ export default function JobCategoriesSection(props) {
           <span
             className={classNames(styles.jobCategoryIcon, "icon-angular mb-3")}
           ></span>
-          <span>Category name</span>
+          <span>Angular jobs</span>
         </li>
         <li
           className={classNames(
@@ -55,7 +55,7 @@ export default function JobCategoriesSection(props) {
           <span
             className={classNames(styles.jobCategoryIcon, "icon-jquery mb-3")}
           ></span>
-          <span>Category name</span>
+          <span>jQuery Jobs</span>
         </li>
         <li
           className={classNames(
@@ -66,7 +66,7 @@ export default function JobCategoriesSection(props) {
           <span
             className={classNames(styles.jobCategoryIcon, "icon-node mb-3")}
           ></span>
-          <span>Category name</span>
+          <span>Node jobs</span>
         </li>
         <li
           className={classNames(
@@ -77,7 +77,7 @@ export default function JobCategoriesSection(props) {
           <span
             className={classNames(styles.jobCategoryIcon, "icon-native mb-3")}
           ></span>
-          <span>Category name</span>
+          <span>Next Jobs</span>
         </li>
       </ul>
       <CallToAction title="View all categories" />
