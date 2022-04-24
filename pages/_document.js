@@ -25,6 +25,7 @@ export default function Document() {
           crossOrigin="anonymous"
         ></link>
       </Head>
+      {/* Producing errors on other pages - only add attrs when using the scrollspy */}
       <body data-bs-spy="scroll" data-bs-target="#side" data-bs-offset="20">
         <script
           dangerouslySetInnerHTML={{

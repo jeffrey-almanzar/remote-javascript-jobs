@@ -24,3 +24,8 @@ export const HANDLING_OFFERS_POSTS_PATH = `${POST_DIR}/${HANDLING_OFFERS_PATH}`;
 
 
 
+   
+export const CURRENCY = 'usd';
+export const MIN_AMOUNT = 99.99;
+export const MAX_AMOUNT = 149.99;
+export const AMOUNT_STEP = 5.0;
