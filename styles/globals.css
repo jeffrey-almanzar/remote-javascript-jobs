@@ -39,6 +39,7 @@ a {
   font-size: 32px;
   display: inline-flex;
   align-items: center;
+  justify-content: end;
   cursor: pointer;
   color: #fff;
 }

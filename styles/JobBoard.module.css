@@ -9,10 +9,34 @@
 
 .companyLogo {
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
 }
 
+.companyLogoWrapper {
+    margin-right: 40px;
+}
 
+.jobPostInnerContainer {
+    border: 1px solid #eee;
+    padding: 40px;
+    border-radius: 10px;
+}
 
+.jobPostMainInfo {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+.jobPostSection {
+    border: 1px solid #eee;
+    padding: 40px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.applyLinkVisible,
 .applyLink {
     background-color: var(--color-yellow);
     display: none;
@@ -24,6 +48,11 @@
     border-radius: 5px;
     width: 150px;
     text-align: center;
+}
+
+.applyLinkVisible {
+    display: inline-block;
+    position: static;
 }
 
 .jobCardWrapper:hover .applyLink {
