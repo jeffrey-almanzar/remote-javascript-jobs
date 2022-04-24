@@ -28,6 +28,7 @@ export default function JobForm(props) {
     onDropdownChange,
     onJobPostingTypeChange,
     onEditorStateChange,
+    isFeaturedPosting,
   } = props;
   return (
     <form className="mb-5" onSubmit={onSubmit}>
@@ -150,7 +151,7 @@ export default function JobForm(props) {
         </label>
         <input className="form-control" type="file" id="formFile" />
       </div>
-      <Pricing onJobPostingTypeChange={onJobPostingTypeChange} />
+      <Pricing isFeaturedPosting={isFeaturedPosting} onJobPostingTypeChange={onJobPostingTypeChange} />
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
       <Checkout onInputChange={onInputChange} />
     </form>

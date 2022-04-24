@@ -129,7 +129,7 @@ function Accordion({ accordions }) {
 export default function Footer() {
   return (
     <footer className="footer container-fluid bg-black pt-3 pt-md-5 mt-auto pb-5">
-      <div className="container-lg d-md-flex justify-content-between">
+      <div className="container d-md-flex justify-content-between">
         <div>
           <p className={classNames(styles.logo)}>
             <Link href="/">RemoteJSJobs</Link>

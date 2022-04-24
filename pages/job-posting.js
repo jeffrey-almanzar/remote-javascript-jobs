@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -10,35 +11,30 @@ import styles from "../styles/JobPosting.module.css";
 import { jobs } from "../components/JobBoard/data";
 import JobForm from "../components/PostJob/JobForm";
 
-function Steps(props) {
-  return (
-    <div className="mt-5 mb-3 sticky-top" id="side">
-      <ul
-        className="nav flex-md-column flex-row justify-content-between"
-        id="sidenav"
-      >
-        <li className="nav-item">
-          <a href="#sec1" className="nav-link active pl-0">
-            Create
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="#sec2" className="nav-link pl-0">
-            Preview
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="#sec3" className="nav-link pl-0">
-            Pay
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
-}
+import Sidebar from "../components/PostJob/Sidebar";
 
-// Maybe render the sections using Tabs or Scroll Spy
-// Let's try to only use one page for create, preview, and pay.
+import firebaseApp from '../firebase/clientApp';
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  addDoc,
+  writeBatch,
+  where,
+  query,
+} from "firebase/firestore/lite";
+
+/*
+TODO:
+- upload logo
+- stripe
+- dropdowns
+- styling
+- confirmation page
+*/
 
 export default class JobPosting extends React.Component {
   constructor(props) {
@@ -56,6 +52,7 @@ export default class JobPosting extends React.Component {
       description: EditorState.createEmpty(),
       apply_link: "",
       is_open_worldwide: true, // Selecting 'Yes' means your future hire can work anywhere in the world without any location or time zone restrictions!
+
       // company info
       company_name: "",
       logo_url: "",
@@ -85,14 +82,31 @@ export default class JobPosting extends React.Component {
     this.setState(type)
   }
 
-  onSubmit = (ev) => {
+  onSubmit =  async (ev) => {
     ev.preventDefault();
 
-    console.log(draftToHtml(convertToRaw(this.state.description.getCurrentContent())));
+    const jobPayload = _.pick(this.state, [
+      'title',
+      'employment_type',
+      'development_type',
+      'experience_level',
+      'main_technology',
+      'apply_link',
+      'company_name',
+      'company_site',
+      'is_featured',
+    ])
+
+    const description = draftToHtml(convertToRaw(this.state.description.getCurrentContent()));
+
+    // Created Job
+    // const db = getFirestore(firebaseApp);
+    // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
+    // console.log("Created Job");
   };
 
   render() {
-    const { description } = this.state;
+    const { description, is_featured } = this.state;
     return (
       <div className="container-fluid">
         <div className="container">
@@ -100,10 +114,11 @@ export default class JobPosting extends React.Component {
           <p>Some information here</p>
           <div className="d-flex justify-content-between">
             <div className="col-3 my-5">
-              <Steps />
+              <Sidebar />
             </div>
             <div className="col-8">
               <JobForm
+                isFeaturedPosting={is_featured}
                 jobDescription={description}
                 onSubmit={this.onSubmit}
                 onInputChange={this.onInputChange}

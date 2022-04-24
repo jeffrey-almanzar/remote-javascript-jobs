@@ -130,3 +130,18 @@ input:checked ~ .icon-light_mode {
   color: var(--color-yellow);
   text-decoration: underline;
 }
+
+.footer * {
+  color: var(--color-white);
+}
+
+.particle-canvas{
+  height: 100% !important;
+  position: absolute;
+  width: 100% !important;
+}
+
+.hero-wrapper {
+  height: 50vh;
+}
+
