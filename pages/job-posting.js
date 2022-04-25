@@ -5,15 +5,6 @@ import Image from "next/image";
 import classNames from "classnames";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-
-import styles from "../styles/JobPosting.module.css";
-
-import JobForm from "../components/PostJob/JobForm";
-
-import Sidebar from "../components/PostJob/Sidebar";
-
-import firebaseApp from "../firebase/clientApp";
-
 import {
   getFirestore,
   collection,
@@ -26,20 +17,15 @@ import {
   query,
 } from "firebase/firestore/lite";
 
+import firebaseApp from "../firebase/clientApp";
+
 import { fetchPostJSON } from "../config/api-helper";
-// import { useShoppingCart } from "use-shopping-cart/react";
-// import { loadStripe } from '@stripe/stripe-js';
-// const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+import getStripe from "../stripe/get-stripe";
 
-import { Stripe, loadStripe } from "@stripe/stripe-js";
+import JobForm from "../components/PostJob/JobForm";
+import Sidebar from "../components/PostJob/Sidebar";
 
-let stripePromise;
-const getStripe = () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-  }
-  return stripePromise;
-};
+import styles from "../styles/JobPosting.module.css";
 
 /*
 TODO:
@@ -99,66 +85,6 @@ export default class JobPosting extends React.Component {
   onSubmit = async (ev) => {
     ev.preventDefault();
 
-    // const handleSubmit = async (e) => {
-    //   // e.preventDefault();
-    //   // Create a Checkout Session.
-    //   const checkoutSession = await fetchPostJSON(
-    //     '/api/checkout_sessions',
-    //     { amount: 100 },
-    //   );
-
-    //   if (checkoutSession.statusCode === 500) {
-    //     console.error(checkoutSession.message);
-    //     return;
-    //   }
-
-    //   // Redirect to Checkout.
-    //   const stripe = await getStripe();
-    //   const { error } = await stripe.redirectToCheckout({
-    //     // Make the id field from the Checkout Session creation API response
-    //     // available to this file, so you can provide it as parameter here
-    //     // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-    //     sessionId: checkoutSession.id,
-    //   });
-    //   // If `redirectToCheckout` fails due to a browser or network
-    //   // error, display the localized error message to your customer
-    //   // using `error.message`.
-    //   console.warn(error.message);
-    // };
-    //  await handleSubmit();
-
-    const handleCheckout = async (event) => {
-      // event.preventDefault();
-      // setLoading(true);
-      // setErrorMessage("");
-  
-      const response = await fetchPostJSON(
-        "/api/checkout_sessions/cart",
-        {} // Send product id here
-      );
-  
-      if (response.statusCode > 399) {
-        console.error(response.message);
-        // setErrorMessage(response.message);
-        // setLoading(false);
-        return;
-      }
-  
-        const stripe = await getStripe();
-      const { error } = await stripe.redirectToCheckout({
-        // Make the id field from the Checkout Session creation API response
-        // available to this file, so you can provide it as parameter here
-        // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-        sessionId: response.id,
-      });
-      // If `redirectToCheckout` fails due to a browser or network
-      // error, display the localized error message to your customer
-      // using `error.message`.
-      console.warn(error.message);
-    };
-    await handleCheckout();
-    alert("Payment completed");
-
     const jobPayload = _.pick(this.state, [
       "title",
       "employment_type",
@@ -175,10 +101,49 @@ export default class JobPosting extends React.Component {
       convertToRaw(this.state.description.getCurrentContent())
     );
 
+    await this.handleCheckout({ description, ...jobPayload });
+    alert("Payment completed");
+
     // Created Job
     // const db = getFirestore(firebaseApp);
     // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
     // console.log("Created Job");
+  };
+
+  handleCheckout = async (jobInfo) => {
+    // event.preventDefault();
+    // setLoading(true);
+    // setErrorMessage("");
+
+    const response = await fetchPostJSON(
+      "/api/checkout_sessions/cart",
+      {} // Send product id here
+    );
+
+    if (response.statusCode > 399) {
+      console.error(response.message);
+      // setErrorMessage(response.message);
+      // setLoading(false);
+      return;
+    }
+
+    // TODO: Create job here.
+    // Created Job
+    // const db = getFirestore(firebaseApp);
+    // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
+    // console.log("Created Job");
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout({
+      // Make the id field from the Checkout Session creation API response
+      // available to this file, so you can provide it as parameter here
+      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+      sessionId: response.id,
+    });
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+    console.warn(error.message);
   };
 
   render() {

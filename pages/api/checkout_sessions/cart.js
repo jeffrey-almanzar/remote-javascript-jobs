@@ -1,14 +1,3 @@
-/*
- * Product data can be loaded from anywhere. In this case, we’re loading it from
- * a local JSON file, but this could also come from an async call to your
- * inventory management service, a database query, or some other API call.
- *
- * The important thing is that the product info is loaded from somewhere trusted
- * so you know the pricing information is accurate.
- */
-// import { validateCartItems } from "use-shopping-cart/utilities/serverless";
-// import inventory from "../../../data/products";
-
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   // https://github.com/stripe/stripe-node#configuration
@@ -18,21 +7,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      // Validate the cart details that were sent from the client.
-      // const line_items = validateCartItems(inventory, req.body);
-      // const hasSubscription = line_items.find((item) => {
-      //   return !!item.price_data.recurring;
-      // });
       // Create Checkout Sessions from body params.
       const params = {
         submit_type: "pay",
         payment_method_types: ["card"],
         billing_address_collection: "auto",
         shipping_address_collection: {
-          allowed_countries: ["US", "CA"],
+          allowed_countries: ["US", "CA"], // should i allow more countries? Maybe only USA
         },
         line_items: [{
-          price: 'price_1KsD5PCDFOVNA8uTlxHtUaWK', quantity: 1,
+          price: 'price_1KsD5PCDFOVNA8uTlxHtUaWK', quantity: 1, // TODO: make dynamic
         }],
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/use-shopping-cart`,
