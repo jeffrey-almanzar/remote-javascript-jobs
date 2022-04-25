@@ -22,6 +22,11 @@ import firebaseApp from "../firebase/clientApp";
 import { fetchPostJSON } from "../config/api-helper";
 import getStripe from "../stripe/get-stripe";
 
+import {
+  STRIPE_PRODUCT_FEATURED_JOB_PRICE_ID,
+  STRIPE_PRODUCT_STANDARD_JOB_PRICE_ID,
+} from "..//stripe/products";
+
 import JobForm from "../components/PostJob/JobForm";
 import Sidebar from "../components/PostJob/Sidebar";
 
@@ -115,9 +120,14 @@ export default class JobPosting extends React.Component {
     // setLoading(true);
     // setErrorMessage("");
 
+    const { is_featured = false } = jobInfo;
+    const priceInfo = is_featured
+      ? { price: STRIPE_PRODUCT_FEATURED_JOB_PRICE_ID, quantity: 1 }
+      : { price: STRIPE_PRODUCT_STANDARD_JOB_PRICE_ID, quantity: 1 };
+
     const response = await fetchPostJSON(
       "/api/checkout_sessions/cart",
-      {} // Send product id here
+      priceInfo
     );
 
     if (response.statusCode > 399) {
