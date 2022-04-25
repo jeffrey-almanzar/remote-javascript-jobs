@@ -51,3 +51,22 @@ console.log(jobList)
 ## Queries
 
 https://cloud.google.com/firestore/docs/query-data/queries
+
+
+## Stripe
+
+Used: 
+- https://vercel.com/guides/getting-started-with-nextjs-typescript-stripe
+- https://github.com/vercel/next.js/tree/canary/examples/with-stripe-typescript 
+- Demo: https://nextjs-typescript-react-stripe-js.vercel.app/use-shopping-cart
+
+Frontend:
+- Next.js and SWR
+- [react-stripe-js](https://github.com/stripe/react-stripe-js) for Checkout and Elements
+Backend
+- Next.js API routes
+- [stripe-node with TypeScript](https://github.com/stripe/stripe-node#usage-with-typescript)
+
+Process:
+- Create products in https://dashboard.stripe.com/test/products?active=true
+- Create 
