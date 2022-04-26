@@ -29,3 +29,6 @@ export const CURRENCY = 'usd';
 export const MIN_AMOUNT = 99.99;
 export const MAX_AMOUNT = 149.99;
 export const AMOUNT_STEP = 5.0;
+
+export const FEATURED_JOB_PRICE = '$149.99';
+export const STANDARD_JOB_PRICE = '$99.99';

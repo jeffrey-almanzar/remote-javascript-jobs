@@ -46,7 +46,7 @@ export default function JobForm(props) {
         <input
           onChange={onInputChange}
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           name="title"
           id="title"
         />
@@ -113,9 +113,9 @@ export default function JobForm(props) {
         </label>
         <Editor
           editorState={jobDescription}
-          // toolbarClassName="toolbarClassName"
-          // wrapperClassName="wrapperClassName"
-          // editorClassName="editorClassName"
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
           onEditorStateChange={onEditorStateChange}
         />
       </div>
@@ -126,7 +126,7 @@ export default function JobForm(props) {
         <input
           onChange={onInputChange}
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           name="apply_link"
           id="apply_link"
         />
@@ -139,7 +139,7 @@ export default function JobForm(props) {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control dropdown-filter"
             name="company_name"
             id="company_name"
             onChange={onInputChange}
@@ -151,7 +151,7 @@ export default function JobForm(props) {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control dropdown-filter"
             id="company_email"
             name="company_email"
             onChange={onInputChange}
@@ -164,7 +164,7 @@ export default function JobForm(props) {
         </label>
         <input
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           id="company_site"
           name="company_site"
           onChange={onInputChange}
@@ -174,14 +174,15 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formFile" className="form-label">
           Company Logo
         </label>
-        <input className="form-control" type="file" id="formFile" />
+        <input className="form-control dropdown-filter" type="file" id="formFile" />
       </div>
       <Pricing
         isFeaturedPosting={isFeaturedPosting}
         onJobPostingTypeChange={onJobPostingTypeChange}
       />
+      <p>Render preview here</p>
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
-      <Checkout onInputChange={onInputChange} />
+      <Checkout  isFeaturedPosting={isFeaturedPosting} onInputChange={onInputChange} />
     </form>
   );
 }
