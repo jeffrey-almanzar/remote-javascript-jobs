@@ -69,4 +69,8 @@ Backend
 
 Process:
 - Create products in https://dashboard.stripe.com/test/products?active=true
-- Create 
+- Create endpoint to create session pages/api/checkout_sessions/cart.js
+   - await stripe.checkout.sessions.create(params)
+- Hit the endpoint and redirect 
+   - https://github.com/Jeffrey-A/remotejavascriptjobs/pull/10/files#diff-14b25bf2c008402cc95a3af1ce510f45ce95c34a1b7f71003ceb0520cfea8d8bR128
+   - https://github.com/Jeffrey-A/remotejavascriptjobs/pull/10/files#diff-14b25bf2c008402cc95a3af1ce510f45ce95c34a1b7f71003ceb0520cfea8d8bR147
