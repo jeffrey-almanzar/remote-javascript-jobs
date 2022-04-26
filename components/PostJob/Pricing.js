@@ -5,7 +5,7 @@ import styles from "../../styles/JobPosting.module.css";
 export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
   return (
     <div className="my-5">
-      <div id="sec2" className="anchor"></div>
+      <div id="preview" className="anchor"></div>
       <h3 className="pb-3 mb-4">Posting Type</h3>
       <div className="row">
         <div className="col">

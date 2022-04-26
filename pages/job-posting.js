@@ -52,6 +52,7 @@ export default class JobPosting extends React.Component {
       experience_level: "",
       // min_salary: '80',
       // max_salary: '100',
+      salary: '',
       main_technology: "",
       description: EditorState.createEmpty(),
       apply_link: "",
@@ -109,10 +110,6 @@ export default class JobPosting extends React.Component {
   };
 
   handleCheckout = async (jobInfo) => {
-    // event.preventDefault();
-    // setLoading(true);
-    // setErrorMessage("");
-
     const { is_featured = false } = jobInfo;
     const priceInfo = is_featured
       ? { price: STRIPE_PRODUCT_FEATURED_JOB_PRICE_ID, quantity: 1 }
@@ -150,7 +147,16 @@ export default class JobPosting extends React.Component {
   };
 
   render() {
-    const { description, is_featured } = this.state;
+    const {
+      description,
+      is_featured,
+      employment_type,
+      development_type,
+      experience_level,
+      main_technology,
+      salary,
+    } = this.state;
+
     return (
       <div className="container-fluid">
         <div className="container">
@@ -162,6 +168,11 @@ export default class JobPosting extends React.Component {
             </div>
             <div className="col-8">
               <JobForm
+                employment_type={employment_type}
+                development_type={development_type}
+                experience_level={experience_level}
+                main_technology={main_technology}
+                salary={salary}
                 isFeaturedPosting={is_featured}
                 jobDescription={description}
                 onSubmit={this.onSubmit}

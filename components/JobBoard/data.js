@@ -164,31 +164,31 @@ export const FILTER_SALARY = "Salary";
 export const EMPLOYMENT_TYPE = {
   label: "Employment type",
   filterKey: slugify(FILTER_EMPLOYMENT_TYPE.toLowerCase(), "_"),
-  options: ["Full-time", "Contract", "Part-time", "Internship"],
+  options: [FILTER_EMPLOYMENT_TYPE, "Full-time", "Contract", "Part-time", "Internship"],
 };
 
 export const DEVELOPMENT_TYPE =  {
   label: "Development type",
   filterKey: slugify(FILTER_DEVELOPMENT_TYPE.toLowerCase(), "_"),
-  options: ["Front-end", "Back-end", "Full-stack"],
+  options: [FILTER_DEVELOPMENT_TYPE, "Front-end", "Back-end", "Full-stack"],
 }
 
 export const EXPERIENCE_LEVEL = {
   label: "Experience level",
   filterKey: slugify(FILTER_EXPERIENCE_LEVEL.toLowerCase(), "_"),
-  options: ["Entry level", "Mid level", "Senior level"],
+  options: [FILTER_EXPERIENCE_LEVEL, "Entry level", "Mid level", "Senior level"],
 };
 
 export const MAIN_TECHNOLOGY = {
   label: "Main technology",
   filterKey: slugify(FILTER_MAIN_TECHNOLOGY.toLowerCase(), "_"),
-  options: ["React", "Angular", "Vue", "jQuery"],
+  options: [FILTER_MAIN_TECHNOLOGY, "React", "Angular", "Vue", "jQuery"],
 };
 
 export const SALARY_ESTIMATE = {
   label: "Salary estimate",
   filterKey: slugify(FILTER_SALARY.toLowerCase(), "_"),
-  options: ["Less than 50k, annually", "50k-100k, annually", "100k-150k, annually", "150k-200k, annually", "More than 200k, annually"],
+  options: [FILTER_SALARY, "Less than 50k, annually", "50k-100k, annually", "100k-150k, annually", "150k-200k, annually", "More than 200k, annually"],
 };
 
 export const options = [

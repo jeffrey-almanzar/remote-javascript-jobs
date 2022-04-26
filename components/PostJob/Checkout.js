@@ -1,7 +1,7 @@
 export default function Checkout({ onSubmit, onInputChange }) {
   return (
     <div className="">
-      <div id="sec3" className="anchor"></div>
+      <div id="pay" className="anchor"></div>
       <h4 className="mb-3">Payment</h4>
       <div className="row gy-3">
         <div className="col-md-6">

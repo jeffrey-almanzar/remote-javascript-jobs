@@ -187,3 +187,6 @@
     color: #fff;
 }
 
+.dropdown-button {
+    min-height: 38px;
+}

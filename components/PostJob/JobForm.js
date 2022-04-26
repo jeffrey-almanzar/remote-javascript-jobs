@@ -22,6 +22,11 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 export default function JobForm(props) {
   const {
+    employment_type,
+    development_type,
+    experience_level,
+    main_technology,
+    salary,
     jobDescription,
     onSubmit,
     onInputChange,
@@ -32,7 +37,7 @@ export default function JobForm(props) {
   } = props;
   return (
     <form className="mb-5" onSubmit={onSubmit}>
-      <div id="sec1" className="anchor"></div>
+      <div id="create" className="anchor"></div>
       <h3 className="pb-3">Position Details</h3>
       <div className="mb-3">
         <label htmlhtmlFor="title" className="form-label">
@@ -52,13 +57,21 @@ export default function JobForm(props) {
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Employment Type
           </label>
-          <DropDown onClick={onDropdownChange} {...EMPLOYMENT_TYPE} />
+          <DropDown
+            onClick={onDropdownChange}
+            {...EMPLOYMENT_TYPE}
+            label={employment_type}
+          />
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Development Type
           </label>
-          <DropDown {...DEVELOPMENT_TYPE} onClick={onDropdownChange} />
+          <DropDown
+            {...DEVELOPMENT_TYPE}
+            onClick={onDropdownChange}
+            label={development_type}
+          />
         </div>
       </div>
       <div className="row">
@@ -66,13 +79,21 @@ export default function JobForm(props) {
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Experience
           </label>
-          <DropDown {...EXPERIENCE_LEVEL} onClick={onDropdownChange} />
+          <DropDown
+            {...EXPERIENCE_LEVEL}
+            onClick={onDropdownChange}
+            label={experience_level}
+          />
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Salary
           </label>
-          <DropDown {...SALARY_ESTIMATE} onClick={onDropdownChange} />
+          <DropDown
+            {...SALARY_ESTIMATE}
+            onClick={onDropdownChange}
+            label={salary}
+          />
         </div>
       </div>
 
@@ -80,18 +101,22 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Main Technology
         </label>
-        <DropDown {...MAIN_TECHNOLOGY} onClick={onDropdownChange} />
+        <DropDown
+          {...MAIN_TECHNOLOGY}
+          onClick={onDropdownChange}
+          label={main_technology}
+        />
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Job Description
         </label>
         <Editor
-        editorState={jobDescription}
-        // toolbarClassName="toolbarClassName"
-        // wrapperClassName="wrapperClassName"
-        // editorClassName="editorClassName"
-        onEditorStateChange={onEditorStateChange} 
+          editorState={jobDescription}
+          // toolbarClassName="toolbarClassName"
+          // wrapperClassName="wrapperClassName"
+          // editorClassName="editorClassName"
+          onEditorStateChange={onEditorStateChange}
         />
       </div>
       <div className="mb-3">
@@ -151,7 +176,10 @@ export default function JobForm(props) {
         </label>
         <input className="form-control" type="file" id="formFile" />
       </div>
-      <Pricing isFeaturedPosting={isFeaturedPosting} onJobPostingTypeChange={onJobPostingTypeChange} />
+      <Pricing
+        isFeaturedPosting={isFeaturedPosting}
+        onJobPostingTypeChange={onJobPostingTypeChange}
+      />
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
       <Checkout onInputChange={onInputChange} />
     </form>

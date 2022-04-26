@@ -7,9 +7,10 @@
 
 #side .nav-link.active,
 #side .nav-link:hover,
-#side .nav-link:focus{
-    color: #111;
-    border-bottom: 1px #000 dashed;
+#side .nav-link:focus {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+    font-weight: bold;
 }
 
 
