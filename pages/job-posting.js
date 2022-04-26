@@ -35,7 +35,6 @@ import styles from "../styles/JobPosting.module.css";
 /*
 TODO:
 - upload logo
-- stripe
 - dropdowns
 - styling
 - confirmation page
@@ -107,12 +106,6 @@ export default class JobPosting extends React.Component {
     );
 
     await this.handleCheckout({ description, ...jobPayload });
-    alert("Payment completed");
-
-    // Created Job
-    // const db = getFirestore(firebaseApp);
-    // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
-    // console.log("Created Job");
   };
 
   handleCheckout = async (jobInfo) => {
