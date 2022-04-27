@@ -6,6 +6,7 @@ import CardBody from "./CardBody";
 import slugify from "slugify";
 
 import { JOBS_PAGE_PATH } from "../../config/constants";
+import classNames from "classnames";
 
 export default function JobListing({ jobs, isPreview }) {
   const router = useRouter();
@@ -22,12 +23,12 @@ export default function JobListing({ jobs, isPreview }) {
   return (
     <div className="accordion" id="accordionExample-2">
       {jobs.map((jobPost, index) => {
-        const { id, title, description } = jobPost;
+        const { id, title, description, is_featured } = jobPost;
 
         const accordionKey = "job-title-" + id;
 
         return (
-          <div key={title + "-" + index} className="accordion-item">
+          <div key={title + "-" + index} className={classNames("accordion-item")}>
             <h2 className="accordion-header" id={accordionKey}>
               <button
                 onClick={() => {
@@ -37,7 +38,7 @@ export default function JobListing({ jobs, isPreview }) {
                     path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
                   }
                 }}
-                className="accordion-button collapsed"
+                className={classNames("accordion-button collapsed", is_featured && 'bg-yellow')}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={"#collapseOne2" + accordionKey}

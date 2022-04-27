@@ -49,6 +49,7 @@ export default function JobForm(props) {
     company_name,
     salary,
     main_technology,
+    is_featured: isFeaturedPosting,
   };
 
   return (
@@ -197,7 +198,7 @@ export default function JobForm(props) {
         onJobPostingTypeChange={onJobPostingTypeChange}
       />
       { test.title && (
-        <div className="mb-4">
+        <div className="mb-5 job-card-container">
           <JobListing isPreview jobs={[test]} /> 
         </div>
       )}

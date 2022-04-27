@@ -16,6 +16,7 @@ export default function Card(props) {
     employment_type,
     logo_url,
     apply_link,
+    is_featured
   } = props;
 
   const mainTechnology = main_technology || _.get(technologies, "0") || "";
