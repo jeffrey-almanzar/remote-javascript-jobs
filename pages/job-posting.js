@@ -75,11 +75,17 @@ export default class JobPosting extends React.Component {
 
   onFileChange = async (ev) => {
     const reader = new FileReader();
-    const data = reader.readAsDataURL(ev.target.files[0]);
+    const selectedFile = _.get(ev, 'target.files.0')
+    const data = selectedFile && reader.readAsDataURL(selectedFile);
+
+    if (!data) {
+      this.setState({ logo_url: '' });
+    }
+
     // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
     // Recheck for file size
     reader.addEventListener("load", (e) => {
-      const file = e.target.result;
+      const file = _.get(e, 'target.result');
       this.setState({ logo_url: file });
     });
   };
