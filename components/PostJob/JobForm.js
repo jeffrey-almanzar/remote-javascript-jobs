@@ -77,7 +77,7 @@ export default function JobForm(props) {
       </div>
 
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Employment Type <RequiredIcon />
           </label>
@@ -87,7 +87,7 @@ export default function JobForm(props) {
             label={employment_type}
           />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Development Type <RequiredIcon />
           </label>
@@ -99,7 +99,7 @@ export default function JobForm(props) {
         </div>
       </div>
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Experience
           </label>
@@ -109,7 +109,7 @@ export default function JobForm(props) {
             label={experience_level}
           />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Salary Estimate <RequiredIcon />
           </label>
@@ -157,7 +157,7 @@ export default function JobForm(props) {
       </div>
       <h3 className="pt-5 pb-3">Company Details</h3>
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="company_name" className="form-label">
             Company Name <RequiredIcon />
           </label>
@@ -169,7 +169,7 @@ export default function JobForm(props) {
             onChange={onInputChange}
           />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="company_email" className="form-label">
             Company Email <RequiredIcon />
           </label>

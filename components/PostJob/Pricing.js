@@ -9,7 +9,7 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
       <div id="preview" className="anchor"></div>
       <h3 className="pb-3 mb-4">Posting Type</h3>
       <div className="row">
-        <div className="col">
+        <div className="col-12 col-md-6">
           <div
             className={classNames(
               "card mb-4 rounded-3 shadow-sm",
@@ -38,7 +38,7 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
             </div>
           </div>
         </div>
-        <div className="col">
+        <div className="col-12 col-md-6">
           <div
             className={classNames(
               "card mb-4 rounded-3 shadow-sm",

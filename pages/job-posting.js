@@ -185,10 +185,10 @@ export default class JobPosting extends React.Component {
           <h1 className="pt-4">Some text here</h1>
           <p>Some information here</p>
           <div className="d-flex justify-content-between">
-            <div className="col-3 my-5">
+            <div className="col-3 my-5 d-none d-md-block">
               <Sidebar />
             </div>
-            <div className="col-8">
+            <div className="col-md-8 mt-5 mt-md-0">
               <JobForm
                 jobTitle={title}
                 jobDescriptionText={draftToHtml(
