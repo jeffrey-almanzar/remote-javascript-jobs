@@ -106,9 +106,11 @@ export default class JobPosting extends React.Component {
       "employment_type",
       "development_type",
       "experience_level",
+      "salary",
       "main_technology",
       "apply_link",
       "company_name",
+      "company_email",
       "company_site",
       "is_featured",
     ]);
@@ -117,7 +119,7 @@ export default class JobPosting extends React.Component {
       convertToRaw(this.state.description.getCurrentContent())
     );
 
-    await this.handleCheckout({ description, ...jobPayload });
+    // await this.handleCheckout({ description, ...jobPayload });
   };
 
   handleCheckout = async (jobInfo) => {

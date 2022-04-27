@@ -61,7 +61,7 @@ export default function JobForm(props) {
       <h3 className="pb-3">Position Details</h3>
       <div className="mb-3">
         <label htmlhtmlFor="title" className="form-label">
-          Job Title
+          Job Title*
         </label>
         <input
           onChange={onInputChange}
@@ -176,6 +176,7 @@ export default function JobForm(props) {
             name="company_email"
             onChange={onInputChange}
           />
+          <p className="u-info-text">It&apos;s kept private. A receipt and confirmation email will be sent to this email.</p>
         </div>
       </div>
       <div className="mb-3">

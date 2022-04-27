@@ -171,3 +171,8 @@ a.rdw-dropdown-selectedtext {
 .u-bold {
   font-weight: bold;
 }
+
+.u-info-text {
+  font-size: 12px;
+  color: #a9a9a9 ;
+}
