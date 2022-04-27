@@ -176,3 +176,7 @@ a.rdw-dropdown-selectedtext {
   font-size: 12px;
   color: #a9a9a9 ;
 }
+
+.required {
+  color: #D50000;
+}

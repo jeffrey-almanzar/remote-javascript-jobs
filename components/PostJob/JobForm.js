@@ -20,6 +20,10 @@ const Editor = dynamic(
 );
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
+function RequiredIcon() {
+  return <span className="required mx-2">*</span>
+}
+
 export default function JobForm(props) {
   const {
     jobTitle,
@@ -61,7 +65,7 @@ export default function JobForm(props) {
       <h3 className="pb-3">Position Details</h3>
       <div className="mb-3">
         <label htmlhtmlFor="title" className="form-label">
-          Job Title*
+          Job Title <RequiredIcon />
         </label>
         <input
           onChange={onInputChange}
@@ -75,7 +79,7 @@ export default function JobForm(props) {
       <div className="row">
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Employment Type
+            Employment Type <RequiredIcon />
           </label>
           <DropDown
             onClick={onDropdownChange}
@@ -85,7 +89,7 @@ export default function JobForm(props) {
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Development Type
+            Development Type <RequiredIcon />
           </label>
           <DropDown
             {...DEVELOPMENT_TYPE}
@@ -107,7 +111,7 @@ export default function JobForm(props) {
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Salary
+            Salary Estimate <RequiredIcon />
           </label>
           <DropDown
             {...SALARY_ESTIMATE}
@@ -119,7 +123,7 @@ export default function JobForm(props) {
 
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
-          Main Technology
+          Main Technology <RequiredIcon />
         </label>
         <DropDown
           {...MAIN_TECHNOLOGY}
@@ -129,7 +133,7 @@ export default function JobForm(props) {
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
-          Job Description
+          Job Description <RequiredIcon />
         </label>
         <Editor
           editorState={jobDescription}
@@ -141,7 +145,7 @@ export default function JobForm(props) {
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="apply_link" className="form-label">
-          Apply Link or Email
+          Apply Link or Email <RequiredIcon />
         </label>
         <input
           onChange={onInputChange}
@@ -155,7 +159,7 @@ export default function JobForm(props) {
       <div className="row">
         <div className="col mb-3">
           <label htmlhtmlFor="company_name" className="form-label">
-            Company Name
+            Company Name <RequiredIcon />
           </label>
           <input
             type="text"
@@ -167,7 +171,7 @@ export default function JobForm(props) {
         </div>
         <div className="col mb-3">
           <label htmlhtmlFor="company_email" className="form-label">
-            Company Email
+            Company Email <RequiredIcon />
           </label>
           <input
             type="text"
@@ -193,7 +197,7 @@ export default function JobForm(props) {
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formFile" className="form-label">
-          Company Logo
+          Company Logo <RequiredIcon />
         </label>
         <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" />
       </div>
