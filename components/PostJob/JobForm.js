@@ -37,10 +37,13 @@ export default function JobForm(props) {
     onJobPostingTypeChange,
     onEditorStateChange,
     isFeaturedPosting,
+    onFileChange,
+    logo_url,
   } = props;
 
   const test = {
     id: '1',
+    logo_url,
     title: jobTitle,
     employment_type,
     experience_level,
@@ -191,7 +194,7 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formFile" className="form-label">
           Company Logo
         </label>
-        <input className="form-control dropdown-filter" type="file" id="formFile" />
+        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" />
       </div>
       <Pricing
         isFeaturedPosting={isFeaturedPosting}

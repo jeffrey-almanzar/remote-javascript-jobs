@@ -7,6 +7,8 @@ export default function CardBody({content}) {
     }
 
     return (
-        <HTMLParser>{content}</HTMLParser>
+        <div className='rdw-editor-main'>
+            <HTMLParser>{content}</HTMLParser>
+        </div> 
     );
 }

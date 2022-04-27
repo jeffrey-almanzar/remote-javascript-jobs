@@ -73,6 +73,16 @@ export default class JobPosting extends React.Component {
     this.setState({ [ev.target.name]: ev.target.value });
   };
 
+  onFileChange = async (ev) => {
+    const reader = new FileReader();
+    const data = reader.readAsDataURL(ev.target.files[0]);
+
+    reader.addEventListener("load", (e) => {
+      const file = e.target.result;
+      this.setState({ logo_url: file });
+    });
+  };
+
   onEditorStateChange = (editorState) => {
     this.setState({
       description: editorState,
@@ -157,6 +167,7 @@ export default class JobPosting extends React.Component {
       experience_level,
       main_technology,
       salary,
+      logo_url,
     } = this.state;
 
     return (
@@ -174,6 +185,7 @@ export default class JobPosting extends React.Component {
                 jobDescriptionText={draftToHtml(
                   convertToRaw(this.state.description.getCurrentContent())
                 )}
+                logo_url={logo_url}
                 company_name={company_name}
                 employment_type={employment_type}
                 development_type={development_type}
@@ -187,6 +199,7 @@ export default class JobPosting extends React.Component {
                 onDropdownChange={this.onDropdownChange}
                 onJobPostingTypeChange={this.onJobPostingTypeChange}
                 onEditorStateChange={this.onEditorStateChange}
+                onFileChange={this.onFileChange}
               />
             </div>
           </div>
