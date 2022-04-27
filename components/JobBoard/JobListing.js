@@ -7,12 +7,12 @@ import slugify from "slugify";
 
 import { JOBS_PAGE_PATH } from "../../config/constants";
 
-export default function JobListing({ jobs }) {
+export default function JobListing({ jobs, isPreview }) {
   const router = useRouter();
 
   useEffect(() => {
     // TODO: use regex
-    if (window.location.href.includes("job=")) {
+    if (!isPreview && window.location.href.includes("job=")) {
       router.push("/jobs/" + window.location.href.split("job=")[1], undefined, {
         shallow: true,
       });
@@ -33,7 +33,9 @@ export default function JobListing({ jobs }) {
                 onClick={() => {
                   const path = `${id}-${slugify(title)}`;
                   const current = router.query.job; 
-                  path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
+                  if(!isPreview) {
+                    path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
+                  }
                 }}
                 className="accordion-button collapsed"
                 type="button"

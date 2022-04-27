@@ -9,6 +9,7 @@ export default function Card(props) {
     title,
     company_name,
     date,
+    main_technology,
     technologies,
     salary,
     development_type,
@@ -17,7 +18,7 @@ export default function Card(props) {
     apply_link,
   } = props;
 
-  const mainTechnology = _.get(technologies, "0") || "";
+  const mainTechnology = main_technology || _.get(technologies, "0") || "";
 
   return (
     <div className={classNames("d-flex w-100 position-relative")}>

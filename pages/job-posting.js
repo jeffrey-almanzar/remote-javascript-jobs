@@ -52,7 +52,7 @@ export default class JobPosting extends React.Component {
       experience_level: "",
       // min_salary: '80',
       // max_salary: '100',
-      salary: '',
+      salary: "",
       main_technology: "",
       description: EditorState.createEmpty(),
       apply_link: "",
@@ -148,6 +148,8 @@ export default class JobPosting extends React.Component {
 
   render() {
     const {
+      title,
+      company_name,
       description,
       is_featured,
       employment_type,
@@ -168,6 +170,11 @@ export default class JobPosting extends React.Component {
             </div>
             <div className="col-8">
               <JobForm
+                jobTitle={title}
+                jobDescriptionText={draftToHtml(
+                  convertToRaw(this.state.description.getCurrentContent())
+                )}
+                company_name={company_name}
                 employment_type={employment_type}
                 development_type={development_type}
                 experience_level={experience_level}

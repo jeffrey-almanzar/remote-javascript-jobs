@@ -3,7 +3,7 @@ import _ from "lodash";
 import dynamic from "next/dynamic";
 
 import Pricing from "./Pricing";
-// import JobListing from "../JobBoard/JobListing";
+import JobListing from "../JobBoard/JobListing";
 import Checkout from "./Checkout";
 import DropDown from "../JobBoard/Dropdown";
 import {
@@ -22,6 +22,9 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 export default function JobForm(props) {
   const {
+    jobTitle,
+    company_name,
+    jobDescriptionText,
     employment_type,
     development_type,
     experience_level,
@@ -35,6 +38,19 @@ export default function JobForm(props) {
     onEditorStateChange,
     isFeaturedPosting,
   } = props;
+
+  const test = {
+    id: '1',
+    title: jobTitle,
+    employment_type,
+    experience_level,
+    development_type,
+    description: jobDescriptionText,
+    company_name,
+    salary,
+    main_technology,
+  };
+
   return (
     <form className="mb-5" onSubmit={onSubmit}>
       <div id="create" className="anchor"></div>
@@ -180,7 +196,11 @@ export default function JobForm(props) {
         isFeaturedPosting={isFeaturedPosting}
         onJobPostingTypeChange={onJobPostingTypeChange}
       />
-      <p>Render preview here</p>
+      { test.title && (
+        <div className="mb-4">
+          <JobListing isPreview jobs={[test]} /> 
+        </div>
+      )}
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
       <Checkout  isFeaturedPosting={isFeaturedPosting} onInputChange={onInputChange} />
     </form>
