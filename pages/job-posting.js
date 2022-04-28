@@ -78,7 +78,7 @@ export default class JobPosting extends React.Component {
       company_email: "", // stays private - for inbox
 
       // highlight info
-      is_featured: false,
+      is_featured: true,
 
       requiredFields: {},
     };

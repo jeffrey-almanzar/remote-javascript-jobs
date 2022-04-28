@@ -12,13 +12,13 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
         <div className="col-12 col-md-6">
           <div
             className={classNames(
-              "card mb-4 rounded-3 shadow-sm",
+              "card mb-4 rounded-3",
               styles.jobPostingType,
               !isFeaturedPosting && styles.selectedJobPostingType
             )}
             onClick={() => onJobPostingTypeChange({ is_featured: false })}
           >
-            <div className="card-header py-3">
+            <div className={classNames("card-header py-3", !isFeaturedPosting && 'bg-yellow')}>
               <h4 className="my-0 fw-normal">Basic</h4>
             </div>
             <div className="card-body">
@@ -41,13 +41,13 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
         <div className="col-12 col-md-6">
           <div
             className={classNames(
-              "card mb-4 rounded-3 shadow-sm",
+              "card mb-4 rounded-3",
               styles.jobPostingType,
               isFeaturedPosting && styles.selectedJobPostingType
             )}
             onClick={() => onJobPostingTypeChange({ is_featured: true })}
           >
-            <div className="card-header py-3">
+            <div className={classNames("card-header py-3", isFeaturedPosting && 'bg-yellow')}>
               <h4 className="my-0 fw-normal">Featured</h4>
             </div>
             <div className="card-body">
