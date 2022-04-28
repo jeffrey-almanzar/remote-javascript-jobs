@@ -24,10 +24,10 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
             <div className="card-body">
               <h1 className="card-title pricing-card-title">{STANDARD_JOB_PRICE}</h1>
               <ul className="list-unstyled mt-3 mb-4">
-                <li>10 users included</li>
-                <li>2 GB of storage</li>
-                <li>Email support</li>
-                <li>Help center access</li>
+                <li><span className="icon-checkmark me-2"></span>10 users included</li>
+                <li><span className="icon-checkmark me-2"></span>2 GB of storage</li>
+                <li><span className="icon-checkmark me-2 test"></span>Email support</li>
+                <li><span className="icon-checkmark me-2 test"></span>Help center access</li>
               </ul>
               {/* <button
                 type="button"
@@ -53,10 +53,10 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
             <div className="card-body">
               <h1 className="card-title pricing-card-title">{FEATURED_JOB_PRICE}</h1>
               <ul className="list-unstyled mt-3 mb-4">
-                <li>20 users included</li>
-                <li>10 GB of storage</li>
-                <li>Priority email support</li>
-                <li>Help center access</li>
+                <li><span className="icon-checkmark me-2"></span>20 users included</li>
+                <li><span className="icon-checkmark me-2"></span>10 GB of storage</li>
+                <li><span className="icon-checkmark me-2"></span>Priority email support</li>
+                <li><span className="icon-checkmark me-2"></span>Help center access</li>
               </ul>
               {/* <button type="button" className="w-100 btn btn-lg btn-primary">
                 Get started
