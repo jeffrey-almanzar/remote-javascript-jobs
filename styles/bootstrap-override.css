@@ -178,12 +178,25 @@
 .dropdown-menu {
     width: 100%;
     padding: 0px;
+    background-color: #fff;
+    color: #000;
+}
+
+[data-theme='dark'] .dropdown-menu {
+    width: 100%;
+    padding: 0px;
     background-color: #212121;
     color: #fff;
 }
 
 .dropdown-item {
     cursor: pointer;
+    color: #000;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+[data-theme='dark'] .dropdown-item {
     color: #fff;
 }
 

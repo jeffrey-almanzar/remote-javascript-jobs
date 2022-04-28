@@ -60,7 +60,7 @@ export default function JobForm(props) {
   };
 
   return (
-    <form className="mb-5" onSubmit={onSubmit}>
+    <form className="mb-5 sectionShadow p-3 p-md-5" onSubmit={onSubmit}>
       <div id="create" className="anchor"></div>
       <h3 className="pb-3">Position Details</h3>
       <div className="mb-3">

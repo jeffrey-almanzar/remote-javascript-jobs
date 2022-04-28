@@ -223,12 +223,12 @@ export default class JobPosting extends React.Component {
     } = this.state;
 
     return (
-      <div className="container-fluid">
+      <div className={classNames("container-fluid", styles.wrapper)}>
         <div className="container">
-          <h1 className="pt-4">Some text here</h1>
-          <p>Some information here</p>
           <div className="d-flex justify-content-between">
-            <div className="col-3 my-5 d-none d-md-block">
+            <div className="col-3 d-none d-md-block">
+              <h1>Some text here</h1>
+              <p>Some information here</p>
               <Sidebar />
             </div>
             <div className="col-md-8 mt-5 mt-md-0">
