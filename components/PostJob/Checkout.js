@@ -6,7 +6,7 @@ export default function Checkout({ onSubmit, onInputChange, isFeaturedPosting })
   return (
     <div className="">
       <div id="pay" className="anchor"></div>
-      <h3 className="mb-3">Order Summary</h3>
+      <h2 className="pb-4">3. Order Summary</h2>
       <div className="row gy-3">
         <p className="d-flex justify-content-between">
           <span>Featured Job</span>
@@ -21,9 +21,9 @@ export default function Checkout({ onSubmit, onInputChange, isFeaturedPosting })
           <span>{total}</span>
         </p>
       </div>
-      <div className="d-flex justify-content-end my-5">
-        <button type="submit" className="btn btn-primary">
-          Continue
+      <div className="d-flex justify-content-center mt-5">
+        <button type="submit" className="btn btn-primary mainCta py-2">
+          Find the right talent
         </button>
       </div>
     </div>

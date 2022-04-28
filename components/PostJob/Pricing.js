@@ -7,7 +7,7 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
   return (
     <div className="my-5">
       <div id="preview" className="anchor"></div>
-      <h3 className="pb-3 mb-4">Posting Type</h3>
+      <h2 className="pb-4 mb-4">2. Preview and Standout</h2>
       <div className="row">
         <div className="col-12 col-md-6">
           <div

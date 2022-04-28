@@ -62,7 +62,8 @@ export default function JobForm(props) {
   return (
     <form className="mb-5 sectionShadow p-3 p-md-5" onSubmit={onSubmit}>
       <div id="create" className="anchor"></div>
-      <h3 className="pb-3">Position Details</h3>
+      <h2 className="pb-4">1. Create</h2>
+      <h5 className="pb-3">Position Details</h5>
       <div className="mb-3">
         <label htmlhtmlFor="title" className="form-label">
           Job Title <RequiredIcon />
@@ -155,7 +156,7 @@ export default function JobForm(props) {
           id="apply_link"
         />
       </div>
-      <h3 className="pt-5 pb-3">Company Details</h3>
+      <h5 className="pt-5 pb-3">Company Details</h5>
       <div className="row">
         <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="company_name" className="form-label">
