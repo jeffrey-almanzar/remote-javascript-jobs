@@ -180,3 +180,8 @@ a.rdw-dropdown-selectedtext {
 .required {
   color: #D50000;
 }
+
+.error-list {
+  list-style: disc;
+  list-style-position: inside;
+}

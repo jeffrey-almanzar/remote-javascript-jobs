@@ -40,6 +40,19 @@ TODO:
 - confirmation page
 */
 
+const REQUIRED_FIELDS = {
+  title: "Job Title",
+  employment_type: "Employment Type",
+  development_type: "Development Type",
+  salary: "Salary Estimate",
+  main_technology: "Main Technology",
+  description: "Job Description",
+  apply_link: "Apply Link or Email",
+  company_name: "Company Name",
+  company_email: "Company Email",
+  logo_url: "Company Logo",
+};
+
 export default class JobPosting extends React.Component {
   constructor(props) {
     super(props);
@@ -61,11 +74,13 @@ export default class JobPosting extends React.Component {
       // company info
       company_name: "",
       logo_url: "",
-      company_site: "https://example.com",
-      company_email: "test@gamil.com", // stays private - for inbox
+      company_site: "",
+      company_email: "", // stays private - for inbox
 
       // highlight info
       is_featured: false,
+
+      requiredFields: {},
     };
   }
 
@@ -75,17 +90,17 @@ export default class JobPosting extends React.Component {
 
   onFileChange = async (ev) => {
     const reader = new FileReader();
-    const selectedFile = _.get(ev, 'target.files.0')
+    const selectedFile = _.get(ev, "target.files.0");
     const data = selectedFile && reader.readAsDataURL(selectedFile);
 
     if (!data) {
-      this.setState({ logo_url: '' });
+      this.setState({ logo_url: "" });
     }
 
     // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
     // Recheck for file size
     reader.addEventListener("load", (e) => {
-      const file = _.get(e, 'target.result');
+      const file = _.get(e, "target.result");
       this.setState({ logo_url: file });
     });
   };
@@ -104,8 +119,35 @@ export default class JobPosting extends React.Component {
     this.setState(type);
   };
 
+  areFieldsValidated = (jobPayload) => {
+    // TODO: validate email and links properly
+
+    const emptyInvalidFields = _.keys(REQUIRED_FIELDS).reduce((acc, key) => {
+      const description = draftToHtml(
+        convertToRaw(this.state.description.getCurrentContent())
+      );
+
+      const isDescriptionEmpty =
+        key === "description" && (!description || description === "<p></p>\n");
+
+      if (!this.state[key] || isDescriptionEmpty) {
+        acc[key] = REQUIRED_FIELDS[key];
+      }
+      return acc;
+    }, {});
+
+    return emptyInvalidFields;
+  };
+
   onSubmit = async (ev) => {
     ev.preventDefault();
+
+    const invalidFields = this.areFieldsValidated();
+
+    if (!_.isEmpty(invalidFields)) {
+      this.setState({ requiredFields: invalidFields });
+      return;
+    }
 
     const jobPayload = _.pick(this.state, [
       "title",
@@ -177,6 +219,7 @@ export default class JobPosting extends React.Component {
       main_technology,
       salary,
       logo_url,
+      requiredFields,
     } = this.state;
 
     return (
@@ -189,6 +232,16 @@ export default class JobPosting extends React.Component {
               <Sidebar />
             </div>
             <div className="col-md-8 mt-5 mt-md-0">
+              {!_.isEmpty(requiredFields) && (
+                <div className="alert alert-danger">
+                  <h5 className="mb-2">Checkout this fields: </h5>
+                  <ul className="error-list">
+                    {_.values(requiredFields).map((value) => (
+                      <li key={value}>{value}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <JobForm
                 jobTitle={title}
                 jobDescriptionText={draftToHtml(
