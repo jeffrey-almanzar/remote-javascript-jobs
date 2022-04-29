@@ -142,6 +142,14 @@ export default function JobForm(props) {
           wrapperClassName="wrapperClassName"
           editorClassName="editorClassName"
           onEditorStateChange={onEditorStateChange}
+          toolbar={{
+            options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history' ],
+            // inline: { inDropdown: true },
+            // list: { inDropdown: true },
+            // textAlign: { inDropdown: true },
+            // link: { inDropdown: true },
+            // history: { inDropdown: true },
+        }}
         />
       </div>
       <div className="mb-3">
