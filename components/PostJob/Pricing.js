@@ -9,7 +9,7 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
       <div id="preview" className="anchor"></div>
       <h2 className="pb-4 mb-4">2. Preview and Standout</h2>
       <div className="row">
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-lg-6">
           <div
             className={classNames(
               "card mb-4 rounded-3",
@@ -29,16 +29,10 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
                 <li><span className="icon-checkmark me-2 test"></span>Email support</li>
                 <li><span className="icon-checkmark me-2 test"></span>Help center access</li>
               </ul>
-              {/* <button
-                type="button"
-                className="w-100 btn btn-lg btn-outline-primary"
-              >
-                Sign up for free
-              </button> */}
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-lg-6">
           <div
             className={classNames(
               "card mb-4 rounded-3",
@@ -58,9 +52,6 @@ export default function Pricing({ onJobPostingTypeChange, isFeaturedPosting }) {
                 <li><span className="icon-checkmark me-2"></span>Priority email support</li>
                 <li><span className="icon-checkmark me-2"></span>Help center access</li>
               </ul>
-              {/* <button type="button" className="w-100 btn btn-lg btn-primary">
-                Get started
-              </button> */}
             </div>
           </div>
         </div>

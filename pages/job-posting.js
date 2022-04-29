@@ -225,13 +225,13 @@ export default class JobPosting extends React.Component {
     return (
       <div className={classNames("container-fluid", styles.wrapper)}>
         <div className="container">
-          <div className="d-flex justify-content-between">
-            <div className="col-3 d-none d-md-block">
+          <div className="d-lg-flex justify-content-between">
+            <div className="col-lg-3">
               <h1>Some text here</h1>
               <p>Some information here</p>
               <Sidebar />
             </div>
-            <div className="col-md-8 mt-5 mt-md-0">
+            <div className="col-lg-8 mt-5 mt-lg-0">
               {!_.isEmpty(requiredFields) && (
                 <div className="alert alert-danger">
                   <h5 className="mb-2">Checkout this fields: </h5>

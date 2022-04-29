@@ -13,6 +13,13 @@
     --color-white: #ffffff;
     --color-yellow: #f7e018;
     --color-light-gray: #eee;
+
+    --fn-thin: 100;
+    --fn-light: 300;
+    --fn-regular: 400;
+    --fn-medium: 500;
+    --fn-bold: 700;
+    --fn-black: 900;
 }
 
 [data-theme='dark'] {

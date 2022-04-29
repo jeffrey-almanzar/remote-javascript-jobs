@@ -1,6 +1,6 @@
 export default function Sidebar(props) {
     return (
-      <div className="mt-5 mb-3 sticky-top sectionShadow p-3 p-md-4" id="side">
+      <div className="mt-5 mb-3 sticky-top sectionShadow  d-none d-lg-block p-3 p-md-4" id="side">
         <h6>Process</h6>
         <ul
           className="nav flex-md-column flex-row justify-content-between"

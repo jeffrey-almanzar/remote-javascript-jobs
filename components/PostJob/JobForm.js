@@ -136,6 +136,7 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
           Job Description <RequiredIcon />
         </label>
+        {/* DOCS: https://jpuri.github.io/react-draft-wysiwyg/#/docs */}
         <Editor
           editorState={jobDescription}
           toolbarClassName="toolbarClassName"

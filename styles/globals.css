@@ -198,9 +198,19 @@ a.rdw-dropdown-selectedtext {
 
 .mainCta {
   font-size: 20px;
-  width: 60%;
+  width: 100%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-weight: var(--fn-medium);
+
+  
 }
 
 .test {
   color: #a9a9a9;
+}
+
+@media (min-width: 768px) {
+  .mainCta {
+    width: 60%;
+  }
 }
