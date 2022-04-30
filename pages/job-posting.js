@@ -17,6 +17,8 @@ import {
   query,
 } from "firebase/firestore/lite";
 
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import firebaseApp from "../firebase/clientApp";
 
 import { fetchPostJSON } from "../config/api-helper";
@@ -36,6 +38,16 @@ import {
   REQUIRED_FIELDS,
   ALLOW_IMAGE_FILE_TYPES,
 } from "../components/JobBoard/data";
+
+import Meta from "../components/Meta";
+
+function uploadLogo(file, fileMetadata) {
+  const storage = getStorage();
+  const storageRef = ref(storage, "images/" + fileMetadata.name);
+  return uploadBytes(storageRef, file).then((snapshot) =>
+    getDownloadURL(storageRef)
+  );
+}
 
 export default class JobPosting extends React.Component {
   constructor(props) {
@@ -77,7 +89,10 @@ export default class JobPosting extends React.Component {
     const selectedFile = _.get(ev, "target.files.0");
     const data = selectedFile && reader.readAsDataURL(selectedFile);
 
-    if (!_.get(selectedFile, 'type') || !ALLOW_IMAGE_FILE_TYPES.includes(selectedFile.type)) {
+    if (
+      !_.get(selectedFile, "type") ||
+      !ALLOW_IMAGE_FILE_TYPES.includes(selectedFile.type)
+    ) {
       this.setState({ logo_url: "" });
       return;
     }
@@ -85,6 +100,10 @@ export default class JobPosting extends React.Component {
     // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
     // Recheck for file size
     reader.addEventListener("load", (e) => {
+      // TODO: update
+      uploadLogo(selectedFile, { name: selectedFile.name }).then((url) => {
+        console.log({ url });
+      });
       const file = _.get(e, "target.result");
       this.setState({ logo_url: file });
     });
@@ -171,10 +190,10 @@ export default class JobPosting extends React.Component {
       ? { price: STRIPE_PRODUCT_FEATURED_JOB_PRICE_ID, quantity: 1 }
       : { price: STRIPE_PRODUCT_STANDARD_JOB_PRICE_ID, quantity: 1 };
 
-    const response = await fetchPostJSON(
-      "/api/checkout_sessions/cart",
-      {...priceInfo, customer_email: this.state.company_email}
-    );
+    const response = await fetchPostJSON("/api/checkout_sessions/cart", {
+      ...priceInfo,
+      customer_email: this.state.company_email,
+    });
 
     if (response.statusCode > 399) {
       console.error(response.message);
@@ -218,50 +237,54 @@ export default class JobPosting extends React.Component {
     } = this.state;
 
     return (
-      <div className={classNames("container-fluid", styles.wrapper)}>
-        <div className="container">
-          <div className="d-lg-flex justify-content-between">
-            <div className="col-lg-3">
-              <h1 className="mb-2">Some text here</h1>
-              <p>Some information here</p>
-              <Sidebar />
-            </div>
-            <div className="col-lg-8 mt-5 mt-lg-0">
-              {!_.isEmpty(requiredFields) && (
-                <div className="alert alert-danger">
-                  <h5 className="mb-2">Checkout these fields: </h5>
-                  <ul className="error-list">
-                    {_.values(requiredFields).map((value) => (
-                      <li key={value}>{value}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              <JobForm
-                jobTitle={title}
-                jobDescriptionText={draftToHtml(
-                  convertToRaw(this.state.description.getCurrentContent())
+      <>
+        <Meta title="Post a job" />
+
+        <div className={classNames("container-fluid", styles.wrapper)}>
+          <div className="container">
+            <div className="d-lg-flex justify-content-between">
+              <div className="col-lg-3">
+                <h1 className="mb-2">Some text here</h1>
+                <p>Some information here</p>
+                <Sidebar />
+              </div>
+              <div className="col-lg-8 mt-5 mt-lg-0">
+                {!_.isEmpty(requiredFields) && (
+                  <div className="alert alert-danger">
+                    <h5 className="mb-2">Checkout these fields: </h5>
+                    <ul className="error-list">
+                      {_.values(requiredFields).map((value) => (
+                        <li key={value}>{value}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
-                logo_url={logo_url}
-                company_name={company_name}
-                employment_type={employment_type}
-                development_type={development_type}
-                experience_level={experience_level}
-                main_technology={main_technology}
-                salary={salary}
-                isFeaturedPosting={is_featured}
-                jobDescription={description}
-                onSubmit={this.onSubmit}
-                onInputChange={this.onInputChange}
-                onDropdownChange={this.onDropdownChange}
-                onJobPostingTypeChange={this.onJobPostingTypeChange}
-                onEditorStateChange={this.onEditorStateChange}
-                onFileChange={this.onFileChange}
-              />
+                <JobForm
+                  jobTitle={title}
+                  jobDescriptionText={draftToHtml(
+                    convertToRaw(this.state.description.getCurrentContent())
+                  )}
+                  logo_url={logo_url}
+                  company_name={company_name}
+                  employment_type={employment_type}
+                  development_type={development_type}
+                  experience_level={experience_level}
+                  main_technology={main_technology}
+                  salary={salary}
+                  isFeaturedPosting={is_featured}
+                  jobDescription={description}
+                  onSubmit={this.onSubmit}
+                  onInputChange={this.onInputChange}
+                  onDropdownChange={this.onDropdownChange}
+                  onJobPostingTypeChange={this.onJobPostingTypeChange}
+                  onEditorStateChange={this.onEditorStateChange}
+                  onFileChange={this.onFileChange}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
