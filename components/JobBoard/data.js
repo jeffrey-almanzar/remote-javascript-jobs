@@ -217,9 +217,10 @@ export const REQUIRED_FIELDS = {
   apply_link: "Apply Link or Email",
   company_name: "Company Name",
   company_email: "Company Email",
-  logo_url: "Company Logo",
+  logo_url: "Company Logo, supported types: APNG, AVIF, GIF, JPEG, PNG, SVG, WebP",
 };
 
+// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export const ALLOW_IMAGE_FILE_TYPES = [
   'image/apng',
   'image/avif',
