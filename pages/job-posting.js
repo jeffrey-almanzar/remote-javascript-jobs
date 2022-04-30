@@ -162,7 +162,7 @@ export default class JobPosting extends React.Component {
       convertToRaw(this.state.description.getCurrentContent())
     );
 
-    // await this.handleCheckout({ description, ...jobPayload });
+    await this.handleCheckout({ description, ...jobPayload });
   };
 
   handleCheckout = async (jobInfo) => {
@@ -173,7 +173,7 @@ export default class JobPosting extends React.Component {
 
     const response = await fetchPostJSON(
       "/api/checkout_sessions/cart",
-      priceInfo
+      {...priceInfo, customer_email: this.state.company_email}
     );
 
     if (response.statusCode > 399) {

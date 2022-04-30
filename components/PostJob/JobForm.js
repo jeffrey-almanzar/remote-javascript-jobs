@@ -210,7 +210,7 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formFile" className="form-label">
           Company Logo <RequiredIcon />
         </label>
-        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" accept={ALLOW_IMAGE_FILE_TYPES.join(", ")} />
+        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" accept={_.join(ALLOW_IMAGE_FILE_TYPES, ', ')} />
       </div>
       <Pricing
         isFeaturedPosting={isFeaturedPosting}
