@@ -32,14 +32,6 @@ import Sidebar from "../components/PostJob/Sidebar";
 
 import styles from "../styles/JobPosting.module.css";
 
-/*
-TODO:
-- upload logo
-- dropdowns
-- styling
-- confirmation page
-*/
-
 const REQUIRED_FIELDS = {
   title: "Job Title",
   employment_type: "Employment Type",
@@ -120,17 +112,25 @@ export default class JobPosting extends React.Component {
   };
 
   areFieldsValidated = (jobPayload) => {
-    // TODO: validate email and links properly
+    const isValidEmail = (str) => {
+      return (
+        str && typeof str === "string" &&
+        /^[\w+\d+._]+\@[\w+\d+_+]+\.[\w+\d+._]{2,8}$/.test(str.trim())
+      );
+    }
 
-    const emptyInvalidFields = _.keys(REQUIRED_FIELDS).reduce((acc, key) => {
+    const isValidDescription = () => {
       const description = draftToHtml(
         convertToRaw(this.state.description.getCurrentContent())
       );
+      return description && description !== "<p></p>\n";
+    }
 
-      const isDescriptionEmpty =
-        key === "description" && (!description || description === "<p></p>\n");
+    const emptyInvalidFields = _.keys(REQUIRED_FIELDS).reduce((acc, key) => {
+      const invalidEmail = key === "company_email" && !isValidEmail(this.state[key])
+      const isDescriptionEmpty = key === "description" && !isValidDescription();
 
-      if (!this.state[key] || isDescriptionEmpty) {
+      if (!this.state[key] || isDescriptionEmpty || invalidEmail) {
         acc[key] = REQUIRED_FIELDS[key];
       }
       return acc;
@@ -234,7 +234,7 @@ export default class JobPosting extends React.Component {
             <div className="col-lg-8 mt-5 mt-lg-0">
               {!_.isEmpty(requiredFields) && (
                 <div className="alert alert-danger">
-                  <h5 className="mb-2">Checkout this fields: </h5>
+                  <h5 className="mb-2">Checkout these fields: </h5>
                   <ul className="error-list">
                     {_.values(requiredFields).map((value) => (
                       <li key={value}>{value}</li>
