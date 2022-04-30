@@ -17,10 +17,6 @@ import {
   query,
 } from "firebase/firestore/lite";
 
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-import firebaseApp from "../firebase/clientApp";
-
 import { fetchPostJSON } from "../config/api-helper";
 import getStripe from "../stripe/get-stripe";
 
@@ -39,15 +35,9 @@ import {
   ALLOW_IMAGE_FILE_TYPES,
 } from "../components/JobBoard/data";
 
-import Meta from "../components/Meta";
+import createJob from "../firebase/createJob";
 
-function uploadLogo(file, fileMetadata) {
-  const storage = getStorage();
-  const storageRef = ref(storage, "images/" + fileMetadata.name);
-  return uploadBytes(storageRef, file).then((snapshot) =>
-    getDownloadURL(storageRef)
-  );
-}
+import Meta from "../components/Meta";
 
 export default class JobPosting extends React.Component {
   constructor(props) {
@@ -70,6 +60,7 @@ export default class JobPosting extends React.Component {
       // company info
       company_name: "",
       logo_url: "",
+      logo_file: {},
       company_site: "",
       company_email: "", // stays private - for inbox
 
@@ -93,19 +84,15 @@ export default class JobPosting extends React.Component {
       !_.get(selectedFile, "type") ||
       !ALLOW_IMAGE_FILE_TYPES.includes(selectedFile.type)
     ) {
-      this.setState({ logo_url: "" });
+      this.setState({ logo_url: "", logo_file: {} });
       return;
     }
 
     // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
     // Recheck for file size
     reader.addEventListener("load", (e) => {
-      // TODO: update
-      uploadLogo(selectedFile, { name: selectedFile.name }).then((url) => {
-        console.log({ url });
-      });
       const file = _.get(e, "target.result");
-      this.setState({ logo_url: file });
+      this.setState({ logo_url: file, logo_file: selectedFile });
     });
   };
 
@@ -175,6 +162,8 @@ export default class JobPosting extends React.Component {
       "company_email",
       "company_site",
       "is_featured",
+      "logo_url",
+      "logo_file",
     ]);
 
     const description = draftToHtml(
@@ -202,11 +191,12 @@ export default class JobPosting extends React.Component {
       return;
     }
 
-    // TODO: Create job here.
-    // Created Job
-    // const db = getFirestore(firebaseApp);
-    // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
-    // console.log("Created Job");
+    // TODO: Send message if things don't work as expected
+    const createdJob = await createJob(jobInfo);
+
+    // TODO: How to check what post belong to what payment?
+
+    console.log(createdJob);
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({

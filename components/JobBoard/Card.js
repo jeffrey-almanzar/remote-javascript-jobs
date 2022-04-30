@@ -25,7 +25,8 @@ export default function Card(props) {
     <div className={classNames("d-flex w-100 position-relative")}>
       <div className="me-4 d-none d-md-block">
         {logo_url && (
-          <Image
+          // Highly recommended - try to get the Image component to work.
+          <img 
             className={styles.companyLogo}
             width="100px"
             height="100px"
