@@ -32,18 +32,10 @@ import Sidebar from "../components/PostJob/Sidebar";
 
 import styles from "../styles/JobPosting.module.css";
 
-const REQUIRED_FIELDS = {
-  title: "Job Title",
-  employment_type: "Employment Type",
-  development_type: "Development Type",
-  salary: "Salary Estimate",
-  main_technology: "Main Technology",
-  description: "Job Description",
-  apply_link: "Apply Link or Email",
-  company_name: "Company Name",
-  company_email: "Company Email",
-  logo_url: "Company Logo",
-};
+import {
+  REQUIRED_FIELDS,
+  ALLOW_IMAGE_FILE_TYPES,
+} from "../components/JobBoard/data";
 
 export default class JobPosting extends React.Component {
   constructor(props) {
@@ -85,8 +77,9 @@ export default class JobPosting extends React.Component {
     const selectedFile = _.get(ev, "target.files.0");
     const data = selectedFile && reader.readAsDataURL(selectedFile);
 
-    if (!data) {
+    if (!_.get(selectedFile, 'type') || !ALLOW_IMAGE_FILE_TYPES.includes(selectedFile.type)) {
       this.setState({ logo_url: "" });
+      return;
     }
 
     // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
@@ -114,20 +107,22 @@ export default class JobPosting extends React.Component {
   areFieldsValidated = (jobPayload) => {
     const isValidEmail = (str) => {
       return (
-        str && typeof str === "string" &&
+        str &&
+        typeof str === "string" &&
         /^[\w+\d+._]+\@[\w+\d+_+]+\.[\w+\d+._]{2,8}$/.test(str.trim())
       );
-    }
+    };
 
     const isValidDescription = () => {
       const description = draftToHtml(
         convertToRaw(this.state.description.getCurrentContent())
       );
       return description && description !== "<p></p>\n";
-    }
+    };
 
     const emptyInvalidFields = _.keys(REQUIRED_FIELDS).reduce((acc, key) => {
-      const invalidEmail = key === "company_email" && !isValidEmail(this.state[key])
+      const invalidEmail =
+        key === "company_email" && !isValidEmail(this.state[key]);
       const isDescriptionEmpty = key === "description" && !isValidDescription();
 
       if (!this.state[key] || isDescriptionEmpty || invalidEmail) {

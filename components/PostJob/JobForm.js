@@ -12,6 +12,7 @@ import {
   EXPERIENCE_LEVEL,
   SALARY_ESTIMATE,
   MAIN_TECHNOLOGY,
+  ALLOW_IMAGE_FILE_TYPES,
 } from "../JobBoard/data";
 
 const Editor = dynamic(
@@ -209,7 +210,7 @@ export default function JobForm(props) {
         <label htmlhtmlFor="formFile" className="form-label">
           Company Logo <RequiredIcon />
         </label>
-        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" />
+        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" accept={ALLOW_IMAGE_FILE_TYPES.join(", ")} />
       </div>
       <Pricing
         isFeaturedPosting={isFeaturedPosting}

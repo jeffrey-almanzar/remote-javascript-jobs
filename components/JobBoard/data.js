@@ -206,3 +206,26 @@ export const VALID_JOB_FILTERS = _.reduce(
   },
   {}
 );
+
+export const REQUIRED_FIELDS = {
+  title: "Job Title",
+  employment_type: "Employment Type",
+  development_type: "Development Type",
+  salary: "Salary Estimate",
+  main_technology: "Main Technology",
+  description: "Job Description",
+  apply_link: "Apply Link or Email",
+  company_name: "Company Name",
+  company_email: "Company Email",
+  logo_url: "Company Logo",
+};
+
+export const ALLOW_IMAGE_FILE_TYPES = [
+  'image/apng',
+  'image/avif',
+  'image/gif',
+  'image/jpeg',
+  'image/png',
+  'image/svg+xml',
+  'image/webp',
+];
