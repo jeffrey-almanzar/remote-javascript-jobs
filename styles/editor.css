@@ -1,0 +1,9 @@
+.editor ul {
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.editor li,
+.editor p  {
+    margin-bottom: 10px;
+}

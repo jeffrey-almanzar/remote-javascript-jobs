@@ -1,4 +1,7 @@
 import _ from 'lodash';
+import DOMPurify from 'isomorphic-dompurify';
+
+
 import HTMLParser from "../HTMLParser";
 
 export default function CardBody({content}) {
@@ -7,8 +10,8 @@ export default function CardBody({content}) {
     }
 
     return (
-        <div className='rdw-editor-main'>
-            <HTMLParser>{content}</HTMLParser>
+        <div className='editor'>
+            <HTMLParser>{DOMPurify.sanitize(content)}</HTMLParser>
         </div> 
     );
 }

@@ -53,7 +53,7 @@ export default function JobListing({ jobs, isPreview }) {
               className="accordion-collapse collapse"
               aria-labelledby="headingOne2"
             >
-              <div className="accordion-body">
+              <div className="accordion-body p-4">
                 <CardBody content={description} />
               </div>
             </div>

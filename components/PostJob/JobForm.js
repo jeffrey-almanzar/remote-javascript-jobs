@@ -144,8 +144,8 @@ export default function JobForm(props) {
           editorClassName="editorClassName"
           onEditorStateChange={onEditorStateChange}
           toolbar={{
-            options: ['inline', 'blockType', 'fontSize', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history' ],
-            // inline: { inDropdown: true },
+            options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'remove', 'history' ],
+            inline: { inDropdown: true },
             // list: { inDropdown: true },
             // textAlign: { inDropdown: true },
             // link: { inDropdown: true },
@@ -215,11 +215,11 @@ export default function JobForm(props) {
         isFeaturedPosting={isFeaturedPosting}
         onJobPostingTypeChange={onJobPostingTypeChange}
       />
-      { test.title && (
+      {/* { test.title && ( */}
         <div className="mb-5 job-card-container">
           <JobListing isPreview jobs={[test]} /> 
         </div>
-      )}
+      {/* )} */}
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
       <Checkout  isFeaturedPosting={isFeaturedPosting} onInputChange={onInputChange} />
     </form>

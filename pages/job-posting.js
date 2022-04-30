@@ -227,7 +227,7 @@ export default class JobPosting extends React.Component {
         <div className="container">
           <div className="d-lg-flex justify-content-between">
             <div className="col-lg-3">
-              <h1>Some text here</h1>
+              <h1 className="mb-2">Some text here</h1>
               <p>Some information here</p>
               <Sidebar />
             </div>

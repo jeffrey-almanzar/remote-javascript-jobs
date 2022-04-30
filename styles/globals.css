@@ -4,6 +4,7 @@
 @import './bootstrap-override.css';
 @import './icomoon.css';
 @import './util.css';
+@import './editor.css';
 
 #side .nav-link.active,
 #side .nav-link:hover,
@@ -11,6 +12,7 @@
     background-color: var(--color-yellow);
     color: var(--color-black);
     font-weight: bold;
+    border-radius: 5px;
 }
 
 
@@ -130,6 +132,10 @@ input:checked ~ .icon-light_mode {
   min-height: 300px;
 
  
+}
+
+editorClassName * {
+  background-color: #fff !important;
 }
 
 .toolbarClassName {
