@@ -7,6 +7,32 @@ US Based Remote Javascript Job Board:
 
 - Companies can post job ads for a priceUS 
 
+## Stack
+
+### Domain and private email provider
+
+- Namecheap
+
+### FE 
+
+- React
+- Next
+
+### BE
+
+- Next
+- Node
+- Firebase
+
+### Payments
+
+- Stripe
+
+### Emails
+
+- Sendgrid
+
+
 
 
 ## Firebase
