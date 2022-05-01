@@ -24,17 +24,20 @@ function sendEmail(options = {}) {
   const {
     to = "almanzarortizjeffrey@gmail.com",
     from = "support@remotejavascriptjobs.io",
-    subject = "Sending with SendGrid is Fun",
-    text = "and easy to do anywhere, even with Node.js",
-    html = "<strong>and easy to do anywhere, even with Node.js</strong>",
   } = options;
 
   const msg = {
     to, // Change to your recipient
     from, // Change to your verified sender
-    subject,
-    text,
-    html,
+    templateId: 'd-2e177966c18649e2b57d031341b2f77c',
+      dynamic_template_data: {
+        name: "Jeff",
+        receipt_id: "12345",
+        amount: 149,
+        total: 149,
+        date: '12/20/2020',
+        description: "Some content here"
+      },
   };
 
   return sgMail.send(msg);
