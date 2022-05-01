@@ -5,17 +5,6 @@ import Image from "next/image";
 import classNames from "classnames";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  setDoc,
-  doc,
-  addDoc,
-  writeBatch,
-  where,
-  query,
-} from "firebase/firestore/lite";
 
 import { fetchPostJSON } from "../config/api-helper";
 import getStripe from "../stripe/get-stripe";
@@ -192,11 +181,15 @@ export default class JobPosting extends React.Component {
     }
 
     // TODO: Send message if things don't work as expected
-    const createdJob = await createJob(jobInfo);
+    // const createdJob = await createJob(jobInfo);
+
+    const emailRes = await fetchPostJSON("/api/sendgrid/sendOne", {
+      subject: "Remote JS Jobs - Job Created!",
+      checkoutSession: response,
+      to: this.state.company_email,
+    });
 
     // TODO: How to check what post belong to what payment?
-
-    console.log(createdJob);
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
