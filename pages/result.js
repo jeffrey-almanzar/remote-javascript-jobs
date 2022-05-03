@@ -1,17 +1,10 @@
 import _ from "lodash";
-// import { NextPage } from "next";
 import { useRouter } from "next/router";
-
-// import Layout from "../components/Layout";
-// import PrintObject from "../components/PrintObject";
-// import Cart from "../components/Cart";
-// import ClearCart from "../components/ClearCart";
-
-import styles from '../styles/JobPosting.module.css';
-
 import { fetchGetJSON } from "../config/api-helper";
 import useSWR from "swr";
 import classNames from "classnames";
+
+import styles from "../styles/JobPosting.module.css";
 
 const ResultPage = () => {
   const router = useRouter();
@@ -31,11 +24,17 @@ const ResultPage = () => {
 
   return (
     <>
-      <div className={classNames(styles.resultPage, "container my-5 d-flex justify-content-center align-items-center")}>
+      <div
+        className={classNames(
+          styles.resultPage,
+          "container my-5 d-flex justify-content-center align-items-center"
+        )}
+      >
         <div className="text-center">
           <h1>Thank You!</h1>
-          {/* <h3>For your order</h3> */}
-          <p className="lead mt-3">A confirmation email had been sent to {email}</p>
+          <p className="lead mt-3">
+            A confirmation email had been sent to {email}
+          </p>
         </div>
       </div>
     </>
