@@ -9,3 +9,7 @@
 .jobPostingType:hover {
     cursor: pointer;
 }
+
+.resultPage {
+    min-height: 50vh;
+}

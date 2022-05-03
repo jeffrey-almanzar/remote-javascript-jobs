@@ -1,3 +1,4 @@
+import _ from "lodash";
 // import { NextPage } from "next";
 import { useRouter } from "next/router";
 
@@ -6,8 +7,11 @@ import { useRouter } from "next/router";
 // import Cart from "../components/Cart";
 // import ClearCart from "../components/ClearCart";
 
+import styles from '../styles/JobPosting.module.css';
+
 import { fetchGetJSON } from "../config/api-helper";
 import useSWR from "swr";
+import classNames from "classnames";
 
 const ResultPage = () => {
   const router = useRouter();
@@ -21,22 +25,20 @@ const ResultPage = () => {
     fetchGetJSON
   );
 
-  console.log(data)
-
   if (error) return <div>failed to load</div>;
 
+  const email = _.get(data, "customer_details.email");
+
   return (
-    <div>
-      <div className="container">
-        <h1>Checkout Payment Result</h1>
-        <h2>Status: {data?.payment_intent?.status ?? "loading..."}</h2>
-        <h3>CheckoutSession response:</h3>
-        {/* <PrintObject content={data ?? "loading..."} />
-        <Cart>
-          <ClearCart />
-        </Cart> */}
+    <>
+      <div className={classNames(styles.resultPage, "container my-5 d-flex justify-content-center align-items-center")}>
+        <div className="text-center">
+          <h1>Thank You!</h1>
+          {/* <h3>For your order</h3> */}
+          <p className="lead mt-3">A confirmation email had been sent to {email}</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
