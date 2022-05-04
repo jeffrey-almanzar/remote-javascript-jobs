@@ -9,6 +9,7 @@ import {
   doc,
   addDoc,
   writeBatch,
+  updateDoc,
   where,
   query,
 } from "firebase/firestore/lite";
@@ -20,5 +21,6 @@ export default async function createJob(payload) {
   const logoUrl = await uploadFile(_.get(payload, "logo_file"));
   const db = getFirestore(firebaseApp);
   const body = _.omit({ ...payload, logo_url: logoUrl, date: moment.utc().format(), }, ["logo_file"]);
-  return addDoc(collection(db, "jobs"), body);
+  const jobRef = await addDoc(collection(db, "jobs"), body);
+  return updateDoc(jobRef, {id: jobRef.id});
 }
