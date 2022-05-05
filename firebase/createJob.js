@@ -1,5 +1,6 @@
 import _ from "lodash";
 import moment from 'moment';
+import slugify from "slugify";
 
 import {
   getFirestore,
@@ -22,5 +23,5 @@ export default async function createJob(payload) {
   const db = getFirestore(firebaseApp);
   const body = _.omit({ ...payload, logo_url: logoUrl, date: moment.utc().format(), }, ["logo_file"]);
   const jobRef = await addDoc(collection(db, "jobs"), body);
-  return updateDoc(jobRef, {id: jobRef.id});
+  return updateDoc(jobRef, {id: jobRef.id,   url: `?job=${jobRef.id}-${slugify(payload.title)}`});
 }
