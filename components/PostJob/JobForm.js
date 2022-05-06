@@ -3,7 +3,7 @@ import _ from "lodash";
 import dynamic from "next/dynamic";
 
 import Pricing from "./Pricing";
-// import JobListing from "../JobBoard/JobListing";
+import JobListing from "../JobBoard/JobListing";
 import Checkout from "./Checkout";
 import DropDown from "../JobBoard/Dropdown";
 import {
@@ -12,6 +12,7 @@ import {
   EXPERIENCE_LEVEL,
   SALARY_ESTIMATE,
   MAIN_TECHNOLOGY,
+  ALLOW_IMAGE_FILE_TYPES,
 } from "../JobBoard/data";
 
 const Editor = dynamic(
@@ -20,8 +21,20 @@ const Editor = dynamic(
 );
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
+function RequiredIcon() {
+  return <span className="required mx-2">*</span>
+}
+
 export default function JobForm(props) {
   const {
+    jobTitle,
+    company_name,
+    jobDescriptionText,
+    employment_type,
+    development_type,
+    experience_level,
+    main_technology,
+    salary,
     jobDescription,
     onSubmit,
     onInputChange,
@@ -29,108 +42,156 @@ export default function JobForm(props) {
     onJobPostingTypeChange,
     onEditorStateChange,
     isFeaturedPosting,
+    onFileChange,
+    logo_url,
   } = props;
+
+  const test = {
+    id: '1',
+    logo_url,
+    title: jobTitle,
+    employment_type,
+    experience_level,
+    development_type,
+    description: jobDescriptionText,
+    company_name,
+    salary,
+    main_technology,
+    is_featured: isFeaturedPosting,
+  };
+
   return (
-    <form className="mb-5" onSubmit={onSubmit}>
-      <div id="sec1" className="anchor"></div>
-      <h3 className="pb-3">Position Details</h3>
+    <form className="mb-5 sectionShadow p-3 p-md-5" onSubmit={onSubmit}>
+      <div id="create" className="anchor"></div>
+      <h2 className="pb-4">1. Create</h2>
+      <h5 className="pb-3">Position Details</h5>
       <div className="mb-3">
         <label htmlhtmlFor="title" className="form-label">
-          Job Title
+          Job Title <RequiredIcon />
         </label>
         <input
           onChange={onInputChange}
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           name="title"
           id="title"
         />
       </div>
 
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Employment Type
+            Employment Type <RequiredIcon />
           </label>
-          <DropDown onClick={onDropdownChange} {...EMPLOYMENT_TYPE} />
+          <DropDown
+            onClick={onDropdownChange}
+            {...EMPLOYMENT_TYPE}
+            label={employment_type}
+          />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Development Type
+            Development Type <RequiredIcon />
           </label>
-          <DropDown {...DEVELOPMENT_TYPE} onClick={onDropdownChange} />
+          <DropDown
+            {...DEVELOPMENT_TYPE}
+            onClick={onDropdownChange}
+            label={development_type}
+          />
         </div>
       </div>
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
             Experience
           </label>
-          <DropDown {...EXPERIENCE_LEVEL} onClick={onDropdownChange} />
+          <DropDown
+            {...EXPERIENCE_LEVEL}
+            onClick={onDropdownChange}
+            label={experience_level}
+          />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="formGroupExampleInput" className="form-label">
-            Salary
+            Salary Estimate <RequiredIcon />
           </label>
-          <DropDown {...SALARY_ESTIMATE} onClick={onDropdownChange} />
+          <DropDown
+            {...SALARY_ESTIMATE}
+            onClick={onDropdownChange}
+            label={salary}
+          />
         </div>
       </div>
 
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
-          Main Technology
+          Main Technology <RequiredIcon />
         </label>
-        <DropDown {...MAIN_TECHNOLOGY} onClick={onDropdownChange} />
+        <DropDown
+          {...MAIN_TECHNOLOGY}
+          onClick={onDropdownChange}
+          label={main_technology}
+        />
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formGroupExampleInput2" className="form-label">
-          Job Description
+          Job Description <RequiredIcon />
         </label>
+        {/* DOCS: https://jpuri.github.io/react-draft-wysiwyg/#/docs */}
         <Editor
-        editorState={jobDescription}
-        // toolbarClassName="toolbarClassName"
-        // wrapperClassName="wrapperClassName"
-        // editorClassName="editorClassName"
-        onEditorStateChange={onEditorStateChange} 
+          editorState={jobDescription}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={onEditorStateChange}
+          toolbar={{
+            options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'remove', 'history' ],
+            inline: { inDropdown: true },
+            // list: { inDropdown: true },
+            // textAlign: { inDropdown: true },
+            // link: { inDropdown: true },
+            // history: { inDropdown: true },
+        }}
         />
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="apply_link" className="form-label">
-          Apply Link or Email
+          Apply Link or Email <RequiredIcon />
         </label>
         <input
           onChange={onInputChange}
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           name="apply_link"
           id="apply_link"
         />
       </div>
-      <h3 className="pt-5 pb-3">Company Details</h3>
+      <h5 className="pt-5 pb-3">Company Details</h5>
       <div className="row">
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="company_name" className="form-label">
-            Company Name
+            Company Name <RequiredIcon />
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control dropdown-filter"
             name="company_name"
             id="company_name"
             onChange={onInputChange}
           />
         </div>
-        <div className="col mb-3">
+        <div className="col-12 col-md-6 mb-3">
           <label htmlhtmlFor="company_email" className="form-label">
-            Company Email
+            Company Email <RequiredIcon />
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control dropdown-filter"
             id="company_email"
             name="company_email"
             onChange={onInputChange}
           />
+          <p className="u-info-text">It&apos;s kept private. A receipt and confirmation email will be sent to this email.</p>
         </div>
       </div>
       <div className="mb-3">
@@ -139,7 +200,7 @@ export default function JobForm(props) {
         </label>
         <input
           type="text"
-          className="form-control"
+          className="form-control dropdown-filter"
           id="company_site"
           name="company_site"
           onChange={onInputChange}
@@ -147,13 +208,21 @@ export default function JobForm(props) {
       </div>
       <div className="mb-3">
         <label htmlhtmlFor="formFile" className="form-label">
-          Company Logo
+          Company Logo <RequiredIcon />
         </label>
-        <input className="form-control" type="file" id="formFile" />
+        <input onChange={onFileChange} className="form-control dropdown-filter" type="file" id="formFile" accept={_.join(ALLOW_IMAGE_FILE_TYPES, ', ')} />
       </div>
-      <Pricing isFeaturedPosting={isFeaturedPosting} onJobPostingTypeChange={onJobPostingTypeChange} />
+      <Pricing
+        isFeaturedPosting={isFeaturedPosting}
+        onJobPostingTypeChange={onJobPostingTypeChange}
+      />
+      {/* { test.title && ( */}
+        <div className="mb-5 job-card-container">
+          <JobListing isPreview jobs={[test]} /> 
+        </div>
+      {/* )} */}
       <div className="mb-3">{/* <JobListing jobs={[jobs[0]]} /> */}</div>
-      <Checkout onInputChange={onInputChange} />
+      <Checkout  isFeaturedPosting={isFeaturedPosting} onInputChange={onInputChange} />
     </form>
   );
 }

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   // https://github.com/stripe/stripe-node#configuration
@@ -15,9 +16,10 @@ export default async function handler(req, res) {
         shipping_address_collection: {
           allowed_countries: ["US", "CA"], // should i allow more countries? Maybe only USA
         },
-        line_items: [req.body],
+        customer_email: _.get(req.body, 'customer_email'),
+        line_items: [_.pick(req.body, ['price', 'quantity'])],
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/use-shopping-cart`,
+        cancel_url: `${req.headers.origin}/job-posting`,
         mode: "payment",
       };
 

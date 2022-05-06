@@ -6,13 +6,14 @@ import CardBody from "./CardBody";
 import slugify from "slugify";
 
 import { JOBS_PAGE_PATH } from "../../config/constants";
+import classNames from "classnames";
 
-export default function JobListing({ jobs }) {
+export default function JobListing({ jobs, isPreview }) {
   const router = useRouter();
 
   useEffect(() => {
     // TODO: use regex
-    if (window.location.href.includes("job=")) {
+    if (!isPreview && window.location.href.includes("job=")) {
       router.push("/jobs/" + window.location.href.split("job=")[1], undefined, {
         shallow: true,
       });
@@ -22,20 +23,22 @@ export default function JobListing({ jobs }) {
   return (
     <div className="accordion" id="accordionExample-2">
       {jobs.map((jobPost, index) => {
-        const { id, title, description } = jobPost;
+        const { id, title, description, is_featured } = jobPost;
 
         const accordionKey = "job-title-" + id;
 
         return (
-          <div key={title + "-" + index} className="accordion-item">
+          <div key={title + "-" + index} className={classNames("accordion-item")}>
             <h2 className="accordion-header" id={accordionKey}>
               <button
                 onClick={() => {
                   const path = `${id}-${slugify(title)}`;
                   const current = router.query.job; 
-                  path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
+                  if(!isPreview) {
+                    path === current ? router.replace('', undefined, { shallow: true }) : router.replace('?job=' + path, undefined, { shallow: true });
+                  }
                 }}
-                className="accordion-button collapsed"
+                className={classNames("accordion-button collapsed", is_featured && 'bg-yellow')}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={"#collapseOne2" + accordionKey}
@@ -50,7 +53,7 @@ export default function JobListing({ jobs }) {
               className="accordion-collapse collapse"
               aria-labelledby="headingOne2"
             >
-              <div className="accordion-body">
+              <div className="accordion-body p-4">
                 <CardBody content={description} />
               </div>
             </div>

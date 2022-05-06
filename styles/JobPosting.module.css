@@ -1,7 +1,15 @@
+.wrapper {
+    margin-top: 100px;
+}
+
 .selectedJobPostingType {
-    border: 2px solid var(--color-yellow);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .jobPostingType:hover {
     cursor: pointer;
+}
+
+.resultPage {
+    min-height: 50vh;
 }

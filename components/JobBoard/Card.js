@@ -9,21 +9,24 @@ export default function Card(props) {
     title,
     company_name,
     date,
+    main_technology,
     technologies,
     salary,
     development_type,
     employment_type,
     logo_url,
     apply_link,
+    is_featured
   } = props;
 
-  const mainTechnology = _.get(technologies, "0") || "";
+  const mainTechnology = main_technology || _.get(technologies, "0") || "";
 
   return (
     <div className={classNames("d-flex w-100 position-relative")}>
       <div className="me-4 d-none d-md-block">
         {logo_url && (
-          <Image
+          // Highly recommended - try to get the Image component to work.
+          <img 
             className={styles.companyLogo}
             width="100px"
             height="100px"

@@ -5,19 +5,6 @@ import Image from "next/image";
 import classNames from "classnames";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  setDoc,
-  doc,
-  addDoc,
-  writeBatch,
-  where,
-  query,
-} from "firebase/firestore/lite";
-
-import firebaseApp from "../firebase/clientApp";
 
 import { fetchPostJSON } from "../config/api-helper";
 import getStripe from "../stripe/get-stripe";
@@ -32,13 +19,14 @@ import Sidebar from "../components/PostJob/Sidebar";
 
 import styles from "../styles/JobPosting.module.css";
 
-/*
-TODO:
-- upload logo
-- dropdowns
-- styling
-- confirmation page
-*/
+import {
+  REQUIRED_FIELDS,
+  ALLOW_IMAGE_FILE_TYPES,
+} from "../components/JobBoard/data";
+
+import createJob from "../firebase/createJob";
+
+import Meta from "../components/Meta";
 
 export default class JobPosting extends React.Component {
   constructor(props) {
@@ -52,6 +40,7 @@ export default class JobPosting extends React.Component {
       experience_level: "",
       // min_salary: '80',
       // max_salary: '100',
+      salary: "",
       main_technology: "",
       description: EditorState.createEmpty(),
       apply_link: "",
@@ -60,16 +49,40 @@ export default class JobPosting extends React.Component {
       // company info
       company_name: "",
       logo_url: "",
-      company_site: "https://example.com",
-      company_email: "test@gamil.com", // stays private - for inbox
+      logo_file: {},
+      company_site: "",
+      company_email: "", // stays private - for inbox
 
       // highlight info
-      is_featured: false,
+      is_featured: true,
+
+      requiredFields: {},
     };
   }
 
   onInputChange = (ev) => {
     this.setState({ [ev.target.name]: ev.target.value });
+  };
+
+  onFileChange = async (ev) => {
+    const reader = new FileReader();
+    const selectedFile = _.get(ev, "target.files.0");
+    const data = selectedFile && reader.readAsDataURL(selectedFile);
+
+    if (
+      !_.get(selectedFile, "type") ||
+      !ALLOW_IMAGE_FILE_TYPES.includes(selectedFile.type)
+    ) {
+      this.setState({ logo_url: "", logo_file: {} });
+      return;
+    }
+
+    // Source: https://www.javascripttutorial.net/web-apis/javascript-filereader/
+    // Recheck for file size
+    reader.addEventListener("load", (e) => {
+      const file = _.get(e, "target.result");
+      this.setState({ logo_url: file, logo_file: selectedFile });
+    });
   };
 
   onEditorStateChange = (editorState) => {
@@ -86,19 +99,60 @@ export default class JobPosting extends React.Component {
     this.setState(type);
   };
 
+  areFieldsValidated = (jobPayload) => {
+    const isValidEmail = (str) => {
+      return (
+        str &&
+        typeof str === "string" &&
+        /^[\w+\d+._]+\@[\w+\d+_+]+\.[\w+\d+._]{2,8}$/.test(str.trim())
+      );
+    };
+
+    const isValidDescription = () => {
+      const description = draftToHtml(
+        convertToRaw(this.state.description.getCurrentContent())
+      );
+      return description && description !== "<p></p>\n";
+    };
+
+    const emptyInvalidFields = _.keys(REQUIRED_FIELDS).reduce((acc, key) => {
+      const invalidEmail =
+        key === "company_email" && !isValidEmail(this.state[key]);
+      const isDescriptionEmpty = key === "description" && !isValidDescription();
+
+      if (!this.state[key] || isDescriptionEmpty || invalidEmail) {
+        acc[key] = REQUIRED_FIELDS[key];
+      }
+      return acc;
+    }, {});
+
+    return emptyInvalidFields;
+  };
+
   onSubmit = async (ev) => {
     ev.preventDefault();
+
+    const invalidFields = this.areFieldsValidated();
+
+    if (!_.isEmpty(invalidFields)) {
+      this.setState({ requiredFields: invalidFields });
+      return;
+    }
 
     const jobPayload = _.pick(this.state, [
       "title",
       "employment_type",
       "development_type",
       "experience_level",
+      "salary",
       "main_technology",
       "apply_link",
       "company_name",
+      "company_email",
       "company_site",
       "is_featured",
+      "logo_url",
+      "logo_file",
     ]);
 
     const description = draftToHtml(
@@ -109,19 +163,15 @@ export default class JobPosting extends React.Component {
   };
 
   handleCheckout = async (jobInfo) => {
-    // event.preventDefault();
-    // setLoading(true);
-    // setErrorMessage("");
-
     const { is_featured = false } = jobInfo;
     const priceInfo = is_featured
       ? { price: STRIPE_PRODUCT_FEATURED_JOB_PRICE_ID, quantity: 1 }
       : { price: STRIPE_PRODUCT_STANDARD_JOB_PRICE_ID, quantity: 1 };
 
-    const response = await fetchPostJSON(
-      "/api/checkout_sessions/cart",
-      priceInfo
-    );
+    const response = await fetchPostJSON("/api/checkout_sessions/cart", {
+      ...priceInfo,
+      customer_email: this.state.company_email,
+    });
 
     if (response.statusCode > 399) {
       console.error(response.message);
@@ -130,11 +180,16 @@ export default class JobPosting extends React.Component {
       return;
     }
 
-    // TODO: Create job here.
-    // Created Job
-    // const db = getFirestore(firebaseApp);
-    // await addDoc(collection(db, "jobs"), {description, ...jobPayload});
-    // console.log("Created Job");
+    // TODO: Send message if things don't work as expected
+    // const createdJob = await createJob(jobInfo);
+
+    const emailRes = await fetchPostJSON("/api/sendgrid/sendOne", {
+      subject: "Remote JS Jobs - Job Created!",
+      checkoutSession: response,
+      to: this.state.company_email,
+    });
+
+    // TODO: How to check what post belong to what payment?
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
@@ -150,30 +205,69 @@ export default class JobPosting extends React.Component {
   };
 
   render() {
-    const { description, is_featured } = this.state;
+    const {
+      title,
+      company_name,
+      description,
+      is_featured,
+      employment_type,
+      development_type,
+      experience_level,
+      main_technology,
+      salary,
+      logo_url,
+      requiredFields,
+    } = this.state;
+
     return (
-      <div className="container-fluid">
-        <div className="container">
-          <h1 className="pt-4">Some text here</h1>
-          <p>Some information here</p>
-          <div className="d-flex justify-content-between">
-            <div className="col-3 my-5">
-              <Sidebar />
-            </div>
-            <div className="col-8">
-              <JobForm
-                isFeaturedPosting={is_featured}
-                jobDescription={description}
-                onSubmit={this.onSubmit}
-                onInputChange={this.onInputChange}
-                onDropdownChange={this.onDropdownChange}
-                onJobPostingTypeChange={this.onJobPostingTypeChange}
-                onEditorStateChange={this.onEditorStateChange}
-              />
+      <>
+        <Meta title="Post a job" />
+
+        <div className={classNames("container-fluid", styles.wrapper)}>
+          <div className="container">
+            <div className="d-lg-flex justify-content-between">
+              <div className="col-lg-3">
+                <h1 className="mb-2">Some text here</h1>
+                <p>Some information here</p>
+                <Sidebar />
+              </div>
+              <div className="col-lg-8 mt-5 mt-lg-0">
+                {!_.isEmpty(requiredFields) && (
+                  <div className="alert alert-danger">
+                    <h5 className="mb-2">Checkout these fields: </h5>
+                    <ul className="error-list">
+                      {_.values(requiredFields).map((value) => (
+                        <li key={value}>{value}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <JobForm
+                  jobTitle={title}
+                  jobDescriptionText={draftToHtml(
+                    convertToRaw(this.state.description.getCurrentContent())
+                  )}
+                  logo_url={logo_url}
+                  company_name={company_name}
+                  employment_type={employment_type}
+                  development_type={development_type}
+                  experience_level={experience_level}
+                  main_technology={main_technology}
+                  salary={salary}
+                  isFeaturedPosting={is_featured}
+                  jobDescription={description}
+                  onSubmit={this.onSubmit}
+                  onInputChange={this.onInputChange}
+                  onDropdownChange={this.onDropdownChange}
+                  onJobPostingTypeChange={this.onJobPostingTypeChange}
+                  onEditorStateChange={this.onEditorStateChange}
+                  onFileChange={this.onFileChange}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

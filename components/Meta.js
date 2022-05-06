@@ -21,5 +21,5 @@ export default function Meta(props) {
 Meta.defaultProps = {
   title: "Some title",
   description: "Some description",
-  keywords: 'text 1, text 2'
+  keywords: 'js, javascript, javascript jobs, remote jobs, remote javascript jobs, web development, software development, software engineering'
 };

@@ -14,10 +14,11 @@ export default function DropDown({ label, filterKey, options, onClick }) {
 
   return (
     <div className="dropdown">
-      {label && (
+      {/* {label && ( */}
         <button
           className={classNames(
             "btn w-100 text-start dropdown-toggle position-relative",
+            'dropdown-button',
             isActive ? "btn-warning" : "dropdown-filter"
           )}
           type="button"
@@ -27,7 +28,7 @@ export default function DropDown({ label, filterKey, options, onClick }) {
         >
           {label}
         </button>
-      )}
+      {/* )} */}
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         {_.map(options, (option) => (
           <li key={option}>
