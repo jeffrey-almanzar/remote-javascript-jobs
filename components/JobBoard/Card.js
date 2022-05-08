@@ -68,11 +68,11 @@ export default function Card(props) {
           )}
         </div>
       </div>
-      <span className={classNames(styles.applyLink, "btn-primary apply-link")}>
+      {/* <span className={classNames(styles.applyLink, "btn-primary apply-link")}>
         <a target="_blank" href={apply_link} rel="noopener noreferrer">
           Apply
         </a>
-      </span>
+      </span> */}
     </div>
   );
 }
