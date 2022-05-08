@@ -31,12 +31,12 @@ export default function Header() {
         <div className="d-flex align-self-end align-items-center h-100">
           <ul className={classNames(styles.links)}>
             {/* <div className="container"> */}
-            <li className="me-5 mb-4 mb-lg-0">
+            {/* <li className="me-5 mb-4 mb-lg-0">
               <Link href={JOBS_PAGE_PATH}>Jobs</Link>
             </li>
             <li className="me-5 mb-4 mb-lg-0">
               <Link href={STANDING_OUT_PAGE_PATH}>Getting hired</Link>
-            </li>
+            </li> */}
             <li className="me-5 mb-4 mb-lg-0">
               <Link href={RESOURCES_PAGE_PATH}>Resources</Link>
             </li>

@@ -32,7 +32,7 @@ export default function JobListing({ jobs, isPreview }) {
         const path = `${id}-${slugify(title)}`;
         const current = router.query.job;
 
-        const share = window.location.origin + "/jobs?job=" + path;
+        const share = "/jobs?job=" + path;
 
         return (
           <div
