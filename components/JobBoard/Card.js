@@ -1,6 +1,7 @@
 import _ from "lodash";
 import classNames from "classnames";
 import Image from "next/image";
+import moment from "moment";
 
 import styles from "../../styles/JobBoard.module.css";
 
@@ -16,8 +17,15 @@ export default function Card(props) {
     employment_type,
     logo_url,
     apply_link,
-    is_featured
+    is_featured,
   } = props;
+
+  const now = moment();
+  const jobDate = moment(date);
+  const timeDiffInWeeks = now.diff(jobDate, "weeks");
+  const timeDiffInDays = now.diff(jobDate, "days");
+  const displayDate =
+    timeDiffInWeeks > 0 ? `${timeDiffInWeeks}w` : `${timeDiffInDays}d`;
 
   const mainTechnology = main_technology || _.get(technologies, "0") || "";
 
@@ -26,7 +34,7 @@ export default function Card(props) {
       <div className="me-4 d-none d-md-block">
         {logo_url && (
           // Highly recommended - try to get the Image component to work.
-          <img 
+          <img
             className={styles.companyLogo}
             width="100px"
             height="100px"
@@ -41,7 +49,7 @@ export default function Card(props) {
             <span className="icon-company_location"></span>
             <span>{company_name}</span>
           </p>
-          <p>{date}</p>
+          <p>{displayDate}</p>
         </div>
 
         <h4 className="mb-3">{title}</h4>
