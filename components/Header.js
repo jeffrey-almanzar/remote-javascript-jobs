@@ -47,7 +47,6 @@ export default function Header() {
             </li>
             {/* </div> */}
           </ul>
-
           <ThemeToggle />
         </div>
       </div>

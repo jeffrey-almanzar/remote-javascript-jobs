@@ -50,7 +50,8 @@ export default function Hero(props) {
                 The most reliable remote JavaScript jobs on the internet.
               </p>
               <p className="btn btn-primary">
-                <Link href={JOBS_PAGE_PATH}>Show me the jobs</Link>
+                Send latest jobs to <input className="" placeholder="My email" />
+                <span className=""><Link href={JOBS_PAGE_PATH}>Get jobs</Link></span>
               </p>
             </div>
           </div>

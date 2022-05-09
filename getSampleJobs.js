@@ -2,21 +2,6 @@ const fs = require("fs");
 const _ = require("lodash");
 const moment = require('moment');
 
-const {
-  getFirestore,
-  collection,
-  getDocs,
-  setDoc,
-  doc,
-  addDoc,
-  writeBatch,
-  where,
-  orderBy,
-  query,
-} =  require("firebase/firestore/lite");
-
-const firebaseApp = require('./firebase/clientApp');
-
 const sampleJobs = fs.readFileSync("./public/jobs.json", "utf8");
 const jobs = JSON.parse(sampleJobs);
 
@@ -79,6 +64,6 @@ const transformedJobs = _.compact(
 // }
 // Test()
 
-fs.writeFileSync('test.json', JSON.stringify(transformedJobs));
+// fs.writeFileSync('test.json', JSON.stringify(transformedJobs));
 
 module.exports = transformedJobs;

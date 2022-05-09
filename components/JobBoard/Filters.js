@@ -17,7 +17,7 @@ export default function Filters({ options }) {
         ))}
       </ul>
       <p
-        onClick={() => router.push({ pathname: "/jobs" })}
+        onClick={() => router.push({ pathname: "/" })}
         className="btn btn-link"
       >
         Reset filters

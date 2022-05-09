@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
+import moment from "moment";
 
 import firebaseApp from "../firebase/clientApp";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -23,7 +24,7 @@ import {
 import Filters from "../components/JobBoard/Filters";
 import JobListing from "../components/JobBoard/JobListing";
 import Meta from "../components/Meta";
-import Hero from '../components/Home/Hero';
+import Hero from "../components/Home/Hero";
 
 import { options, VALID_JOB_FILTERS } from "../components/JobBoard/data";
 // import { transformedJobs } from "../getSampleJobs";
@@ -63,7 +64,7 @@ export async function getServerSideProps(context) {
   if (!_.isEmpty(params)) {
     _.keys(params).forEach((filter) => {
       if (VALID_JOB_FILTERS[filter]) {
-        params[filter] && filters.push({ key: filter, value: params[filter] })
+        params[filter] && filters.push({ key: filter, value: params[filter] });
       }
     });
   }
@@ -71,26 +72,54 @@ export async function getServerSideProps(context) {
   const hasFilters = !_.isEmpty(filters);
 
   if (hasFilters) {
-    const queries = filters.map(filter => where(filter.key, "==", filter.value ));
-    const q = query(jobsCol, ...queries, orderBy('is_featured'));
+    const queries = filters.map((filter) =>
+      where(filter.key, "==", filter.value)
+    );
+    const q = query(jobsCol, ...queries);
 
     const jobSnapshot = await getDocs(q);
-    const jobList = jobSnapshot.docs.map(doc => doc.data());
+    const jobList = jobSnapshot.docs.map((doc) => doc.data());
 
     return {
       props: {
         jobsProps: jobList,
       },
     };
-  } 
+  }
 
-  
-  const jobSnapshot = await getDocs(query(jobsCol, orderBy('title', 'asc')));
-  const jobList = jobSnapshot.docs.map(doc => doc.data());
+  const jobSnapshot = await getDocs(
+    query(jobsCol, where("is_featured", "!=", true))
+  );
+  const jobList = jobSnapshot.docs.map((doc) => doc.data());
+
+  const featuredJobSnapshot = await getDocs(
+    query(jobsCol, where("is_featured", "==", true))
+  );
+  const featuredJList = featuredJobSnapshot.docs.map((doc) => doc.data());
+
+  const ordered = _.orderBy(
+    jobList,
+    [
+      (item) => {
+        return moment(item.date).format("YYYY-MM-DD");
+      },
+    ],
+    ["desc"]
+  );
+
+  const featuredOrdered = _.orderBy(
+    featuredJList,
+    [
+      (item) => {
+        return moment(item.date).format("YYYY-MM-DD");
+      },
+    ],
+    ["desc"]
+  );
 
   return {
     props: {
-      jobsProps: jobList,
+      jobsProps: _.concat(featuredOrdered, ordered),
     },
   };
 }
