@@ -164,31 +164,60 @@ export const FILTER_SALARY = "Salary";
 export const EMPLOYMENT_TYPE = {
   label: "Employment type",
   filterKey: slugify(FILTER_EMPLOYMENT_TYPE.toLowerCase(), "_"),
-  options: [FILTER_EMPLOYMENT_TYPE, "Full-time", "Contract", "Part-time", "Internship"],
+  options: [
+    { label: FILTER_EMPLOYMENT_TYPE, value: "" },
+    { label: "Full-time", value: "Full-time" },
+    { label: "Contract", value: "Contract" },
+    { value: "Part-time", label: "Part-time" },
+    { label: "Internship", value: "Internship" },
+  ],
 };
 
-export const DEVELOPMENT_TYPE =  {
+export const DEVELOPMENT_TYPE = {
   label: "Development type",
   filterKey: slugify(FILTER_DEVELOPMENT_TYPE.toLowerCase(), "_"),
-  options: [FILTER_DEVELOPMENT_TYPE, "Front-end", "Back-end", "Full-stack"],
-}
+  options: [
+    { label: FILTER_DEVELOPMENT_TYPE, value: "" },
+    { label: "Front-end", value: "Front-end" },
+    { label: "Back-end", value: "Back-end" },
+    { label: "Full-stack", value: "Full-stack" },
+  ],
+};
 
 export const EXPERIENCE_LEVEL = {
   label: "Experience level",
   filterKey: slugify(FILTER_EXPERIENCE_LEVEL.toLowerCase(), "_"),
-  options: [FILTER_EXPERIENCE_LEVEL, "Entry level", "Mid level", "Senior level"],
+  options: [
+    { label: FILTER_EXPERIENCE_LEVEL, value: "" },
+    { label: "Entry level", value: "Entry level" },
+    { label: "Mid level", value: "Mid level" },
+    { label: "Senior level", value: "Senior level" },
+  ],
 };
 
 export const MAIN_TECHNOLOGY = {
   label: "Main technology",
   filterKey: slugify(FILTER_MAIN_TECHNOLOGY.toLowerCase(), "_"),
-  options: [FILTER_MAIN_TECHNOLOGY, "React", "Angular", "Vue", "jQuery"],
+  options: [
+    { label: FILTER_MAIN_TECHNOLOGY, value: "" },
+    { label: "React", value: "React" },
+    { label: "Angular", value: "Angular" },
+    { label: "Vue", value: "Vue" },
+    { label: "jQuery", value: "jQuery" },
+  ],
 };
 
 export const SALARY_ESTIMATE = {
   label: "Salary estimate",
   filterKey: slugify(FILTER_SALARY.toLowerCase(), "_"),
-  options: [FILTER_SALARY, "Less than 50k, annually", "50k-100k, annually", "100k-150k, annually", "150k-200k, annually", "More than 200k, annually"],
+  options: [
+    { label: FILTER_SALARY, value: "" },
+    { label: "Less than 50k, annually", value: "Less than 50k, annually" },
+    { label: "50k-100k, annually", value: "50k-100k, annually" },
+    { label: "100k-150k, annually", value: "100k-150k, annually" },
+    { label: "150k-200k, annually", value: "150k-200k, annually" },
+    { label: "More than 200k, annually", value: "More than 200k, annually" },
+  ],
 };
 
 export const options = [
@@ -217,16 +246,17 @@ export const REQUIRED_FIELDS = {
   apply_link: "Apply Link or Email",
   company_name: "Company Name",
   company_email: "Company Email",
-  logo_url: "Company Logo, supported types: APNG, AVIF, GIF, JPEG, PNG, SVG, WebP",
+  logo_url:
+    "Company Logo, supported types: APNG, AVIF, GIF, JPEG, PNG, SVG, WebP",
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export const ALLOW_IMAGE_FILE_TYPES = [
-  'image/apng',
-  'image/avif',
-  'image/gif',
-  'image/jpeg',
-  'image/png',
-  'image/svg+xml',
-  'image/webp',
+  "image/apng",
+  "image/avif",
+  "image/gif",
+  "image/jpeg",
+  "image/png",
+  "image/svg+xml",
+  "image/webp",
 ];
