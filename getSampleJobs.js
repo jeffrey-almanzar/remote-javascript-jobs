@@ -6,7 +6,7 @@ const sampleJobs = fs.readFileSync("./public/jobs.json", "utf8");
 const jobs = JSON.parse(sampleJobs);
 
 const transformedJobs = _.compact(
-  _.map(jobs, (job) => {
+  _.map(jobs, (job, index) => {
     if (!job.id) {
       return null;
     }
@@ -30,7 +30,7 @@ const transformedJobs = _.compact(
       experience_level: "Mid level",
       min_salary: '80',
       max_salary: '100',
-      main_technology: mainTechnology,
+      main_technology: mainTechnology || null,
       other_technologies: otherTechnologies,
       description: job.description,
       apply_link: job.apply_url,
@@ -42,7 +42,7 @@ const transformedJobs = _.compact(
       company_email: 'test@gamil.com', // stays private - for inbox 
 
       // highlight info
-      is_featured: true,
+      is_featured: index === 1,
     };
   })
 );
