@@ -131,7 +131,7 @@
 }
 
 .job-card-container .accordion-button:not(.collapsed) .apply-link {
-    display: none;
+    display: block;
 }
 
 

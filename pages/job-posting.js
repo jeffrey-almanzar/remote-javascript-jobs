@@ -60,6 +60,16 @@ export default class JobPosting extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const body = document.getElementsByTagName('body');
+    
+    if(body.length) {
+      body[0].setAttribute('data-bs-spy', 'scroll');
+      body[0].setAttribute('data-bs-target', '#side');
+      body[0].setAttribute('data-bs-offset', '20');
+    }
+  }
+
   onInputChange = (ev) => {
     this.setState({ [ev.target.name]: ev.target.value });
   };

@@ -39,7 +39,7 @@
 .applyLinkVisible,
 .applyLink {
     background-color: var(--color-yellow);
-    display: none;
+    /* display: none; */
     padding: 10px;
     color: var(--color-black);
     position: absolute;

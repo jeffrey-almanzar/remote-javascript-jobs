@@ -16,6 +16,7 @@ import {
   addDoc,
   writeBatch,
   where,
+  orderBy,
   query,
 } from "firebase/firestore/lite";
 
@@ -69,7 +70,7 @@ export async function getServerSideProps(context) {
 
   if (hasFilters) {
     const queries = filters.map(filter => where(filter.key, "==", filter.value ));
-    const q = query(jobsCol, ...queries);
+    const q = query(jobsCol, ...queries, orderBy('is_featured'));
 
     const jobSnapshot = await getDocs(q);
     const jobList = jobSnapshot.docs.map(doc => doc.data());
@@ -82,7 +83,7 @@ export async function getServerSideProps(context) {
   } 
 
   
-  const jobSnapshot = await getDocs(jobsCol);
+  const jobSnapshot = await getDocs(query(jobsCol, orderBy('title', 'asc')));
   const jobList = jobSnapshot.docs.map(doc => doc.data());
 
   return {
