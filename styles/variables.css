@@ -6,7 +6,8 @@
     --color-paragraph: #797979;
     --color-button-text: rgb(255, 255, 255);
     --color-background: #fff;
-    --color-anchor: #000aff;
+    /* --color-anchor: #000aff; */
+    --color-anchor: #000000;
 
     /* COLORS */
     --color-black: #000000;

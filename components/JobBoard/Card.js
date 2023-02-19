@@ -47,7 +47,7 @@ export default function Card(props) {
         <h4 className="mb-3">{title}</h4>
         <div className="d-none d-lg-flex">
           <p className="me-3 btn btn-light">{employment_type}</p>
-          <p className="me-3 btn btn-light">{salary}</p>
+          {salary && <p className="me-3 btn btn-light">{salary}</p>}
           {mainTechnology && (
             <p className="me-3 btn btn-light">{mainTechnology}</p>
           )}
