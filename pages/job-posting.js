@@ -132,12 +132,12 @@ export default class JobPosting extends React.Component {
   onSubmit = async (ev) => {
     ev.preventDefault();
 
-    const invalidFields = this.areFieldsValidated();
+    // const invalidFields = this.areFieldsValidated();
 
-    if (!_.isEmpty(invalidFields)) {
-      this.setState({ requiredFields: invalidFields });
-      return;
-    }
+    // if (!_.isEmpty(invalidFields)) {
+    //   this.setState({ requiredFields: invalidFields });
+    //   return;
+    // }
 
     const jobPayload = _.pick(this.state, [
       "title",
@@ -183,11 +183,11 @@ export default class JobPosting extends React.Component {
     // TODO: Send message if things don't work as expected
     // const createdJob = await createJob(jobInfo);
 
-    const emailRes = await fetchPostJSON("/api/sendgrid/sendOne", {
-      subject: "Remote JS Jobs - Job Created!",
-      checkoutSession: response,
-      to: this.state.company_email,
-    });
+    // const emailRes = await fetchPostJSON("/api/sendgrid/sendOne", {
+    //   subject: "Remote JS Jobs - Job Created!",
+    //   checkoutSession: response,
+    //   to: this.state.company_email,
+    // });
 
     // TODO: How to check what post belong to what payment?
 

@@ -100,3 +100,35 @@ Process:
 - Hit the endpoint and redirect 
    - https://github.com/Jeffrey-A/remotejavascriptjobs/pull/10/files#diff-14b25bf2c008402cc95a3af1ce510f45ce95c34a1b7f71003ceb0520cfea8d8bR128
    - https://github.com/Jeffrey-A/remotejavascriptjobs/pull/10/files#diff-14b25bf2c008402cc95a3af1ce510f45ce95c34a1b7f71003ceb0520cfea8d8bR147
+
+
+
+## Preview
+
+### Homepage
+
+<img src="app-preview/homepage.png" width="600" />
+
+### Jobs
+
+<img src="app-preview/jobs.png" width="600" />
+
+### Post a job
+
+<img src="app-preview/post-job.png" width="600" />
+
+### Post a job confirmation email
+
+<img src="app-preview/job-post-confirmation.jpg" width="600" />
+
+### Markdown blog
+
+<img src="app-preview/markdown-blog.png" width="600" />
+
+### Dark mode
+
+<img src="app-preview/homepage-dark.png" width="600" />
+
+<img src="app-preview/jobs-dark.png" width="600" />
+
+<img src="app-preview/markdown-blog-dark.png" width="600" />

@@ -7,18 +7,20 @@ import classNames from "classnames";
 
 import { JOBS_PAGE_PATH } from "../config/constants";
 
-import firebaseApp from "../firebase/clientApp";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  setDoc,
-  doc,
-  addDoc,
-  writeBatch,
-  where,
-  query,
-} from "firebase/firestore/lite";
+import transformedJobs from "../getSampleJobs";
+
+// import firebaseApp from "../firebase/clientApp";
+// import {
+//   getFirestore,
+//   collection,
+//   getDocs,
+//   setDoc,
+//   doc,
+//   addDoc,
+//   writeBatch,
+//   where,
+//   query,
+// } from "firebase/firestore/lite";
 
 
 // import { jobs } from "../components/JobBoard/data";
@@ -55,11 +57,13 @@ export default function Home({ jobs }) {
 
 export async function getServerSideProps(context) {
   // Firebase
-  const db = getFirestore(firebaseApp);
-  const jobsCol = collection(db, "jobs");
+  // const db = getFirestore(firebaseApp);
+  // const jobsCol = collection(db, "jobs");
 
-  const jobSnapshot = await getDocs(jobsCol);
-  const jobList = jobSnapshot.docs.map(doc => doc.data());
+  // const jobSnapshot = await getDocs(jobsCol);
+  // const jobList = jobSnapshot.docs.map(doc => doc.data());
+
+  const jobList = transformedJobs;
 
   return {
     props: {

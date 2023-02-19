@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 // Read for details: https://nextjs.org/docs/advanced-features/custom-document
 
-export default function Document() {
+export default function Document(props) {
   return (
     <Html>
       <Head>
@@ -26,7 +26,8 @@ export default function Document() {
         ></link>
       </Head>
       {/* Producing errors on other pages - only add attrs when using the scrollspy */}
-      <body data-bs-spy="scroll" data-bs-target="#side" data-bs-offset="20">
+      {/* <body data-bs-spy="scroll" data-bs-target="#side" data-bs-offset="20"> add dynamically when component did mount*/} 
+      <body>
         <script
           dangerouslySetInnerHTML={{
             __html: themeInitializerScript,
