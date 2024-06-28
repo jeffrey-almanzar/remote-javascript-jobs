@@ -5,7 +5,7 @@ US Based Remote Javascript Job Board:
 
 - Developers can learn about javascript interview questions and job hunting topics
 
-- Companies can post job ads for a priceUS 
+- Companies can post job ads for a price 
 
 ## Stack
 
